@@ -1,0 +1,1163 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{51508623-C2CB-4F15-B722-8D9CEF6246F8}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>LibraryManagementSystem</RootNamespace>
+    <AssemblyName>LibraryManagementSystem</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+    <Deterministic>true</Deterministic>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="AForge, Version=2.2.5.0, Culture=neutral, PublicKeyToken=c1db6ff4eaa06aeb, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.2.2.5\lib\AForge.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video, Version=2.2.5.0, Culture=neutral, PublicKeyToken=cbfb6e07d173c401, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.2.2.5\lib\AForge.Video.dll</HintPath>
+    </Reference>
+    <Reference Include="AForge.Video.DirectShow, Version=2.2.5.0, Culture=neutral, PublicKeyToken=61ea4348d43881b7, processorArchitecture=MSIL">
+      <HintPath>..\packages\AForge.Video.DirectShow.2.2.5\lib\AForge.Video.DirectShow.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.6.0.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.6.0.0\lib\net461\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.6.0.0\lib\net461\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Charting, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.Charting.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Quality, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.Quality.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.Snippets, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.Snippets.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.System, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.System.dll</HintPath>
+    </Reference>
+    <Reference Include="PdfSharp.WPFonts, Version=6.1.1.0, Culture=neutral, PublicKeyToken=f94615aa0424f9eb, processorArchitecture=MSIL">
+      <HintPath>..\packages\PDFsharp.6.1.1\lib\netstandard2.0\PdfSharp.WPFonts.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=9.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Configuration.ConfigurationManager.9.0.0\lib\net462\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Diagnostics.DiagnosticSource, Version=6.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.6.0.0\lib\net461\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="System.DirectoryServices" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Deployment" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Tulpep.NotificationWindow, Version=1.1.38.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Tulpep.NotificationWindow.1.1.38\lib\net40\Tulpep.NotificationWindow.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="AddRegisterForm.cs" />
+    <Compile Include="Admin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Admin.Designer.cs">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BookInventory.cs" />
+    <Compile Include="BookIssue.cs" />
+    <Compile Include="BookIssueForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BookIssueForm.Designer.cs">
+      <DependentUpon>BookIssueForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshBookReturn.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshBookReturn.Designer.cs">
+      <DependentUpon>dshBookReturn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="BorrowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="BorrowerForm.Designer.cs">
+      <DependentUpon>BorrowerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="DashboardForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="DashboardForm.Designer.cs">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshBorrower.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshBorrower.Designer.cs">
+      <DependentUpon>dshBorrower.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshBorrowerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshBorrowerList.Designer.cs">
+      <DependentUpon>dshBorrowerList.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshInventory.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshInventory.Designer.cs">
+      <DependentUpon>dshInventory.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshInvoice.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshInvoice.Designer.cs">
+      <DependentUpon>dshInvoice.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshLogDamageBook.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshLogDamageBook.Designer.cs">
+      <DependentUpon>dshLogDamageBook.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshProfile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshProfile.Designer.cs">
+      <DependentUpon>dshProfile.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshRegister.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshRegister.Designer.cs">
+      <DependentUpon>dshRegister.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dshUserInfo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshUserInfo.Designer.cs">
+      <DependentUpon>dshUserInfo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Form1.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Form1.Designer.cs">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet12.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet12.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet13.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet13.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet14.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet14.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet15.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet15.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet16.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet16.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet17.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet17.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet18.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet18.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet19.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet19.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet20.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet20.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet21.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet21.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet22.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet22.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet23.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet23.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet24.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet24.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet25.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet25.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet26.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet26.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet27.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet27.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet28.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet28.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet29.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet29.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet30.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet31.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet31.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet32.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet33.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet33.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet34.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet34.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet35.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet35.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet36.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet37.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet37.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet38.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet39.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet39.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet40.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet41.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet41.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet42.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet42.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet7.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet7.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="MaskingMethods.cs" />
+    <Compile Include="ProfileInformationForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ProfileInformationForm.Designer.cs">
+      <DependentUpon>ProfileInformationForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Program.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="RecordForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RecordForm.Designer.cs">
+      <DependentUpon>RecordForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="RegisterBorrowerForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="RegisterBorrowerForm.Designer.cs">
+      <DependentUpon>RegisterBorrowerForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Tulpep\NotificationWindow\Notification.cs" />
+    <Compile Include="UserProfileEdit.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UserProfileEdit.Designer.cs">
+      <DependentUpon>UserProfileEdit.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ViewProf.cs" />
+    <Compile Include="ViewProfileForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ViewProfileForm.Designer.cs">
+      <DependentUpon>ViewProfileForm.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="Admin.resx">
+      <DependentUpon>Admin.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BookIssueForm.resx">
+      <DependentUpon>BookIssueForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshBookReturn.resx">
+      <DependentUpon>dshBookReturn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="BorrowerForm.resx">
+      <DependentUpon>BorrowerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="DashboardForm.resx">
+      <DependentUpon>DashboardForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshBorrower.resx">
+      <DependentUpon>dshBorrower.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshBorrowerList.resx">
+      <DependentUpon>dshBorrowerList.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshInventory.resx">
+      <DependentUpon>dshInventory.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshInvoice.resx">
+      <DependentUpon>dshInvoice.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshLogDamageBook.resx">
+      <DependentUpon>dshLogDamageBook.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshProfile.resx">
+      <DependentUpon>dshProfile.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshRegister.resx">
+      <DependentUpon>dshRegister.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshUserInfo.resx">
+      <DependentUpon>dshUserInfo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Form1.resx">
+      <DependentUpon>Form1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ProfileInformationForm.resx">
+      <DependentUpon>ProfileInformationForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </EmbeddedResource>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
+    </Compile>
+    <EmbeddedResource Include="RecordForm.resx">
+      <DependentUpon>RecordForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="RegisterBorrowerForm.resx">
+      <DependentUpon>RegisterBorrowerForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UserProfileEdit.resx">
+      <DependentUpon>UserProfileEdit.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ViewProfileForm.resx">
+      <DependentUpon>ViewProfileForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <None Include="lmsdcsDataSet.xsc">
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet.xss">
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet1.xsc">
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet1.xss">
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet10.xsc">
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet10.xss">
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet11.xsc">
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet11.xss">
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet12.xsc">
+      <DependentUpon>lmsdcsDataSet12.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet12.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet12.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet12.xss">
+      <DependentUpon>lmsdcsDataSet12.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet13.xsc">
+      <DependentUpon>lmsdcsDataSet13.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet13.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet13.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet13.xss">
+      <DependentUpon>lmsdcsDataSet13.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet14.xsc">
+      <DependentUpon>lmsdcsDataSet14.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet14.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet14.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet14.xss">
+      <DependentUpon>lmsdcsDataSet14.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet15.xsc">
+      <DependentUpon>lmsdcsDataSet15.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet15.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet15.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet15.xss">
+      <DependentUpon>lmsdcsDataSet15.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet16.xsc">
+      <DependentUpon>lmsdcsDataSet16.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet16.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet16.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet16.xss">
+      <DependentUpon>lmsdcsDataSet16.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet17.xsc">
+      <DependentUpon>lmsdcsDataSet17.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet17.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet17.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet17.xss">
+      <DependentUpon>lmsdcsDataSet17.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet18.xsc">
+      <DependentUpon>lmsdcsDataSet18.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet18.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet18.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet18.xss">
+      <DependentUpon>lmsdcsDataSet18.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet19.xsc">
+      <DependentUpon>lmsdcsDataSet19.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet19.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet19.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet19.xss">
+      <DependentUpon>lmsdcsDataSet19.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet2.xsc">
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet2.xss">
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet20.xsc">
+      <DependentUpon>lmsdcsDataSet20.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet20.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet20.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet20.xss">
+      <DependentUpon>lmsdcsDataSet20.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet21.xsc">
+      <DependentUpon>lmsdcsDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet21.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet21.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet21.xss">
+      <DependentUpon>lmsdcsDataSet21.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet22.xsc">
+      <DependentUpon>lmsdcsDataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet22.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet22.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet22.xss">
+      <DependentUpon>lmsdcsDataSet22.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet23.xsc">
+      <DependentUpon>lmsdcsDataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet23.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet23.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet23.xss">
+      <DependentUpon>lmsdcsDataSet23.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet24.xsc">
+      <DependentUpon>lmsdcsDataSet24.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet24.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet24.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet24.xss">
+      <DependentUpon>lmsdcsDataSet24.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet25.xsc">
+      <DependentUpon>lmsdcsDataSet25.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet25.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet25.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet25.xss">
+      <DependentUpon>lmsdcsDataSet25.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet26.xsc">
+      <DependentUpon>lmsdcsDataSet26.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet26.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet26.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet26.xss">
+      <DependentUpon>lmsdcsDataSet26.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet27.xsc">
+      <DependentUpon>lmsdcsDataSet27.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet27.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet27.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet27.xss">
+      <DependentUpon>lmsdcsDataSet27.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet28.xsc">
+      <DependentUpon>lmsdcsDataSet28.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet28.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet28.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet28.xss">
+      <DependentUpon>lmsdcsDataSet28.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet29.xsc">
+      <DependentUpon>lmsdcsDataSet29.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet29.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet29.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet29.xss">
+      <DependentUpon>lmsdcsDataSet29.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet3.xsc">
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet3.xss">
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet30.xsc">
+      <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet30.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet30.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet30.xss">
+      <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet31.xsc">
+      <DependentUpon>lmsdcsDataSet31.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet31.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet31.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet31.xss">
+      <DependentUpon>lmsdcsDataSet31.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet32.xsc">
+      <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet32.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet32.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet32.xss">
+      <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet33.xsc">
+      <DependentUpon>lmsdcsDataSet33.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet33.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet33.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet33.xss">
+      <DependentUpon>lmsdcsDataSet33.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet34.xsc">
+      <DependentUpon>lmsdcsDataSet34.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet34.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet34.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet34.xss">
+      <DependentUpon>lmsdcsDataSet34.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet35.xsc">
+      <DependentUpon>lmsdcsDataSet35.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet35.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet35.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet35.xss">
+      <DependentUpon>lmsdcsDataSet35.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet36.xsc">
+      <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet36.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet36.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet36.xss">
+      <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet37.xsc">
+      <DependentUpon>lmsdcsDataSet37.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet37.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet37.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet37.xss">
+      <DependentUpon>lmsdcsDataSet37.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet38.xsc">
+      <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet38.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet38.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet38.xss">
+      <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet39.xsc">
+      <DependentUpon>lmsdcsDataSet39.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet39.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet39.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet39.xss">
+      <DependentUpon>lmsdcsDataSet39.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet4.xsc">
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet4.xss">
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet40.xsc">
+      <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet40.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet40.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet40.xss">
+      <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet41.xsc">
+      <DependentUpon>lmsdcsDataSet41.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet41.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet41.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet41.xss">
+      <DependentUpon>lmsdcsDataSet41.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet42.xsc">
+      <DependentUpon>lmsdcsDataSet42.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet42.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet42.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet42.xss">
+      <DependentUpon>lmsdcsDataSet42.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet5.xsc">
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet5.xss">
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet6.xsc">
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet6.xss">
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet7.xsc">
+      <DependentUpon>lmsdcsDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet7.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet7.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet7.xss">
+      <DependentUpon>lmsdcsDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet8.xsc">
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet8.xss">
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet9.xsc">
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet9.xss">
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\blue geometry.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book_sans_information-256.webp" />
+    <None Include="Resources\gif Loading.gif" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\info.webp" />
+    <None Include="Resources\th-removebg-preview %285%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\dasol Catholic School Icon.jpg" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\4115230_cancel_close_delete_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\9195258_maximize_expand_resize_panels_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\2931142_minimize_minus_remove_line_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\8685968_ic_fluent_line_horizontal_3_icon.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\download-removebg-preview.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-logout-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-logout-32 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book1.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-24.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-1001.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-241.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-eye-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-242.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\book2.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-book-1002.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-menu-100.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-50 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-50 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-register-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-user-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-books-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-return-book-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-borrow-book-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-logout-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-register-301.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-register-30 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-register-30 %281%291.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-register-30 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrator-male-30.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-administrator-male-30 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-male-user-30 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-books-30 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-return-book-30 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-borrow-book-30 %282%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\icons8-dashboard-30 %281%29.png" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <Import Project="..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets" Condition="Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" />
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.Extensions.Logging.Abstractions.6.0.0\build\Microsoft.Extensions.Logging.Abstractions.targets'))" />
+  </Target>
+</Project>
