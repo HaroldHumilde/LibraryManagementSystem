@@ -8,6 +8,7 @@ using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -16,7 +17,7 @@ namespace LibraryManagementSystem
     public partial class dshInventory : Form
     {
         // Define the placeholder text
-        private string placeholderText = "Search Book ISBN";
+        private string placeholderText = "Search ISBN or Book Name";
        
 
         private string connectionData = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
@@ -42,34 +43,83 @@ namespace LibraryManagementSystem
 
         private void dshInventory_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'lmsdcsDataSet44.Inventory' table. You can move, or remove it, as needed.
-            this.inventoryTableAdapter.Fill(this.lmsdcsDataSet44.Inventory);
+            // TODO: This line of code loads data into the 'lmsdcsDataSet.Inventory' table. You can move, or remove it, as needed.
+            this.inventoryTableAdapter.Fill(this.lmsdcsDataSet.Inventory);
+
 
 
             // Manually add items to Category ComboBox
             cmbCategory.Items.Clear(); // Ensure no old data is lingering
-            cmbCategory.Items.Add("Literary Fiction");
+            
+            cmbCategory.Items.Add("Academic Texts");
+            cmbCategory.Items.Add("Action Adventure");
+            cmbCategory.Items.Add("Allegory");
+            cmbCategory.Items.Add("Art & Photography");//A
+            cmbCategory.Items.Add("Atlases");
+            cmbCategory.Items.Add("Autobiography");
+            
+
             cmbCategory.Items.Add("Biography & Memoir");
+            cmbCategory.Items.Add("Business & Economics");//B
+
+            cmbCategory.Items.Add("Classics");
+            cmbCategory.Items.Add("Contemporary Romance");//C
+            cmbCategory.Items.Add("Contemporary Women's Fiction");
+
+            cmbCategory.Items.Add("Dictionaries & Encyclopedias");//D
+            cmbCategory.Items.Add("Drama");
+
+            cmbCategory.Items.Add("Fairytale");
+            cmbCategory.Items.Add("Fantasy");
+            cmbCategory.Items.Add("Fiction");//F
+
+            cmbCategory.Items.Add("Health & Fitness");//H
             cmbCategory.Items.Add("History");
+            cmbCategory.Items.Add("Horror");
+            cmbCategory.Items.Add("Humanities & Social Science");
+
+            
+
+            cmbCategory.Items.Add("Journals");//J
+
+            cmbCategory.Items.Add("Language Learning");//L
+            cmbCategory.Items.Add("Legal References");
+            cmbCategory.Items.Add("Literary Fiction");
+            cmbCategory.Items.Add("Literature & Language Arts");
+
+
+            cmbCategory.Items.Add("Magazines");//M
+            cmbCategory.Items.Add("Mystery");
+
+            cmbCategory.Items.Add("Newspapers");//N
+            cmbCategory.Items.Add("Novel");
+
+            cmbCategory.Items.Add("Philosophy");//P
+            cmbCategory.Items.Add("Psychology");
+            cmbCategory.Items.Add("Poetry");
+            cmbCategory.Items.Add("Politics & Government");
+
+            cmbCategory.Items.Add("Romance");//R
+            cmbCategory.Items.Add("Religion & Spirituality");
+            
+            
+
+            cmbCategory.Items.Add("Study Guides");//S
             cmbCategory.Items.Add("Science & Technology");
             cmbCategory.Items.Add("Self-Help & Personal Development");
+
+
             cmbCategory.Items.Add("Travel");
-            cmbCategory.Items.Add("Politics & Government");
-            cmbCategory.Items.Add("Religion & Spirituality");
-            cmbCategory.Items.Add("Art & Photography");
-            cmbCategory.Items.Add("Health & Fitness");
-            cmbCategory.Items.Add("Business & Economics");
-            cmbCategory.Items.Add("True Crime");
-            cmbCategory.Items.Add("Dictionaries & Encyclopedias");
-            cmbCategory.Items.Add("Atlases");
-            cmbCategory.Items.Add("Legal References");
-            cmbCategory.Items.Add("Academic Texts");
             cmbCategory.Items.Add("Textbooks");
-            cmbCategory.Items.Add("Study Guides");
-            cmbCategory.Items.Add("Language Learning");
-            cmbCategory.Items.Add("Magazines");
-            cmbCategory.Items.Add("Journals");
-            cmbCategory.Items.Add("Newspapers");
+            cmbCategory.Items.Add("True Crime");
+            cmbCategory.Items.Add("Thriller/Suspense");//T
+
+
+            cmbCategory.Items.Add("Women's Fiction");//W
+
+
+
+
 
             // Populate BookShelves ComboBox
             cmbBookShelves.Items.Clear(); // Ensure no old data is lingering
@@ -99,7 +149,7 @@ namespace LibraryManagementSystem
                     sqlCon.Open();
                     // SQL query to fetch data, including the Publisher and image column (ImageFile as byte[])
                     SqlDataAdapter sqlData = new SqlDataAdapter(
-                        "SELECT SerialNumber, BookTitle, ISBN, Author, Category, PublishedDate, BookShelves, Quantity, Price, Location, Publisher, ImageFile, Status FROM Inventory",
+                        "SELECT BookID, BookTitle, ISBN, Author, Category, PublishedDate, BookShelves, Quantity, Price, Location, Publisher, ImageFile, Status FROM Inventory",
                         sqlCon);
 
                     usersDataTable.Clear();
@@ -128,158 +178,114 @@ namespace LibraryManagementSystem
         }
 
 
-        // Method to filter the data based on the search text
-        private void FilterData(string searchText)
-        {
-            // Set the DataGridView's DataSource to null to clear previous filters
-            DataView dataView = new DataView(usersDataTable);
-
-            // Apply the filter based on the search text (case-insensitive)
-            dataView.RowFilter = string.Format("BookTitle LIKE '%{0}%' OR ISBN LIKE '%{0}%' OR Author LIKE '%{0}%' OR Category LIKE '%{0}%' OR PublishDate LIKE '%{0}%' OR BookShelves LIKE '%{0}%'",
-                searchText);
-
-            // Set the filtered DataView as the DataSource of the DataGridView
-            cmbBookShelves.DataSource = dataView;
-        }
-
-
         private void btnAddBook_Click(object sender, EventArgs e)
         {
 
             try
             {
-                // Parse ISBN
-                long isbn = ISBN(txtISBN.Text);
-                if (isbn == -1) // Invalid ISBN
+                if (string.IsNullOrWhiteSpace(txtBookTitle.Text) ||
+                    string.IsNullOrWhiteSpace(txtISBN.Text) ||
+                    string.IsNullOrWhiteSpace(txtAuthor.Text) ||
+                    string.IsNullOrWhiteSpace(txtPrice.Text) ||
+                    string.IsNullOrWhiteSpace(txtLocation.Text) ||
+                    string.IsNullOrWhiteSpace(txtPublisher.Text) ||
+                    cmbCategory.SelectedIndex == -1 ||
+                    cmbBookShelves.SelectedIndex == -1)
                 {
-                    MessageBox.Show("Invalid ISBN format.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please fill in all the required fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Validate Quantity
-                if (string.IsNullOrWhiteSpace(txtQuantity.Text) || !int.TryParse(txtQuantity.Text, out int quantity) || quantity <= 0)
+                string isbn = txtISBN.Text.Trim();
+                if (!int.TryParse(txtQuantity.Text, out int quantity) || quantity <= 0)
                 {
                     MessageBox.Show("Please enter a valid positive quantity.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Validate Price
                 if (!decimal.TryParse(txtPrice.Text, out decimal price) || price <= 0)
                 {
                     MessageBox.Show("Please enter a valid price.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Validate Publisher
-                if (string.IsNullOrEmpty(txtPublisher.Text))
+                if (pictureBoxImage.Image == null)
                 {
-                    MessageBox.Show("Please enter a publisher name.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Please upload an image for the book.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                // Validate other fields
-                if (string.IsNullOrEmpty(txtBookTitle.Text) || string.IsNullOrEmpty(txtAuthor.Text) ||
-                    cmbCategory.SelectedItem == null || cmbBookShelves.SelectedItem == null || string.IsNullOrEmpty(txtLocation.Text))
+                byte[] imageBytes;
+                try
                 {
-                    MessageBox.Show("Please fill in all required fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                // Handle image processing
-                byte[] imageBytes = null;
-                if (pictureBoxImage.Image != null)
-                {
-                    try
+                    using (MemoryStream ms = new MemoryStream())
                     {
-                        using (MemoryStream ms = new MemoryStream())
+                        using (Bitmap imageToSave = new Bitmap(pictureBoxImage.Image))
                         {
-                            using (Bitmap bmp = new Bitmap(pictureBoxImage.Image))
-                            {
-                                bmp.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
-                            }
-                            imageBytes = ms.ToArray();
+                            imageToSave.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);
                         }
+                        imageBytes = ms.ToArray();
                     }
-                    catch (Exception ex)
-                    {
-                        MessageBox.Show("Error processing the image: " + ex.Message, "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show("Image processing error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
 
                 using (SqlConnection con = new SqlConnection(connectionData))
                 {
                     con.Open();
+                    string status = cmbStatus.SelectedItem?.ToString() ?? "Available";
 
-                    string status = cmbStatus.SelectedItem.ToString();
-                    bool bookExists = false;
-
-                    // Check for existing book by ISBN and Status
-                    SqlCommand cmdCheckExistence = new SqlCommand(
-                        "SELECT Quantity FROM Inventory WHERE ISBN = @ISBN AND Status = @Status", con);
-                    cmdCheckExistence.Parameters.AddWithValue("@ISBN", isbn);
-                    cmdCheckExistence.Parameters.AddWithValue("@Status", status);
-
-                    object existingQuantityObj = cmdCheckExistence.ExecuteScalar();
-
-                    if (existingQuantityObj != null)
+                    for (int i = 0; i < quantity; i++)
                     {
-                        // Book with the same ISBN and Status exists, update the quantity
-                        int existingQuantity = Convert.ToInt32(existingQuantityObj);
-                        int updatedQuantity = existingQuantity + quantity;
-
-                        SqlCommand cmdUpdateQuantity = new SqlCommand(
-                            "UPDATE Inventory SET Quantity = @UpdatedQuantity, Publisher = @Publisher WHERE ISBN = @ISBN AND Status = @Status", con);
-                        cmdUpdateQuantity.Parameters.AddWithValue("@UpdatedQuantity", updatedQuantity);
-                        cmdUpdateQuantity.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
-                        cmdUpdateQuantity.Parameters.AddWithValue("@ISBN", isbn);
-                        cmdUpdateQuantity.Parameters.AddWithValue("@Status", status);
-
-                        cmdUpdateQuantity.ExecuteNonQuery();
-                        bookExists = true;
-                        MessageBox.Show("Book quantity updated successfully!");
-                    }
-
-                    if (!bookExists)
-                    {
-                        // Book does not exist, insert a new record
                         SqlCommand cmdInsert = new SqlCommand(
-                            "INSERT INTO Inventory (SerialNumber, BookTitle, ISBN, Author, Category, PublishedDate, BookShelves, Quantity, Price, Location, Publisher, ImageFile, Status) " +
-                            "VALUES (@SerialNumber, @BookTitle, @ISBN, @Author, @Category, @PublishedDate, @BookShelves, @Quantity, @Price, @Location, @Publisher, @ImageFile, @Status)", con);
+                            "INSERT INTO Inventory (BookID, BookTitle, ISBN, Author, Category, PublishedDate, BookShelves, Quantity, Price, Location, Publisher, ImageFile, Status) " +
+                            "VALUES (@BookID, @BookTitle, @ISBN, @Author, @Category, @PublishedDate, @BookShelves, @Quantity, @Price, @Location, @Publisher, @ImageFile, @Status)", con);
 
-                        // Generate SerialNumber
-                        SqlCommand cmdGetMax = new SqlCommand("SELECT ISNULL(MAX(SerialNumber), 0) FROM Inventory", con);
+                        SqlCommand cmdGetMax = new SqlCommand("SELECT ISNULL(MAX(BookID), 0) FROM Inventory", con);
                         int serialNumber = (int)cmdGetMax.ExecuteScalar() + 1;
 
-                        cmdInsert.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                        cmdInsert.Parameters.AddWithValue("@BookID", serialNumber);
                         cmdInsert.Parameters.AddWithValue("@BookTitle", txtBookTitle.Text);
                         cmdInsert.Parameters.AddWithValue("@ISBN", isbn);
                         cmdInsert.Parameters.AddWithValue("@Author", txtAuthor.Text);
                         cmdInsert.Parameters.AddWithValue("@Category", cmbCategory.SelectedItem.ToString());
                         cmdInsert.Parameters.AddWithValue("@PublishedDate", dtpPublishedDate.Value);
                         cmdInsert.Parameters.AddWithValue("@BookShelves", cmbBookShelves.SelectedItem.ToString());
-                        cmdInsert.Parameters.AddWithValue("@Quantity", quantity);
+                        cmdInsert.Parameters.AddWithValue("@Quantity", 1);
                         cmdInsert.Parameters.AddWithValue("@Price", price);
                         cmdInsert.Parameters.AddWithValue("@Location", txtLocation.Text);
                         cmdInsert.Parameters.AddWithValue("@Publisher", txtPublisher.Text);
-                        cmdInsert.Parameters.AddWithValue("@ImageFile", (object)imageBytes ?? DBNull.Value);
+                        cmdInsert.Parameters.AddWithValue("@ImageFile", imageBytes);
                         cmdInsert.Parameters.AddWithValue("@Status", status);
 
                         cmdInsert.ExecuteNonQuery();
-                        MessageBox.Show("Book added successfully!");
                     }
 
-                    // Refresh the DataGridView
+                    MessageBox.Show("Books added successfully!");
                     RefreshDataGrid();
                 }
 
-                // Clear fields after adding or updating
                 ClearFields();
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error: " + ex.Message + "\n" + ex.StackTrace, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        // Assuming ValidateISBN simply checks for non-empty input
+        private string ValidateISBN(string isbn)
+        {
+            // ISBN should not be empty or whitespace
+            if (string.IsNullOrWhiteSpace(isbn))
+            {
+                return null;  // Invalid if empty or whitespace
+            }
+
+            return isbn;  // Return the ISBN if it's not empty
         }
 
         private void ClearFields()
@@ -326,6 +332,11 @@ namespace LibraryManagementSystem
         {
             try
             {
+                // Debugging: Check what values are being passed for deletion
+                Console.WriteLine("BookID: " + lblSerialNumber.Text);
+                Console.WriteLine("ISBN: " + txtISBN.Text.Trim());
+                Console.WriteLine("Book Title: " + txtBookTitle.Text.Trim());
+
                 // Ask the user for confirmation before deleting
                 var confirmResult = MessageBox.Show(
                     "Are you sure you want to delete one quantity of this book?",
@@ -345,11 +356,9 @@ namespace LibraryManagementSystem
 
                     // Step 1: Check the current quantity of the book
                     SqlCommand cmdCheckQuantity = new SqlCommand(
-                        "SELECT Quantity FROM Inventory WHERE ISBN = @ISBN AND BookTitle = @BookTitle AND Author = @Author AND SerialNumber = @SerialNumber", con);
+                        "SELECT Quantity FROM Inventory WHERE ISBN = @ISBN AND BookID = @BookID", con);
                     cmdCheckQuantity.Parameters.AddWithValue("@ISBN", txtISBN.Text.Trim());
-                    cmdCheckQuantity.Parameters.AddWithValue("@BookTitle", txtBookTitle.Text.Trim());
-                    cmdCheckQuantity.Parameters.AddWithValue("@Author", txtAuthor.Text.Trim());
-                    cmdCheckQuantity.Parameters.AddWithValue("@SerialNumber", lblSerialNumber.Text.Trim());
+                    cmdCheckQuantity.Parameters.AddWithValue("@BookID", lblSerialNumber.Text.Trim());
 
                     object quantityObj = cmdCheckQuantity.ExecuteScalar();
 
@@ -366,11 +375,9 @@ namespace LibraryManagementSystem
                     {
                         // Step 2: Update the quantity (decrease by 1)
                         SqlCommand cmdUpdateQuantity = new SqlCommand(
-                            "UPDATE Inventory SET Quantity = Quantity - 1 WHERE ISBN = @ISBN AND BookTitle = @BookTitle AND Author = @Author AND SerialNumber = @SerialNumber", con);
+                            "UPDATE Inventory SET Quantity = Quantity - 1 WHERE ISBN = @ISBN AND BookID = @BookID", con);
                         cmdUpdateQuantity.Parameters.AddWithValue("@ISBN", txtISBN.Text.Trim());
-                        cmdUpdateQuantity.Parameters.AddWithValue("@BookTitle", txtBookTitle.Text.Trim());
-                        cmdUpdateQuantity.Parameters.AddWithValue("@Author", txtAuthor.Text.Trim());
-                        cmdUpdateQuantity.Parameters.AddWithValue("@SerialNumber", lblSerialNumber.Text.Trim());
+                        cmdUpdateQuantity.Parameters.AddWithValue("@BookID", lblSerialNumber.Text.Trim());
 
                         cmdUpdateQuantity.ExecuteNonQuery();
                         MessageBox.Show("One quantity of the book has been deleted successfully!");
@@ -379,11 +386,9 @@ namespace LibraryManagementSystem
                     {
                         // Step 3: If quantity is 1, delete the entire book record
                         SqlCommand cmdDeleteBook = new SqlCommand(
-                            "DELETE FROM Inventory WHERE ISBN = @ISBN AND BookTitle = @BookTitle AND Author = @Author AND SerialNumber = @SerialNumber", con);
+                            "DELETE FROM Inventory WHERE ISBN = @ISBN AND BookID = @BookID", con);
                         cmdDeleteBook.Parameters.AddWithValue("@ISBN", txtISBN.Text.Trim());
-                        cmdDeleteBook.Parameters.AddWithValue("@BookTitle", txtBookTitle.Text.Trim());
-                        cmdDeleteBook.Parameters.AddWithValue("@Author", txtAuthor.Text.Trim());
-                        cmdDeleteBook.Parameters.AddWithValue("@SerialNumber", lblSerialNumber.Text.Trim());
+                        cmdDeleteBook.Parameters.AddWithValue("@BookID", lblSerialNumber.Text.Trim());
 
                         cmdDeleteBook.ExecuteNonQuery();
                         MessageBox.Show("The book has been completely deleted.");
@@ -400,6 +405,9 @@ namespace LibraryManagementSystem
                 dtpPublishedDate.Checked = false;
                 dtpPublishedDate.Value = DateTime.Today;
 
+                // Clear the picture box
+                pictureBoxImage.Image = null;
+
                 // Clear quantity, price, publisher, location fields
                 txtQuantity.Clear();
                 txtPrice.Clear();
@@ -408,7 +416,6 @@ namespace LibraryManagementSystem
 
                 // Refresh the DataGridView to show the updated data
                 RefreshDataGrid();
-
             }
             catch (SqlException ex)
             {
@@ -460,90 +467,6 @@ namespace LibraryManagementSystem
             dtpPublishedDate.CalendarForeColor = isEditable ? SystemColors.WindowText : Color.Gray; // Adjust text color for DateTimePicker
         }
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            string searchTerm = txtSearchBook.Text.Trim();
-
-            if (string.IsNullOrWhiteSpace(searchTerm))
-            {
-                MessageBox.Show("Please enter a valid search term.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            string query = @"
-    SELECT SerialNumber, ISBN, BookTitle, Author, Category, PublishedDate, BookShelves, Quantity, Price, Location, Publisher, ImageFile, Status
-    FROM Inventory 
-    WHERE ISBN = @ISBN OR BookTitle LIKE @TitleSearchTerm OR Author LIKE @AuthorSearchTerm";
-
-            try
-            {
-                using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"))
-                {
-                    SqlCommand cmd = new SqlCommand(query, conn);
-                    cmd.Parameters.AddWithValue("@ISBN", searchTerm);
-                    cmd.Parameters.AddWithValue("@TitleSearchTerm", "%" + searchTerm + "%");
-                    cmd.Parameters.AddWithValue("@AuthorSearchTerm", "%" + searchTerm + "%");
-
-                    conn.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Populate fields with data (without Description)
-                            txtBookTitle.Text = reader["BookTitle"].ToString();
-                            txtISBN.Text = reader["ISBN"].ToString();
-                            txtAuthor.Text = reader["Author"].ToString();
-                            txtPublisher.Text = reader["Publisher"].ToString();
-                            // Removed the Description field assignment
-                            txtQuantity.Text = reader["Quantity"].ToString();
-                            txtPrice.Text = reader["Price"].ToString();
-                            txtLocation.Text = reader["Location"].ToString();
-                            lblSerialNumber.Text = reader["SerialNumber"].ToString();
-
-                            // Set ComboBoxes
-                            cmbCategory.SelectedIndex = cmbCategory.Items.IndexOf(reader["Category"].ToString());
-                            cmbBookShelves.SelectedIndex = cmbBookShelves.Items.IndexOf(reader["BookShelves"].ToString());
-                            cmbStatus.SelectedIndex = cmbStatus.Items.IndexOf(reader["Status"].ToString());
-
-                            // Handle image
-                            var imageFile = reader["ImageFile"];
-                            if (imageFile != DBNull.Value)
-                            {
-                                byte[] imageBytes = (byte[])imageFile;
-                                using (MemoryStream ms = new MemoryStream(imageBytes))
-                                {
-                                    pictureBoxImage.Image = Image.FromStream(ms);
-                                }
-                            }
-                            else
-                            {
-                                pictureBoxImage.Image = null;
-                            }
-
-                            // Handle PublishedDate
-                            if (DateTime.TryParse(reader["PublishedDate"]?.ToString(), out DateTime publishedDate))
-                            {
-                                dtpPublishedDate.Value = publishedDate;
-                            }
-
-                            // Enable/disable fields based on edit mode
-                            EnableEditableFields(true);
-                            EnableNonEditableFields(false);
-                        }
-                        else
-                        {
-                            MessageBox.Show("No book found with the given search term.", "Not Found", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error searching for book: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-
-        }
-
 
 
 
@@ -565,7 +488,7 @@ namespace LibraryManagementSystem
         BookShelves = @BookShelves,
         Status = @Status
     WHERE 
-        SerialNumber = @SerialNumber";
+        BookID = @BookID";
 
             try
             {
@@ -575,7 +498,7 @@ namespace LibraryManagementSystem
                     SqlCommand cmd = new SqlCommand(query, conn);
 
                     // Set parameters
-                    cmd.Parameters.AddWithValue("@SerialNumber", lblSerialNumber.Text); // SerialNumber must not be null
+                    cmd.Parameters.AddWithValue("@BookID", lblSerialNumber.Text); // SerialNumber must not be null
                     cmd.Parameters.AddWithValue("@BookTitle", txtBookTitle.Text.Trim());
                     cmd.Parameters.AddWithValue("@Category", cmbCategory.SelectedItem?.ToString());
                     cmd.Parameters.AddWithValue("@BookShelves", cmbBookShelves.SelectedItem?.ToString());
@@ -590,6 +513,9 @@ namespace LibraryManagementSystem
 
                         // Call method to refresh the DataGridView after update
                         RefreshDataGrid();
+
+                        // Enable the fields after successful update
+                        SetFieldsEditable(true);  // Enable the input fields after successful update
                     }
                     else
                     {
@@ -601,23 +527,35 @@ namespace LibraryManagementSystem
             {
                 MessageBox.Show($"Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            // Clear fields after adding or updating (optional, if required)
+             ClearFields();
         }
 
-        private void LoadAllBooksData()
+        private void SetFieldsEditable(bool isEditable)
         {
-            // Add your logic to reload data into the DataGridView, such as querying the database
-            string query = "SELECT * FROM Inventory";
+            // Set TextBoxes to editable or uneditable based on the flag
+            txtBookTitle.ReadOnly = !isEditable;
+            txtISBN.ReadOnly = !isEditable;
+            txtQuantity.ReadOnly = !isEditable;
+            txtAuthor.ReadOnly = !isEditable;
+            txtLocation.ReadOnly = !isEditable;
+            txtPrice.ReadOnly = !isEditable;
+            txtPublisher.ReadOnly = !isEditable;
 
-            using (SqlConnection conn = new SqlConnection("Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True"))
-            {
-                SqlDataAdapter adapter = new SqlDataAdapter(query, conn);
-                DataTable dataTable = new DataTable();
-                adapter.Fill(dataTable);
+            // Set ComboBoxes to editable or uneditable based on the flag
+            cmbCategory.Enabled = isEditable;
+            cmbBookShelves.Enabled = isEditable;
+            cmbStatus.Enabled = isEditable;
 
-                // Assuming you have a DataGridView named dataGridView
-                dataGridInventory.DataSource = dataTable;
-            }
+            // Enable or disable the DateTimePicker
+            dtpPublishedDate.Enabled = isEditable;
+
+            // Optionally enable or disable buttons, if required
+            btnUpdate.Enabled = isEditable;
+            btnUploadImage.Enabled = isEditable;
         }
+
 
         private void btnUploadImage_Click(object sender, EventArgs e)
         {
@@ -650,6 +588,8 @@ namespace LibraryManagementSystem
                     {
                         MessageBox.Show("Error loading image: " + ex.Message, "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+
+                   
                 }
             }
             
@@ -699,6 +639,111 @@ namespace LibraryManagementSystem
                 txtSearchBook.Text = placeholderText;
                 txtSearchBook.ForeColor = Color.Gray; // Restore placeholder color
             }
+        }
+
+        private void txtPublisher_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtSearchBook_TextChanged(object sender, EventArgs e)
+        {
+            string searchKeyword = txtSearchBook.Text.Trim().ToLower();
+
+            string query = @"
+            SELECT BookID, BookTitle, ISBN, Author, Category, Price, Quantity, Status, Location, 
+                   BookShelves, PublishedDate, Publisher, ImageFile
+            FROM Inventory
+            WHERE BookTitle LIKE @SearchKeyword 
+               OR ISBN LIKE @SearchKeyword
+               OR BookShelves LIKE @SearchKeyword
+               OR PublishedDate LIKE @SearchKeyword";
+
+            try
+            {
+                using (SqlConnection conn = new SqlConnection(connectionData))
+                {
+                    SqlCommand cmd = new SqlCommand(query, conn);
+                    cmd.Parameters.AddWithValue("@SearchKeyword", "%" + searchKeyword + "%");
+
+                    conn.Open();
+
+                    DataTable dt = new DataTable();
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
+
+                    dataGridInventory.DataSource = dt;
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void dataGridInventory_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            try
+            {
+                if (e.RowIndex >= 0 && e.RowIndex < dataGridInventory.Rows.Count)
+                {
+                    DataGridViewRow row = dataGridInventory.Rows[e.RowIndex];
+
+                    if (row != null)
+                    {
+                        // Populate text fields
+                        txtBookTitle.Text = row.Cells["BookTitle"].Value?.ToString() ?? string.Empty;
+                        txtISBN.Text = row.Cells["BookNumber"].Value?.ToString() ?? string.Empty;
+                        txtAuthor.Text = row.Cells["Author"].Value?.ToString() ?? string.Empty;
+                        txtLocation.Text = row.Cells["Location"].Value?.ToString() ?? string.Empty;
+                        txtPublisher.Text = row.Cells["Publisher"].Value?.ToString() ?? string.Empty;
+                        txtPrice.Text = row.Cells["Price"].Value?.ToString() ?? string.Empty;
+                        txtQuantity.Text = row.Cells["Quantity"].Value?.ToString() ?? string.Empty;
+
+                        cmbCategory.SelectedItem = row.Cells["Category"].Value?.ToString() ?? string.Empty;
+                        cmbBookShelves.SelectedItem = row.Cells["BookShelves"].Value?.ToString() ?? string.Empty;
+                        cmbStatus.SelectedItem = row.Cells["Status"].Value?.ToString() ?? string.Empty;
+
+                        if (row.Cells["PublishedDate"].Value != DBNull.Value)
+                        {
+                            dtpPublishedDate.Value = Convert.ToDateTime(row.Cells["PublishedDate"].Value);
+                        }
+                        else
+                        {
+                            dtpPublishedDate.Value = DateTime.Now;
+                        }
+
+                        // Handle image
+                        byte[] imageBytes = row.Cells["ImageFile"].Value as byte[];
+                        if (imageBytes != null && imageBytes.Length > 0)
+                        {
+                            using (MemoryStream ms = new MemoryStream(imageBytes))
+                            {
+                                if (pictureBoxImage.Image != null)
+                                {
+                                    pictureBoxImage.Image.Dispose(); // Dispose of existing image
+                                }
+                                pictureBoxImage.Image = Image.FromStream(ms);
+                            }
+                        }
+                        else
+                        {
+                            if (pictureBoxImage.Image != null)
+                            {
+                                pictureBoxImage.Image.Dispose();
+                            }
+                            pictureBoxImage.Image = null;
+                        }
+
+                        lblSerialNumber.Text = row.Cells["BookID"].Value?.ToString() ?? string.Empty;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
     }
 }

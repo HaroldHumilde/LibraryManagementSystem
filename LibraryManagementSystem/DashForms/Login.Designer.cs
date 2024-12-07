@@ -38,6 +38,7 @@
             this.pictureBox2 = new System.Windows.Forms.PictureBox();
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
             this.pictureBox3 = new System.Windows.Forms.PictureBox();
+            this.bntClose = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox2)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox3)).BeginInit();
@@ -100,9 +101,8 @@
             this.txtUserName.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtUserName.ForeColor = System.Drawing.Color.Black;
             this.txtUserName.Location = new System.Drawing.Point(109, 298);
-            this.txtUserName.Multiline = true;
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(328, 29);
+            this.txtUserName.Size = new System.Drawing.Size(328, 21);
             this.txtUserName.TabIndex = 3;
             this.txtUserName.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtUserName_KeyPress);
             // 
@@ -114,10 +114,9 @@
             this.txtPassword.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.txtPassword.ForeColor = System.Drawing.Color.Black;
             this.txtPassword.Location = new System.Drawing.Point(109, 367);
-            this.txtPassword.Multiline = true;
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(328, 26);
+            this.txtPassword.Size = new System.Drawing.Size(328, 21);
             this.txtPassword.TabIndex = 4;
             this.txtPassword.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPassword_KeyPress);
             // 
@@ -150,12 +149,25 @@
             this.pictureBox3.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.pictureBox3.Image = ((System.Drawing.Image)(resources.GetObject("pictureBox3.Image")));
             this.pictureBox3.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.pictureBox3.Location = new System.Drawing.Point(133, 43);
+            this.pictureBox3.Location = new System.Drawing.Point(119, 60);
             this.pictureBox3.Name = "pictureBox3";
             this.pictureBox3.Size = new System.Drawing.Size(250, 208);
             this.pictureBox3.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBox3.TabIndex = 12;
             this.pictureBox3.TabStop = false;
+            // 
+            // bntClose
+            // 
+            this.bntClose.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("bntClose.BackgroundImage")));
+            this.bntClose.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
+            this.bntClose.FlatAppearance.BorderSize = 0;
+            this.bntClose.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.bntClose.Location = new System.Drawing.Point(483, 12);
+            this.bntClose.Name = "bntClose";
+            this.bntClose.Size = new System.Drawing.Size(27, 24);
+            this.bntClose.TabIndex = 15;
+            this.bntClose.UseVisualStyleBackColor = true;
+            this.bntClose.Click += new System.EventHandler(this.bntClose_Click);
             // 
             // dshLogin
             // 
@@ -163,6 +175,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.ClientSize = new System.Drawing.Size(522, 554);
+            this.Controls.Add(this.bntClose);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.pictureBox2);
@@ -198,6 +211,7 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.TextBox txtUserName;
         private System.Windows.Forms.TextBox txtPassword;
+        private System.Windows.Forms.Button bntClose;
     }
 }
 

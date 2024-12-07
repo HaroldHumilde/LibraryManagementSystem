@@ -157,6 +157,7 @@ namespace LibraryManagementSystem
             dashBorrowerList.Show();
         }
 
+        [Obsolete]
         private void btnInvoice_Click(object sender, EventArgs e)
         {
             if (panel2.Controls.OfType<dshBorrowerList>().Any()) return;
@@ -225,6 +226,34 @@ namespace LibraryManagementSystem
         {
             // Initially hide the panel
             panelShowButtons.Visible = false;
+
+            if (panel2.Controls.OfType<dshDashBoard>().Any()) return;
+            panel2.Controls.Clear();
+
+            dshDashBoard dashDashBoard = new dshDashBoard()
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+            panel2.Controls.Add(dashDashBoard);
+            dashDashBoard.Show();
+
+        }
+
+        private void btnDashBoard_Click(object sender, EventArgs e)
+        {
+            if (panel2.Controls.OfType<dshDashBoard>().Any()) return;
+            panel2.Controls.Clear();
+
+            dshDashBoard dashDashBoard = new dshDashBoard()
+            {
+                TopLevel = false,
+                FormBorderStyle = FormBorderStyle.None,
+                Dock = DockStyle.Fill
+            };
+            panel2.Controls.Add(dashDashBoard);
+            dashDashBoard.Show();
         }
     }
 }

@@ -134,11 +134,12 @@
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxProfile.Location = new System.Drawing.Point(1362, 176);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(1348, 178);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
             this.pictureBoxProfile.Size = new System.Drawing.Size(192, 192);
             this.pictureBoxProfile.TabIndex = 210;
             this.pictureBoxProfile.TabStop = false;
+            this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
             // 
             // label16
             // 
@@ -214,7 +215,7 @@
             this.txtContactNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactNo.Location = new System.Drawing.Point(831, 809);
+            this.txtContactNo.Location = new System.Drawing.Point(831, 805);
             this.txtContactNo.Multiline = true;
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(604, 32);
@@ -235,7 +236,7 @@
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(831, 688);
+            this.txtEmail.Location = new System.Drawing.Point(831, 684);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(603, 32);
@@ -256,7 +257,7 @@
             this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(831, 560);
+            this.txtAddress.Location = new System.Drawing.Point(831, 556);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(604, 32);
@@ -277,7 +278,7 @@
             this.txtAge.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAge.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAge.Location = new System.Drawing.Point(115, 809);
+            this.txtAge.Location = new System.Drawing.Point(115, 804);
             this.txtAge.Multiline = true;
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(604, 32);
@@ -298,7 +299,7 @@
             this.txtMiddleName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMiddleName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMiddleName.Location = new System.Drawing.Point(114, 561);
+            this.txtMiddleName.Location = new System.Drawing.Point(114, 557);
             this.txtMiddleName.Multiline = true;
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(607, 32);
@@ -319,7 +320,7 @@
             this.txtFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFirstName.Location = new System.Drawing.Point(115, 439);
+            this.txtFirstName.Location = new System.Drawing.Point(115, 435);
             this.txtFirstName.Multiline = true;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(602, 32);
@@ -340,7 +341,7 @@
             this.txtLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLastName.Location = new System.Drawing.Point(115, 312);
+            this.txtLastName.Location = new System.Drawing.Point(115, 308);
             this.txtLastName.Multiline = true;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(602, 32);
@@ -374,7 +375,7 @@
             this.txtStudentNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtStudentNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStudentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentNo.Location = new System.Drawing.Point(115, 181);
+            this.txtStudentNo.Location = new System.Drawing.Point(115, 178);
             this.txtStudentNo.Multiline = true;
             this.txtStudentNo.Name = "txtStudentNo";
             this.txtStudentNo.Size = new System.Drawing.Size(602, 32);

@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace LibraryManagementSystem.DataSet {
+namespace LibraryManagementSystem {
     
     
     /// <summary>
@@ -20,9 +20,9 @@ namespace LibraryManagementSystem.DataSet {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("lmsdcsDataSet30")]
+    [global::System.Xml.Serialization.XmlRootAttribute("lmsdcsDataSet45")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class lmsdcsDataSet30 : global::System.Data.DataSet {
+    public partial class lmsdcsDataSet45 : global::System.Data.DataSet {
         
         private ActiveBorrowersDataTable tableActiveBorrowers;
         
@@ -30,7 +30,7 @@ namespace LibraryManagementSystem.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public lmsdcsDataSet30() {
+        public lmsdcsDataSet45() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace LibraryManagementSystem.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected lmsdcsDataSet30(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected lmsdcsDataSet45(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            lmsdcsDataSet30 cln = ((lmsdcsDataSet30)(base.Clone()));
+            lmsdcsDataSet45 cln = ((lmsdcsDataSet45)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "lmsdcsDataSet30";
+            this.DataSetName = "lmsdcsDataSet45";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/lmsdcsDataSet30.xsd";
+            this.Namespace = "http://tempuri.org/lmsdcsDataSet45.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableActiveBorrowers = new ActiveBorrowersDataTable();
@@ -225,7 +225,7 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            lmsdcsDataSet30 ds = new lmsdcsDataSet30();
+            lmsdcsDataSet45 ds = new lmsdcsDataSet45();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -304,6 +304,8 @@ namespace LibraryManagementSystem.DataSet {
             private global::System.Data.DataColumn columnYear;
             
             private global::System.Data.DataColumn columnSection;
+            
+            private global::System.Data.DataColumn columnProfileImage;
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
@@ -444,6 +446,14 @@ namespace LibraryManagementSystem.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public global::System.Data.DataColumn ProfileImageColumn {
+                get {
+                    return this.columnProfileImage;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -479,7 +489,7 @@ namespace LibraryManagementSystem.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-            public ActiveBorrowersRow AddActiveBorrowersRow(int ID, string StudentNumber, string Firstname, string Middlename, string Lastname, int Age, System.DateTime Birthday, string Gender, string Address, string ContactNumber, string Email, string Year, string Section) {
+            public ActiveBorrowersRow AddActiveBorrowersRow(int ID, string StudentNumber, string Firstname, string Middlename, string Lastname, int Age, System.DateTime Birthday, string Gender, string Address, string ContactNumber, string Email, string Year, string Section, byte[] ProfileImage) {
                 ActiveBorrowersRow rowActiveBorrowersRow = ((ActiveBorrowersRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         ID,
@@ -494,10 +504,18 @@ namespace LibraryManagementSystem.DataSet {
                         ContactNumber,
                         Email,
                         Year,
-                        Section};
+                        Section,
+                        ProfileImage};
                 rowActiveBorrowersRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowActiveBorrowersRow);
                 return rowActiveBorrowersRow;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public ActiveBorrowersRow FindByID(int ID) {
+                return ((ActiveBorrowersRow)(this.Rows.Find(new object[] {
+                            ID})));
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -530,6 +548,7 @@ namespace LibraryManagementSystem.DataSet {
                 this.columnEmail = base.Columns["Email"];
                 this.columnYear = base.Columns["Year"];
                 this.columnSection = base.Columns["Section"];
+                this.columnProfileImage = base.Columns["ProfileImage"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -561,7 +580,12 @@ namespace LibraryManagementSystem.DataSet {
                 base.Columns.Add(this.columnYear);
                 this.columnSection = new global::System.Data.DataColumn("Section", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnSection);
+                this.columnProfileImage = new global::System.Data.DataColumn("ProfileImage", typeof(byte[]), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnProfileImage);
+                this.Constraints.Add(new global::System.Data.UniqueConstraint("Constraint1", new global::System.Data.DataColumn[] {
+                                this.columnID}, true));
                 this.columnID.AllowDBNull = false;
+                this.columnID.Unique = true;
                 this.columnStudentNumber.AllowDBNull = false;
                 this.columnStudentNumber.MaxLength = 50;
                 this.columnFirstname.AllowDBNull = false;
@@ -649,7 +673,7 @@ namespace LibraryManagementSystem.DataSet {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                lmsdcsDataSet30 ds = new lmsdcsDataSet30();
+                lmsdcsDataSet45 ds = new lmsdcsDataSet45();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -877,6 +901,22 @@ namespace LibraryManagementSystem.DataSet {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public byte[] ProfileImage {
+                get {
+                    try {
+                        return ((byte[])(this[this.tableActiveBorrowers.ProfileImageColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("The value for column \'ProfileImage\' in table \'ActiveBorrowers\' is DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableActiveBorrowers.ProfileImageColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public bool IsContactNumberNull() {
                 return this.IsNull(this.tableActiveBorrowers.ContactNumberColumn);
             }
@@ -897,6 +937,18 @@ namespace LibraryManagementSystem.DataSet {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
             public void SetEmailNull() {
                 this[this.tableActiveBorrowers.EmailColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public bool IsProfileImageNull() {
+                return this.IsNull(this.tableActiveBorrowers.ProfileImageColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+            public void SetProfileImageNull() {
+                this[this.tableActiveBorrowers.ProfileImageColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -935,7 +987,7 @@ namespace LibraryManagementSystem.DataSet {
         }
     }
 }
-namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
+namespace LibraryManagementSystem.lmsdcsDataSet45TableAdapters {
     
     
     /// <summary>
@@ -1072,10 +1124,31 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
             tableMapping.ColumnMappings.Add("Email", "Email");
             tableMapping.ColumnMappings.Add("Year", "Year");
             tableMapping.ColumnMappings.Add("Section", "Section");
+            tableMapping.ColumnMappings.Add("ProfileImage", "ProfileImage");
             this._adapter.TableMappings.Add(tableMapping);
+            this._adapter.DeleteCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.DeleteCommand.Connection = this.Connection;
+            this._adapter.DeleteCommand.CommandText = @"DELETE FROM [dbo].[ActiveBorrowers] WHERE (([ID] = @Original_ID) AND ([StudentNumber] = @Original_StudentNumber) AND ([Firstname] = @Original_Firstname) AND ([Middlename] = @Original_Middlename) AND ([Lastname] = @Original_Lastname) AND ([Age] = @Original_Age) AND ([Birthday] = @Original_Birthday) AND ([Gender] = @Original_Gender) AND ([Address] = @Original_Address) AND ((@IsNull_ContactNumber = 1 AND [ContactNumber] IS NULL) OR ([ContactNumber] = @Original_ContactNumber)) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Year] = @Original_Year) AND ([Section] = @Original_Section))";
+            this._adapter.DeleteCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StudentNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudentNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Birthday", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gender", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Year", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.DeleteCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Section", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Section", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
             this._adapter.InsertCommand = new global::System.Data.SqlClient.SqlCommand();
             this._adapter.InsertCommand.Connection = this.Connection;
-            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ActiveBorrowers] ([ID], [StudentNumber], [Firstname], [Middlename], [Lastname], [Age], [Birthday], [Gender], [Address], [ContactNumber], [Email], [Year], [Section]) VALUES (@ID, @StudentNumber, @Firstname, @Middlename, @Lastname, @Age, @Birthday, @Gender, @Address, @ContactNumber, @Email, @Year, @Section)";
+            this._adapter.InsertCommand.CommandText = @"INSERT INTO [dbo].[ActiveBorrowers] ([ID], [StudentNumber], [Firstname], [Middlename], [Lastname], [Age], [Birthday], [Gender], [Address], [ContactNumber], [Email], [Year], [Section], [ProfileImage]) VALUES (@ID, @StudentNumber, @Firstname, @Middlename, @Lastname, @Age, @Birthday, @Gender, @Address, @ContactNumber, @Email, @Year, @Section, @ProfileImage);
+SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender, Address, ContactNumber, Email, Year, Section, ProfileImage FROM ActiveBorrowers WHERE (ID = @ID)";
             this._adapter.InsertCommand.CommandType = global::System.Data.CommandType.Text;
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StudentNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudentNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
@@ -1090,6 +1163,41 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Year", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
             this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Section", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Section", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.InsertCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProfileImage", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProfileImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand = new global::System.Data.SqlClient.SqlCommand();
+            this._adapter.UpdateCommand.Connection = this.Connection;
+            this._adapter.UpdateCommand.CommandText = @"UPDATE [dbo].[ActiveBorrowers] SET [ID] = @ID, [StudentNumber] = @StudentNumber, [Firstname] = @Firstname, [Middlename] = @Middlename, [Lastname] = @Lastname, [Age] = @Age, [Birthday] = @Birthday, [Gender] = @Gender, [Address] = @Address, [ContactNumber] = @ContactNumber, [Email] = @Email, [Year] = @Year, [Section] = @Section, [ProfileImage] = @ProfileImage WHERE (([ID] = @Original_ID) AND ([StudentNumber] = @Original_StudentNumber) AND ([Firstname] = @Original_Firstname) AND ([Middlename] = @Original_Middlename) AND ([Lastname] = @Original_Lastname) AND ([Age] = @Original_Age) AND ([Birthday] = @Original_Birthday) AND ([Gender] = @Original_Gender) AND ([Address] = @Original_Address) AND ((@IsNull_ContactNumber = 1 AND [ContactNumber] IS NULL) OR ([ContactNumber] = @Original_ContactNumber)) AND ((@IsNull_Email = 1 AND [Email] IS NULL) OR ([Email] = @Original_Email)) AND ([Year] = @Original_Year) AND ([Section] = @Original_Section));
+SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender, Address, ContactNumber, Email, Year, Section, ProfileImage FROM ActiveBorrowers WHERE (ID = @ID)";
+            this._adapter.UpdateCommand.CommandType = global::System.Data.CommandType.Text;
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@StudentNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudentNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Firstname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Middlename", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lastname", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Birthday", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Gender", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ContactNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNumber", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Year", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Year", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Section", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Section", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@ProfileImage", global::System.Data.SqlDbType.VarBinary, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ProfileImage", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ID", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ID", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_StudentNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "StudentNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Firstname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Firstname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Middlename", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Middlename", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Lastname", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Lastname", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Age", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Age", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Birthday", global::System.Data.SqlDbType.DateTime, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Birthday", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Gender", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Gender", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Address", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Address", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_ContactNumber", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNumber", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_ContactNumber", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "ContactNumber", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IsNull_Email", global::System.Data.SqlDbType.Int, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, true, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Email", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Email", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Year", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Year", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
+            this._adapter.UpdateCommand.Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@Original_Section", global::System.Data.SqlDbType.VarChar, 0, global::System.Data.ParameterDirection.Input, 0, 0, "Section", global::System.Data.DataRowVersion.Original, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1106,7 +1214,8 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
             this._commandCollection[0] = new global::System.Data.SqlClient.SqlCommand();
             this._commandCollection[0].Connection = this.Connection;
             this._commandCollection[0].CommandText = "SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender," +
-                " Address, ContactNumber, Email, Year, Section FROM dbo.ActiveBorrowers";
+                " Address, ContactNumber, Email, Year, Section, ProfileImage FROM dbo.ActiveBorro" +
+                "wers";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
         }
         
@@ -1114,7 +1223,7 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(lmsdcsDataSet30.ActiveBorrowersDataTable dataTable) {
+        public virtual int Fill(lmsdcsDataSet45.ActiveBorrowersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1127,9 +1236,9 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual lmsdcsDataSet30.ActiveBorrowersDataTable GetData() {
+        public virtual lmsdcsDataSet45.ActiveBorrowersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            lmsdcsDataSet30.ActiveBorrowersDataTable dataTable = new lmsdcsDataSet30.ActiveBorrowersDataTable();
+            lmsdcsDataSet45.ActiveBorrowersDataTable dataTable = new lmsdcsDataSet45.ActiveBorrowersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1137,14 +1246,14 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(lmsdcsDataSet30.ActiveBorrowersDataTable dataTable) {
+        public virtual int Update(lmsdcsDataSet45.ActiveBorrowersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(lmsdcsDataSet30 dataSet) {
+        public virtual int Update(lmsdcsDataSet45 dataSet) {
             return this.Adapter.Update(dataSet, "ActiveBorrowers");
         }
         
@@ -1166,8 +1275,96 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Delete, true)]
+        public virtual int Delete(int Original_ID, string Original_StudentNumber, string Original_Firstname, string Original_Middlename, string Original_Lastname, int Original_Age, System.DateTime Original_Birthday, string Original_Gender, string Original_Address, string Original_ContactNumber, string Original_Email, string Original_Year, string Original_Section) {
+            this.Adapter.DeleteCommand.Parameters[0].Value = ((int)(Original_ID));
+            if ((Original_StudentNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_StudentNumber");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[1].Value = ((string)(Original_StudentNumber));
+            }
+            if ((Original_Firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_Firstname");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[2].Value = ((string)(Original_Firstname));
+            }
+            if ((Original_Middlename == null)) {
+                throw new global::System.ArgumentNullException("Original_Middlename");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[3].Value = ((string)(Original_Middlename));
+            }
+            if ((Original_Lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_Lastname");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[4].Value = ((string)(Original_Lastname));
+            }
+            this.Adapter.DeleteCommand.Parameters[5].Value = ((int)(Original_Age));
+            this.Adapter.DeleteCommand.Parameters[6].Value = ((System.DateTime)(Original_Birthday));
+            if ((Original_Gender == null)) {
+                throw new global::System.ArgumentNullException("Original_Gender");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[7].Value = ((string)(Original_Gender));
+            }
+            if ((Original_Address == null)) {
+                throw new global::System.ArgumentNullException("Original_Address");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[8].Value = ((string)(Original_Address));
+            }
+            if ((Original_ContactNumber == null)) {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[9].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[10].Value = ((string)(Original_ContactNumber));
+            }
+            if ((Original_Email == null)) {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(1));
+                this.Adapter.DeleteCommand.Parameters[12].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[11].Value = ((object)(0));
+                this.Adapter.DeleteCommand.Parameters[12].Value = ((string)(Original_Email));
+            }
+            if ((Original_Year == null)) {
+                throw new global::System.ArgumentNullException("Original_Year");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[13].Value = ((string)(Original_Year));
+            }
+            if ((Original_Section == null)) {
+                throw new global::System.ArgumentNullException("Original_Section");
+            }
+            else {
+                this.Adapter.DeleteCommand.Parameters[14].Value = ((string)(Original_Section));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.DeleteCommand.Connection.State;
+            if (((this.Adapter.DeleteCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.DeleteCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.DeleteCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.DeleteCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Insert, true)]
-        public virtual int Insert(int ID, string StudentNumber, string Firstname, string Middlename, string Lastname, int Age, System.DateTime Birthday, string Gender, string Address, string ContactNumber, string Email, string Year, string Section) {
+        public virtual int Insert(int ID, string StudentNumber, string Firstname, string Middlename, string Lastname, int Age, System.DateTime Birthday, string Gender, string Address, string ContactNumber, string Email, string Year, string Section, byte[] ProfileImage) {
             this.Adapter.InsertCommand.Parameters[0].Value = ((int)(ID));
             if ((StudentNumber == null)) {
                 throw new global::System.ArgumentNullException("StudentNumber");
@@ -1231,6 +1428,12 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
             else {
                 this.Adapter.InsertCommand.Parameters[12].Value = ((string)(Section));
             }
+            if ((ProfileImage == null)) {
+                this.Adapter.InsertCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.InsertCommand.Parameters[13].Value = ((byte[])(ProfileImage));
+            }
             global::System.Data.ConnectionState previousConnectionState = this.Adapter.InsertCommand.Connection.State;
             if (((this.Adapter.InsertCommand.Connection.State & global::System.Data.ConnectionState.Open) 
                         != global::System.Data.ConnectionState.Open)) {
@@ -1245,6 +1448,224 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
                     this.Adapter.InsertCommand.Connection.Close();
                 }
             }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    int ID, 
+                    string StudentNumber, 
+                    string Firstname, 
+                    string Middlename, 
+                    string Lastname, 
+                    int Age, 
+                    System.DateTime Birthday, 
+                    string Gender, 
+                    string Address, 
+                    string ContactNumber, 
+                    string Email, 
+                    string Year, 
+                    string Section, 
+                    byte[] ProfileImage, 
+                    int Original_ID, 
+                    string Original_StudentNumber, 
+                    string Original_Firstname, 
+                    string Original_Middlename, 
+                    string Original_Lastname, 
+                    int Original_Age, 
+                    System.DateTime Original_Birthday, 
+                    string Original_Gender, 
+                    string Original_Address, 
+                    string Original_ContactNumber, 
+                    string Original_Email, 
+                    string Original_Year, 
+                    string Original_Section) {
+            this.Adapter.UpdateCommand.Parameters[0].Value = ((int)(ID));
+            if ((StudentNumber == null)) {
+                throw new global::System.ArgumentNullException("StudentNumber");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[1].Value = ((string)(StudentNumber));
+            }
+            if ((Firstname == null)) {
+                throw new global::System.ArgumentNullException("Firstname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[2].Value = ((string)(Firstname));
+            }
+            if ((Middlename == null)) {
+                throw new global::System.ArgumentNullException("Middlename");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[3].Value = ((string)(Middlename));
+            }
+            if ((Lastname == null)) {
+                throw new global::System.ArgumentNullException("Lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[4].Value = ((string)(Lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[5].Value = ((int)(Age));
+            this.Adapter.UpdateCommand.Parameters[6].Value = ((System.DateTime)(Birthday));
+            if ((Gender == null)) {
+                throw new global::System.ArgumentNullException("Gender");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[7].Value = ((string)(Gender));
+            }
+            if ((Address == null)) {
+                throw new global::System.ArgumentNullException("Address");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[8].Value = ((string)(Address));
+            }
+            if ((ContactNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[9].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[9].Value = ((string)(ContactNumber));
+            }
+            if ((Email == null)) {
+                this.Adapter.UpdateCommand.Parameters[10].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[10].Value = ((string)(Email));
+            }
+            if ((Year == null)) {
+                throw new global::System.ArgumentNullException("Year");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[11].Value = ((string)(Year));
+            }
+            if ((Section == null)) {
+                throw new global::System.ArgumentNullException("Section");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[12].Value = ((string)(Section));
+            }
+            if ((ProfileImage == null)) {
+                this.Adapter.UpdateCommand.Parameters[13].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[13].Value = ((byte[])(ProfileImage));
+            }
+            this.Adapter.UpdateCommand.Parameters[14].Value = ((int)(Original_ID));
+            if ((Original_StudentNumber == null)) {
+                throw new global::System.ArgumentNullException("Original_StudentNumber");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[15].Value = ((string)(Original_StudentNumber));
+            }
+            if ((Original_Firstname == null)) {
+                throw new global::System.ArgumentNullException("Original_Firstname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[16].Value = ((string)(Original_Firstname));
+            }
+            if ((Original_Middlename == null)) {
+                throw new global::System.ArgumentNullException("Original_Middlename");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[17].Value = ((string)(Original_Middlename));
+            }
+            if ((Original_Lastname == null)) {
+                throw new global::System.ArgumentNullException("Original_Lastname");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[18].Value = ((string)(Original_Lastname));
+            }
+            this.Adapter.UpdateCommand.Parameters[19].Value = ((int)(Original_Age));
+            this.Adapter.UpdateCommand.Parameters[20].Value = ((System.DateTime)(Original_Birthday));
+            if ((Original_Gender == null)) {
+                throw new global::System.ArgumentNullException("Original_Gender");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[21].Value = ((string)(Original_Gender));
+            }
+            if ((Original_Address == null)) {
+                throw new global::System.ArgumentNullException("Original_Address");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[22].Value = ((string)(Original_Address));
+            }
+            if ((Original_ContactNumber == null)) {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[24].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[23].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[24].Value = ((string)(Original_ContactNumber));
+            }
+            if ((Original_Email == null)) {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(1));
+                this.Adapter.UpdateCommand.Parameters[26].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[25].Value = ((object)(0));
+                this.Adapter.UpdateCommand.Parameters[26].Value = ((string)(Original_Email));
+            }
+            if ((Original_Year == null)) {
+                throw new global::System.ArgumentNullException("Original_Year");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[27].Value = ((string)(Original_Year));
+            }
+            if ((Original_Section == null)) {
+                throw new global::System.ArgumentNullException("Original_Section");
+            }
+            else {
+                this.Adapter.UpdateCommand.Parameters[28].Value = ((string)(Original_Section));
+            }
+            global::System.Data.ConnectionState previousConnectionState = this.Adapter.UpdateCommand.Connection.State;
+            if (((this.Adapter.UpdateCommand.Connection.State & global::System.Data.ConnectionState.Open) 
+                        != global::System.Data.ConnectionState.Open)) {
+                this.Adapter.UpdateCommand.Connection.Open();
+            }
+            try {
+                int returnValue = this.Adapter.UpdateCommand.ExecuteNonQuery();
+                return returnValue;
+            }
+            finally {
+                if ((previousConnectionState == global::System.Data.ConnectionState.Closed)) {
+                    this.Adapter.UpdateCommand.Connection.Close();
+                }
+            }
+        }
+        
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
+        [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
+        [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Update, true)]
+        public virtual int Update(
+                    string StudentNumber, 
+                    string Firstname, 
+                    string Middlename, 
+                    string Lastname, 
+                    int Age, 
+                    System.DateTime Birthday, 
+                    string Gender, 
+                    string Address, 
+                    string ContactNumber, 
+                    string Email, 
+                    string Year, 
+                    string Section, 
+                    byte[] ProfileImage, 
+                    int Original_ID, 
+                    string Original_StudentNumber, 
+                    string Original_Firstname, 
+                    string Original_Middlename, 
+                    string Original_Lastname, 
+                    int Original_Age, 
+                    System.DateTime Original_Birthday, 
+                    string Original_Gender, 
+                    string Original_Address, 
+                    string Original_ContactNumber, 
+                    string Original_Email, 
+                    string Original_Year, 
+                    string Original_Section) {
+            return this.Update(Original_ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender, Address, ContactNumber, Email, Year, Section, ProfileImage, Original_ID, Original_StudentNumber, Original_Firstname, Original_Middlename, Original_Lastname, Original_Age, Original_Birthday, Original_Gender, Original_Address, Original_ContactNumber, Original_Email, Original_Year, Original_Section);
         }
     }
     
@@ -1339,7 +1760,7 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(lmsdcsDataSet30 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -1358,7 +1779,7 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(lmsdcsDataSet30 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -1376,7 +1797,7 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(lmsdcsDataSet30 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -1418,7 +1839,7 @@ namespace LibraryManagementSystem.DataSet.lmsdcsDataSet30TableAdapters {
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(lmsdcsDataSet30 dataSet) {
+        public virtual int UpdateAll(lmsdcsDataSet45 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

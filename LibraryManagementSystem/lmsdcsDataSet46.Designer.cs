@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace LibraryManagementSystem.DataSet {
+namespace LibraryManagementSystem {
     
     
     /// <summary>
@@ -987,7 +987,7 @@ namespace LibraryManagementSystem.DataSet {
         }
     }
 }
-namespace LibraryManagementSystem.DataSet.lmsdcsDataSet46TableAdapters {
+namespace LibraryManagementSystem.lmsdcsDataSet46TableAdapters {
     
     
     /// <summary>

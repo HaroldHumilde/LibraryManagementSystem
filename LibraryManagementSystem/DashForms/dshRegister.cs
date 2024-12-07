@@ -58,9 +58,15 @@ namespace LibraryManagementSystem
                 "Section 3",
                 "Section 4",
                 "Section 5",
+                "STEM",
+                "ABM",
+                "HUMSS",
+                "TVL-ICT",
+                "TVL-HE",
+                "GAS"
 
             };
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     cmbBoxSection.Items.Add(ListofSection[i].ToString());
                 }
@@ -93,7 +99,6 @@ namespace LibraryManagementSystem
 
         private void btnRegister_Click(object sender, EventArgs e)
         {
-
             // User input values
             string studentNumber = txtStudentNo.Text.ToString();
             string contactNo = txtContactNo.Text.ToString();
@@ -126,12 +131,45 @@ namespace LibraryManagementSystem
                 return; // Exit the method to prevent the registration process
             }
 
+            // Validate that StudentNumber contains only numbers
+            if (string.IsNullOrEmpty(studentNumber) || !studentNumber.All(char.IsDigit))
+            {
+                MessageBox.Show("Student Number must contain only numbers.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate that LastName, FirstName, and MiddleName contain only letters
+            if (!lastName.All(char.IsLetter))
+            {
+                MessageBox.Show("Last Name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!firstName.All(char.IsLetter))
+            {
+                MessageBox.Show("First Name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            if (!middleName.All(char.IsLetter))
+            {
+                MessageBox.Show("Middle Name must contain only letters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             // Validate if the age is a valid number
             int age;
             if (!int.TryParse(ageText, out age))
             {
                 MessageBox.Show("Please enter a valid age.", "Invalid Age", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Exit if age is not a valid integer
+            }
+
+            // Validate if the contact number is valid (numeric only)
+            if (string.IsNullOrEmpty(contactNo) || !contactNo.All(char.IsDigit))
+            {
+                MessageBox.Show("Please enter a valid contact number (only numbers are allowed).", "Invalid Contact Number", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return; // Exit if contact number contains non-numeric characters
             }
 
             // Get the ProfileImage from PictureBox (or your chosen control)
@@ -160,11 +198,11 @@ namespace LibraryManagementSystem
                 SqlCommand cmd = new SqlCommand();
                 cmd.Connection = con;
                 cmd.CommandText = @"
-    INSERT INTO ActiveBorrowers 
-    (ID, StudentNumber, Year, Lastname, Firstname, Middlename, Birthday, Age, Gender, Address, Section, Email, ContactNumber, ProfileImage) 
-    VALUES 
-    (@ID, @StudentNumber, @Year, @Lastname, @Firstname, @Middlename, @Birthday, @Age, @Gender, @Address, @Section, @Email, @ContactNumber, 
-    CONVERT(varbinary(max), @ProfileImage))";  // Use CONVERT for the profile image
+            INSERT INTO ActiveBorrowers 
+            (ID, StudentNumber, Year, Lastname, Firstname, Middlename, Birthday, Age, Gender, Address, Section, Email, ContactNumber, ProfileImage) 
+            VALUES 
+            (@ID, @StudentNumber, @Year, @Lastname, @Firstname, @Middlename, @Birthday, @Age, @Gender, @Address, @Section, @Email, @ContactNumber, 
+            CONVERT(varbinary(max), @ProfileImage))";  // Use CONVERT for the profile image
 
                 // Add parameters to prevent SQL injection
                 cmd.Parameters.AddWithValue("@ID", newId); // Add the newly generated ID
@@ -222,6 +260,7 @@ namespace LibraryManagementSystem
                 MessageBox.Show("An error occurred: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
+
         }
 
         private void btnUpload_Click(object sender, EventArgs e)
@@ -277,6 +316,11 @@ namespace LibraryManagementSystem
                 image.Save(ms, System.Drawing.Imaging.ImageFormat.Jpeg);  // Or use the desired format
                 return ms.ToArray();  // Convert image to byte array
             }
+        }
+
+        private void pictureBoxProfile_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

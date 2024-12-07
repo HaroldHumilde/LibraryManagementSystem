@@ -32,10 +32,12 @@ namespace LibraryManagementSystem
 
         private void BookReturn_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'lmsdcsDataSet3.BookBorrowing' table. You can move, or remove it, as needed.
+            this.bookBorrowingTableAdapter.Fill(this.lmsdcsDataSet3.BookBorrowing);
+
+
             // TODO: This line of code loads data into the 'lmsdcsDataSet46.ActiveBorrowers' table. You can move, or remove it, as needed.
             this.activeBorrowersTableAdapter.Fill(this.lmsdcsDataSet46.ActiveBorrowers);
-            // TODO: This line of code loads data into the 'lmsdcsDataSet38.BookBorrowing' table. You can move, or remove it, as needed.
-            this.bookBorrowingTableAdapter.Fill(this.lmsdcsDataSet38.BookBorrowing);
            
 
 
@@ -104,29 +106,31 @@ namespace LibraryManagementSystem
             }
 
             // SQL query to get the borrowed books along with BookTitle from Inventory
-            // and sort the results by Status ('Borrowed' first, others below)
+            // and sort the results by Status ('Borrowed' first, 'Unreturned' second, 'Returned' last)
             string query = @"
-SELECT 
-    bb.BorrowID,
-    bb.BorrowerID,
-    bb.SerialNumber,
-    i.BookTitle,  -- Get BookTitle from Inventory
-    bb.BorrowedDate,
-    bb.DueDate,
-    bb.Status
-FROM 
-    BookBorrowing bb
-INNER JOIN 
-    Inventory i 
-ON 
-    bb.SerialNumber = i.SerialNumber
-WHERE 
-    bb.BorrowerID = @BorrowerID
-ORDER BY 
-    CASE 
-        WHEN bb.Status = 'Borrowed' THEN 0 
-        ELSE 1 
-    END";
+    SELECT 
+        bb.BorrowID,
+        bb.BorrowerID,
+        bb.BookID,
+        i.BookTitle,  -- Get BookTitle from Inventory
+        bb.BorrowedDate,
+        bb.DueDate,
+        bb.Status
+    FROM 
+        BookBorrowing bb
+    INNER JOIN 
+        Inventory i 
+    ON 
+        bb.BookID = i.BookID
+    WHERE 
+        bb.BorrowerID = @BorrowerID
+    ORDER BY 
+        CASE 
+            WHEN bb.Status = 'Borrowed' THEN 0  -- Borrowed books first
+            WHEN bb.Status = 'Unreturned' THEN 1  -- Unreturned books second
+            WHEN bb.Status = 'Returned' THEN 2  -- Returned books last
+            ELSE 3  -- Any other statuses go last
+        END";
 
             try
             {
@@ -220,17 +224,17 @@ ORDER BY
 
         }
 
-        private void IncreaseBookQuantity(string serialNumber)
+        private void IncreaseBookQuantity(string BookID)
         {
             // SQL query to update the book quantity in Inventory
-            string query = "UPDATE Inventory SET Quantity = Quantity + 1 WHERE SerialNumber = @SerialNumber";
+            string query = "UPDATE Inventory SET Quantity = Quantity + 1 WHERE BookID = @BookID";
 
             try
             {
                 using (SqlConnection conn = new SqlConnection(connectionString))
                 using (SqlCommand cmd = new SqlCommand(query, conn))
                 {
-                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.Parameters.AddWithValue("@BookID", BookID);
                     conn.Open();
                     cmd.ExecuteNonQuery();
                 }
@@ -372,7 +376,7 @@ ORDER BY
             DateTime currentDate = DateTime.Now;
 
             // Query to find overdue books that are still borrowed
-            string query = "SELECT bb.BorrowerID, bb.SerialNumber, bb.BookTitle, bb.DueDate " +
+            string query = "SELECT bb.BorrowerID, bb.BookID, bb.BookTitle, bb.DueDate " +
                            "FROM BookBorrowing bb " +
                            "WHERE bb.DueDate < @currentDate AND bb.Status = 'Borrowed'";
 
@@ -405,16 +409,16 @@ ORDER BY
         }
 
         // Mark book as "Unreturned" if it's still borrowed
-        private void MarkAsUnreturned(string serialNumber)
+        private void MarkAsUnreturned(string BookID)
         {
             string updateQuery = "UPDATE BookBorrowing " +
                                  "SET Status = 'Unreturned', OverdueNotified = 1 " +
-                                 "WHERE SerialNumber = @SerialNumber AND Status = 'Borrowed'";
+                                 "WHERE BookID = @BookID AND Status = 'Borrowed'";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", BookID);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -422,14 +426,14 @@ ORDER BY
         }
 
         // Method to mark the book as notified
-        private void MarkAsNotified(string serialNumber)
+        private void MarkAsNotified(string BookID)
         {
-            string updateQuery = "UPDATE BookBorrowing SET OverdueNotified = 1 WHERE SerialNumber = @SerialNumber";
+            string updateQuery = "UPDATE BookBorrowing SET OverdueNotified = 1 WHERE BookID = @BookID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(updateQuery, conn))
             {
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", BookID);
 
                 conn.Open();
                 cmd.ExecuteNonQuery();
@@ -570,7 +574,7 @@ ORDER BY
                 DataGridViewRow row = dgvBorrowedInfo.Rows[e.RowIndex];
 
                 selectedBorrowID = Convert.ToInt32(row.Cells["BorrowID"].Value); // BorrowID column
-                selectedSerialNumber = row.Cells["SerialNumber"].Value.ToString(); // SerialNumber column
+                selectedSerialNumber = row.Cells["BookID"].Value.ToString(); // SerialNumber column
             }
         }
     }

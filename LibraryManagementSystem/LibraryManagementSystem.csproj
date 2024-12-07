@@ -307,7 +307,33 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet30.Designer.cs">
+    <Compile Include="dshDashBoard.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshDashBoard.Designer.cs">
+      <DependentUpon>dshDashBoard.cs</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet2.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet3.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet30.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
@@ -317,7 +343,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet31.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet32.Designer.cs">
+    <Compile Include="lmsdcsDataSet32.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
@@ -337,7 +363,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet35.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet36.Designer.cs">
+    <Compile Include="lmsdcsDataSet36.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
@@ -347,7 +373,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet37.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet38.Designer.cs">
+    <Compile Include="lmsdcsDataSet38.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
@@ -362,7 +388,12 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet40.Designer.cs">
+    <Compile Include="lmsdcsDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet40.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
@@ -382,17 +413,17 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet43.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet44.Designer.cs">
+    <Compile Include="lmsdcsDataSet44.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet44.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet45.Designer.cs">
+    <Compile Include="lmsdcsDataSet45.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet45.xsd</DependentUpon>
     </Compile>
-    <Compile Include="DataSet\lmsdcsDataSet46.Designer.cs">
+    <Compile Include="lmsdcsDataSet46.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet46.xsd</DependentUpon>
@@ -421,6 +452,16 @@
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet6.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -454,6 +495,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="DashForms\Login.resx">
       <DependentUpon>Login.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dshDashBoard.resx">
+      <DependentUpon>dshDashBoard.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -729,15 +773,59 @@
     <None Include="DataSet\lmsdcsDataSet3.xss">
       <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet30.xsc">
+    <None Include="lmsdcsDataSet.xsc">
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet.xss">
+      <DependentUpon>lmsdcsDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet1.xsc">
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet1.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet1.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet1.xss">
+      <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet2.xsc">
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet2.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet2.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet2.xss">
+      <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet3.xsc">
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet3.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet3.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet3.xss">
+      <DependentUpon>lmsdcsDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet30.xsc">
       <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet30.xsd">
+    <None Include="lmsdcsDataSet30.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet30.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet30.xss">
+    <None Include="lmsdcsDataSet30.xss">
       <DependentUpon>lmsdcsDataSet30.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet31.xsc">
@@ -751,15 +839,15 @@
     <None Include="DataSet\lmsdcsDataSet31.xss">
       <DependentUpon>lmsdcsDataSet31.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet32.xsc">
+    <None Include="lmsdcsDataSet32.xsc">
       <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet32.xsd">
+    <None Include="lmsdcsDataSet32.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet32.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet32.xss">
+    <None Include="lmsdcsDataSet32.xss">
       <DependentUpon>lmsdcsDataSet32.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet33.xsc">
@@ -795,15 +883,15 @@
     <None Include="DataSet\lmsdcsDataSet35.xss">
       <DependentUpon>lmsdcsDataSet35.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet36.xsc">
+    <None Include="lmsdcsDataSet36.xsc">
       <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet36.xsd">
+    <None Include="lmsdcsDataSet36.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet36.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet36.xss">
+    <None Include="lmsdcsDataSet36.xss">
       <DependentUpon>lmsdcsDataSet36.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet37.xsc">
@@ -817,15 +905,15 @@
     <None Include="DataSet\lmsdcsDataSet37.xss">
       <DependentUpon>lmsdcsDataSet37.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet38.xsc">
+    <None Include="lmsdcsDataSet38.xsc">
       <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet38.xsd">
+    <None Include="lmsdcsDataSet38.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet38.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet38.xss">
+    <None Include="lmsdcsDataSet38.xss">
       <DependentUpon>lmsdcsDataSet38.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet39.xsc">
@@ -850,15 +938,26 @@
     <None Include="DataSet\lmsdcsDataSet4.xss">
       <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet40.xsc">
+    <None Include="lmsdcsDataSet4.xsc">
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet4.xss">
+      <DependentUpon>lmsdcsDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet40.xsc">
       <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet40.xsd">
+    <None Include="lmsdcsDataSet40.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet40.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet40.xss">
+    <None Include="lmsdcsDataSet40.xss">
       <DependentUpon>lmsdcsDataSet40.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet41.xsc">
@@ -894,37 +993,37 @@
     <None Include="DataSet\lmsdcsDataSet43.xss">
       <DependentUpon>lmsdcsDataSet43.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet44.xsc">
+    <None Include="lmsdcsDataSet44.xsc">
       <DependentUpon>lmsdcsDataSet44.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet44.xsd">
+    <None Include="lmsdcsDataSet44.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet44.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet44.xss">
+    <None Include="lmsdcsDataSet44.xss">
       <DependentUpon>lmsdcsDataSet44.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet45.xsc">
+    <None Include="lmsdcsDataSet45.xsc">
       <DependentUpon>lmsdcsDataSet45.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet45.xsd">
+    <None Include="lmsdcsDataSet45.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet45.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet45.xss">
+    <None Include="lmsdcsDataSet45.xss">
       <DependentUpon>lmsdcsDataSet45.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet46.xsc">
+    <None Include="lmsdcsDataSet46.xsc">
       <DependentUpon>lmsdcsDataSet46.xsd</DependentUpon>
     </None>
-    <None Include="DataSet\lmsdcsDataSet46.xsd">
+    <None Include="lmsdcsDataSet46.xsd">
       <Generator>MSDataSetGenerator</Generator>
       <LastGenOutput>lmsdcsDataSet46.Designer.cs</LastGenOutput>
       <SubType>Designer</SubType>
     </None>
-    <None Include="DataSet\lmsdcsDataSet46.xss">
+    <None Include="lmsdcsDataSet46.xss">
       <DependentUpon>lmsdcsDataSet46.xsd</DependentUpon>
     </None>
     <None Include="DataSet\lmsdcsDataSet5.xsc">
@@ -981,6 +1080,28 @@
     </None>
     <None Include="DataSet\lmsdcsDataSet9.xss">
       <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet5.xsc">
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet5.xss">
+      <DependentUpon>lmsdcsDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet6.xsc">
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet6.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet6.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet6.xss">
+      <DependentUpon>lmsdcsDataSet6.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

@@ -27,10 +27,11 @@ namespace LibraryManagementSystem
 
         private void dshBorrowerList_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'lmsdcsDataSet4.BookBorrowing' table. You can move, or remove it, as needed.
+            this.bookBorrowingTableAdapter.Fill(this.lmsdcsDataSet4.BookBorrowing);
             // TODO: This line of code loads data into the 'lmsdcsDataSet45.ActiveBorrowers' table. You can move, or remove it, as needed.
             this.activeBorrowersTableAdapter.Fill(this.lmsdcsDataSet45.ActiveBorrowers);
-            // TODO: This line of code loads data into the 'lmsdcsDataSet36.BookBorrowing' table. You can move, or remove it, as needed.
-            this.bookBorrowingTableAdapter.Fill(this.lmsdcsDataSet36.BookBorrowing);
+            
             
 
           

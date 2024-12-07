@@ -38,16 +38,12 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnRetunBook = new System.Windows.Forms.Button();
             this.dgvBorrowedInfo = new System.Windows.Forms.DataGridView();
-            this.BorrowID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.bookBorrowingBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lmsdcsDataSet38 = new LibraryManagementSystem.lmsdcsDataSet38();
             this.dgvBorrower = new System.Windows.Forms.DataGridView();
+            this.activeBorrowersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lmsdcsDataSet46 = new LibraryManagementSystem.lmsdcsDataSet46();
+            this.overdueNotification = new Tulpep.NotificationWindow.PopupNotifier();
+            this.overDueCheck = new System.Windows.Forms.Timer(this.components);
+            this.activeBorrowersTableAdapter = new LibraryManagementSystem.lmsdcsDataSet46TableAdapters.ActiveBorrowersTableAdapter();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,21 +58,26 @@
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Section = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProfileImage = new System.Windows.Forms.DataGridViewImageColumn();
-            this.activeBorrowersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lmsdcsDataSet46 = new LibraryManagementSystem.lmsdcsDataSet46();
-            this.bookBorrowingTableAdapter = new LibraryManagementSystem.lmsdcsDataSet38TableAdapters.BookBorrowingTableAdapter();
-            this.overdueNotification = new Tulpep.NotificationWindow.PopupNotifier();
-            this.overDueCheck = new System.Windows.Forms.Timer(this.components);
-            this.activeBorrowersTableAdapter = new LibraryManagementSystem.lmsdcsDataSet46TableAdapters.ActiveBorrowersTableAdapter();
+            this.lmsdcsDataSet3 = new LibraryManagementSystem.lmsdcsDataSet3();
+            this.bookBorrowingBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.bookBorrowingTableAdapter = new LibraryManagementSystem.lmsdcsDataSet3TableAdapters.BookBorrowingTableAdapter();
+            this.BorrowID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BorrowedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OverdueNotified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.pnlReturnBook.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedInfo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBorrowingBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet38)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrower)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeBorrowersBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet46)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet3)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBorrowingBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // pnlReturnBook
@@ -179,11 +180,12 @@
             this.dgvBorrowedInfo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BorrowID,
             this.BorrowerID,
-            this.SerialNumber,
-            this.BookTitle,
+            this.BookID,
             this.BorrowedDate,
             this.DueDate,
-            this.Status});
+            this.BookTitle,
+            this.Status,
+            this.OverdueNotified});
             this.dgvBorrowedInfo.DataSource = this.bookBorrowingBindingSource;
             this.dgvBorrowedInfo.EnableHeadersVisualStyles = false;
             this.dgvBorrowedInfo.Location = new System.Drawing.Point(1084, 221);
@@ -197,83 +199,6 @@
             this.dgvBorrowedInfo.Size = new System.Drawing.Size(772, 386);
             this.dgvBorrowedInfo.TabIndex = 4;
             this.dgvBorrowedInfo.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvBorrowedInfo_CellClick);
-            // 
-            // BorrowID
-            // 
-            this.BorrowID.DataPropertyName = "BorrowID";
-            this.BorrowID.HeaderText = "BorrowID";
-            this.BorrowID.MinimumWidth = 6;
-            this.BorrowID.Name = "BorrowID";
-            this.BorrowID.ReadOnly = true;
-            this.BorrowID.Visible = false;
-            this.BorrowID.Width = 125;
-            // 
-            // BorrowerID
-            // 
-            this.BorrowerID.DataPropertyName = "BorrowerID";
-            this.BorrowerID.HeaderText = "BorrowerID";
-            this.BorrowerID.MinimumWidth = 6;
-            this.BorrowerID.Name = "BorrowerID";
-            this.BorrowerID.ReadOnly = true;
-            this.BorrowerID.Visible = false;
-            this.BorrowerID.Width = 125;
-            // 
-            // SerialNumber
-            // 
-            this.SerialNumber.DataPropertyName = "SerialNumber";
-            this.SerialNumber.HeaderText = "SerialNumber";
-            this.SerialNumber.MinimumWidth = 6;
-            this.SerialNumber.Name = "SerialNumber";
-            this.SerialNumber.ReadOnly = true;
-            this.SerialNumber.Visible = false;
-            this.SerialNumber.Width = 125;
-            // 
-            // BookTitle
-            // 
-            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookTitle.DataPropertyName = "BookTitle";
-            this.BookTitle.HeaderText = "BookTitle";
-            this.BookTitle.MinimumWidth = 6;
-            this.BookTitle.Name = "BookTitle";
-            this.BookTitle.ReadOnly = true;
-            // 
-            // BorrowedDate
-            // 
-            this.BorrowedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BorrowedDate.DataPropertyName = "BorrowedDate";
-            this.BorrowedDate.HeaderText = "BorrowedDate";
-            this.BorrowedDate.MinimumWidth = 6;
-            this.BorrowedDate.Name = "BorrowedDate";
-            this.BorrowedDate.ReadOnly = true;
-            // 
-            // DueDate
-            // 
-            this.DueDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DueDate.DataPropertyName = "DueDate";
-            this.DueDate.HeaderText = "DueDate";
-            this.DueDate.MinimumWidth = 6;
-            this.DueDate.Name = "DueDate";
-            this.DueDate.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Programmatic;
-            // 
-            // bookBorrowingBindingSource
-            // 
-            this.bookBorrowingBindingSource.DataMember = "BookBorrowing";
-            this.bookBorrowingBindingSource.DataSource = this.lmsdcsDataSet38;
-            // 
-            // lmsdcsDataSet38
-            // 
-            this.lmsdcsDataSet38.DataSetName = "lmsdcsDataSet38";
-            this.lmsdcsDataSet38.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // dgvBorrower
             // 
@@ -318,6 +243,35 @@
             this.dgvBorrower.Size = new System.Drawing.Size(880, 386);
             this.dgvBorrower.TabIndex = 3;
             // 
+            // activeBorrowersBindingSource
+            // 
+            this.activeBorrowersBindingSource.DataMember = "ActiveBorrowers";
+            this.activeBorrowersBindingSource.DataSource = this.lmsdcsDataSet46;
+            // 
+            // lmsdcsDataSet46
+            // 
+            this.lmsdcsDataSet46.DataSetName = "lmsdcsDataSet46";
+            this.lmsdcsDataSet46.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // overdueNotification
+            // 
+            this.overdueNotification.ContentFont = new System.Drawing.Font("Tahoma", 8F);
+            this.overdueNotification.ContentText = null;
+            this.overdueNotification.Image = null;
+            this.overdueNotification.IsRightToLeft = false;
+            this.overdueNotification.OptionsMenu = null;
+            this.overdueNotification.Size = new System.Drawing.Size(400, 100);
+            this.overdueNotification.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
+            this.overdueNotification.TitleText = null;
+            // 
+            // overDueCheck
+            // 
+            this.overDueCheck.Tick += new System.EventHandler(this.overDueCheck_Tick);
+            // 
+            // activeBorrowersTableAdapter
+            // 
+            this.activeBorrowersTableAdapter.ClearBeforeFill = true;
+            // 
             // ID
             // 
             this.ID.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -326,12 +280,13 @@
             this.ID.MinimumWidth = 6;
             this.ID.Name = "ID";
             this.ID.ReadOnly = true;
+            this.ID.Visible = false;
             // 
             // StudentNumber
             // 
             this.StudentNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.StudentNumber.DataPropertyName = "StudentNumber";
-            this.StudentNumber.HeaderText = "StudentNumber";
+            this.StudentNumber.HeaderText = "Student Number";
             this.StudentNumber.MinimumWidth = 6;
             this.StudentNumber.Name = "StudentNumber";
             this.StudentNumber.ReadOnly = true;
@@ -453,38 +408,91 @@
             this.ProfileImage.Visible = false;
             this.ProfileImage.Width = 125;
             // 
-            // activeBorrowersBindingSource
+            // lmsdcsDataSet3
             // 
-            this.activeBorrowersBindingSource.DataMember = "ActiveBorrowers";
-            this.activeBorrowersBindingSource.DataSource = this.lmsdcsDataSet46;
+            this.lmsdcsDataSet3.DataSetName = "lmsdcsDataSet3";
+            this.lmsdcsDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
-            // lmsdcsDataSet46
+            // bookBorrowingBindingSource
             // 
-            this.lmsdcsDataSet46.DataSetName = "lmsdcsDataSet46";
-            this.lmsdcsDataSet46.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.bookBorrowingBindingSource.DataMember = "BookBorrowing";
+            this.bookBorrowingBindingSource.DataSource = this.lmsdcsDataSet3;
             // 
             // bookBorrowingTableAdapter
             // 
             this.bookBorrowingTableAdapter.ClearBeforeFill = true;
             // 
-            // overdueNotification
+            // BorrowID
             // 
-            this.overdueNotification.ContentFont = new System.Drawing.Font("Tahoma", 8F);
-            this.overdueNotification.ContentText = null;
-            this.overdueNotification.Image = null;
-            this.overdueNotification.IsRightToLeft = false;
-            this.overdueNotification.OptionsMenu = null;
-            this.overdueNotification.Size = new System.Drawing.Size(400, 100);
-            this.overdueNotification.TitleFont = new System.Drawing.Font("Segoe UI", 9F);
-            this.overdueNotification.TitleText = null;
+            this.BorrowID.DataPropertyName = "BorrowID";
+            this.BorrowID.HeaderText = "BorrowID";
+            this.BorrowID.MinimumWidth = 6;
+            this.BorrowID.Name = "BorrowID";
+            this.BorrowID.ReadOnly = true;
+            this.BorrowID.Width = 125;
             // 
-            // overDueCheck
+            // BorrowerID
             // 
-            this.overDueCheck.Tick += new System.EventHandler(this.overDueCheck_Tick);
+            this.BorrowerID.DataPropertyName = "BorrowerID";
+            this.BorrowerID.HeaderText = "BorrowerID";
+            this.BorrowerID.MinimumWidth = 6;
+            this.BorrowerID.Name = "BorrowerID";
+            this.BorrowerID.ReadOnly = true;
+            this.BorrowerID.Width = 125;
             // 
-            // activeBorrowersTableAdapter
+            // BookID
             // 
-            this.activeBorrowersTableAdapter.ClearBeforeFill = true;
+            this.BookID.DataPropertyName = "BookID";
+            this.BookID.HeaderText = "BookID";
+            this.BookID.MinimumWidth = 6;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            this.BookID.Width = 125;
+            // 
+            // BorrowedDate
+            // 
+            this.BorrowedDate.DataPropertyName = "BorrowedDate";
+            this.BorrowedDate.HeaderText = "BorrowedDate";
+            this.BorrowedDate.MinimumWidth = 6;
+            this.BorrowedDate.Name = "BorrowedDate";
+            this.BorrowedDate.ReadOnly = true;
+            this.BorrowedDate.Width = 125;
+            // 
+            // DueDate
+            // 
+            this.DueDate.DataPropertyName = "DueDate";
+            this.DueDate.HeaderText = "DueDate";
+            this.DueDate.MinimumWidth = 6;
+            this.DueDate.Name = "DueDate";
+            this.DueDate.ReadOnly = true;
+            this.DueDate.Width = 125;
+            // 
+            // BookTitle
+            // 
+            this.BookTitle.DataPropertyName = "BookTitle";
+            this.BookTitle.HeaderText = "BookTitle";
+            this.BookTitle.MinimumWidth = 6;
+            this.BookTitle.Name = "BookTitle";
+            this.BookTitle.ReadOnly = true;
+            this.BookTitle.Width = 125;
+            // 
+            // Status
+            // 
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            this.Status.Width = 125;
+            // 
+            // OverdueNotified
+            // 
+            this.OverdueNotified.DataPropertyName = "OverdueNotified";
+            this.OverdueNotified.HeaderText = "OverdueNotified";
+            this.OverdueNotified.MinimumWidth = 6;
+            this.OverdueNotified.Name = "OverdueNotified";
+            this.OverdueNotified.ReadOnly = true;
+            this.OverdueNotified.Width = 125;
             // 
             // dshBookReturn
             // 
@@ -501,11 +509,11 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrowedInfo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.bookBorrowingBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet38)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgvBorrower)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.activeBorrowersBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet46)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet3)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.bookBorrowingBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -517,18 +525,8 @@
         private System.Windows.Forms.DataGridView dgvBorrower;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridView dgvBorrowedInfo;
-        private lmsdcsDataSet38 lmsdcsDataSet38;
-        private System.Windows.Forms.BindingSource bookBorrowingBindingSource;
-        private lmsdcsDataSet38TableAdapters.BookBorrowingTableAdapter bookBorrowingTableAdapter;
         private System.Windows.Forms.Button btnRetunBook;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowerID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BookTitle;
-        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowedDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DueDate;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
         private Tulpep.NotificationWindow.PopupNotifier overdueNotification;
         private System.Windows.Forms.Timer overDueCheck;
         private System.Windows.Forms.Panel panel2;
@@ -550,5 +548,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DataGridViewTextBoxColumn Section;
         private System.Windows.Forms.DataGridViewImageColumn ProfileImage;
+        private lmsdcsDataSet3 lmsdcsDataSet3;
+        private System.Windows.Forms.BindingSource bookBorrowingBindingSource;
+        private lmsdcsDataSet3TableAdapters.BookBorrowingTableAdapter bookBorrowingTableAdapter;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowerID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BorrowedDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DueDate;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookTitle;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Status;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn OverdueNotified;
     }
 }

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dshProfile));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.panelProfile = new System.Windows.Forms.Panel();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
@@ -48,7 +48,6 @@
             this.label15 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
             this.txtLastName = new System.Windows.Forms.TextBox();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.label14 = new System.Windows.Forms.Label();
             this.label11 = new System.Windows.Forms.Label();
@@ -133,7 +132,6 @@
             this.panelProfile.Controls.Add(this.panel2);
             this.panelProfile.Controls.Add(this.panel4);
             this.panelProfile.Controls.Add(this.txtLastName);
-            this.panelProfile.Controls.Add(this.panel3);
             this.panelProfile.Controls.Add(this.btnDelete);
             this.panelProfile.Controls.Add(this.label14);
             this.panelProfile.Controls.Add(this.label11);
@@ -172,9 +170,9 @@
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxProfile.Location = new System.Drawing.Point(1265, 195);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(1356, 148);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(192, 192);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(249, 221);
             this.pictureBoxProfile.TabIndex = 213;
             this.pictureBoxProfile.TabStop = false;
             this.pictureBoxProfile.Click += new System.EventHandler(this.pictureBoxProfile_Click);
@@ -216,6 +214,7 @@
             this.txtSearchUser.Name = "txtSearchUser";
             this.txtSearchUser.Size = new System.Drawing.Size(650, 27);
             this.txtSearchUser.TabIndex = 202;
+            this.txtSearchUser.TextChanged += new System.EventHandler(this.txtSearchUser_TextChanged);
             this.txtSearchUser.Enter += new System.EventHandler(this.txtSearchUser_Enter);
             this.txtSearchUser.Leave += new System.EventHandler(this.txtSearchUser_Leave);
             // 
@@ -224,7 +223,7 @@
             this.panel7.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel7.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel7.Location = new System.Drawing.Point(612, 257);
+            this.panel7.Location = new System.Drawing.Point(663, 257);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(378, 2);
             this.panel7.TabIndex = 197;
@@ -244,7 +243,7 @@
             this.txtNewStudentNumber.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtNewStudentNumber.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtNewStudentNumber.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtNewStudentNumber.Location = new System.Drawing.Point(90, 238);
+            this.txtNewStudentNumber.Location = new System.Drawing.Point(90, 237);
             this.txtNewStudentNumber.Multiline = true;
             this.txtNewStudentNumber.Name = "txtNewStudentNumber";
             this.txtNewStudentNumber.Size = new System.Drawing.Size(413, 32);
@@ -265,7 +264,7 @@
             this.txtMiddleName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtMiddleName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtMiddleName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtMiddleName.Location = new System.Drawing.Point(90, 624);
+            this.txtMiddleName.Location = new System.Drawing.Point(90, 621);
             this.txtMiddleName.Multiline = true;
             this.txtMiddleName.Name = "txtMiddleName";
             this.txtMiddleName.Size = new System.Drawing.Size(413, 32);
@@ -286,7 +285,7 @@
             this.txtFirstName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtFirstName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtFirstName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtFirstName.Location = new System.Drawing.Point(88, 529);
+            this.txtFirstName.Location = new System.Drawing.Point(88, 527);
             this.txtFirstName.Multiline = true;
             this.txtFirstName.Name = "txtFirstName";
             this.txtFirstName.Size = new System.Drawing.Size(413, 32);
@@ -331,20 +330,11 @@
             this.txtLastName.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtLastName.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtLastName.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtLastName.Location = new System.Drawing.Point(87, 436);
+            this.txtLastName.Location = new System.Drawing.Point(87, 433);
             this.txtLastName.Multiline = true;
             this.txtLastName.Name = "txtLastName";
             this.txtLastName.Size = new System.Drawing.Size(413, 32);
             this.txtLastName.TabIndex = 187;
-            // 
-            // panel3
-            // 
-            this.panel3.BackColor = System.Drawing.Color.Navy;
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 1053);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1817, 49);
-            this.panel3.TabIndex = 186;
             // 
             // btnDelete
             // 
@@ -365,7 +355,7 @@
             this.label14.BackColor = System.Drawing.Color.Transparent;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Black;
-            this.label14.Location = new System.Drawing.Point(1145, 490);
+            this.label14.Location = new System.Drawing.Point(1240, 490);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(56, 20);
             this.label14.TabIndex = 184;
@@ -401,7 +391,7 @@
             this.panel11.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel11.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel11.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel11.Location = new System.Drawing.Point(1147, 648);
+            this.panel11.Location = new System.Drawing.Point(1242, 648);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(414, 2);
             this.panel11.TabIndex = 179;
@@ -411,7 +401,7 @@
             this.txtContactNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtContactNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtContactNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtContactNo.Location = new System.Drawing.Point(1147, 627);
+            this.txtContactNo.Location = new System.Drawing.Point(1242, 625);
             this.txtContactNo.Multiline = true;
             this.txtContactNo.Name = "txtContactNo";
             this.txtContactNo.Size = new System.Drawing.Size(413, 32);
@@ -423,7 +413,7 @@
             this.panel10.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel10.Controls.Add(this.label10);
             this.panel10.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel10.Location = new System.Drawing.Point(1147, 551);
+            this.panel10.Location = new System.Drawing.Point(1242, 551);
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(414, 2);
             this.panel10.TabIndex = 177;
@@ -446,7 +436,7 @@
             this.panel9.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.panel9.BackColor = System.Drawing.SystemColors.Highlight;
             this.panel9.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.panel9.Location = new System.Drawing.Point(1148, 456);
+            this.panel9.Location = new System.Drawing.Point(1243, 456);
             this.panel9.Name = "panel9";
             this.panel9.Size = new System.Drawing.Size(414, 2);
             this.panel9.TabIndex = 175;
@@ -456,7 +446,7 @@
             this.txtAddress.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAddress.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAddress.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAddress.Location = new System.Drawing.Point(1147, 530);
+            this.txtAddress.Location = new System.Drawing.Point(1242, 527);
             this.txtAddress.Multiline = true;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(413, 32);
@@ -469,7 +459,7 @@
             this.label1.BackColor = System.Drawing.Color.Transparent;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(1142, 591);
+            this.label1.Location = new System.Drawing.Point(1237, 591);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(108, 20);
             this.label1.TabIndex = 172;
@@ -482,7 +472,7 @@
             this.label7.BackColor = System.Drawing.Color.Transparent;
             this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label7.ForeColor = System.Drawing.Color.Black;
-            this.label7.Location = new System.Drawing.Point(607, 399);
+            this.label7.Location = new System.Drawing.Point(658, 399);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(72, 20);
             this.label7.TabIndex = 169;
@@ -495,7 +485,7 @@
             this.label8.BackColor = System.Drawing.Color.Transparent;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label8.ForeColor = System.Drawing.Color.Black;
-            this.label8.Location = new System.Drawing.Point(1142, 399);
+            this.label8.Location = new System.Drawing.Point(1237, 399);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(78, 20);
             this.label8.TabIndex = 171;
@@ -509,7 +499,7 @@
             this.cmbBoxSection.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.cmbBoxSection.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBoxSection.FormattingEnabled = true;
-            this.cmbBoxSection.Location = new System.Drawing.Point(611, 431);
+            this.cmbBoxSection.Location = new System.Drawing.Point(662, 431);
             this.cmbBoxSection.Name = "cmbBoxSection";
             this.cmbBoxSection.Size = new System.Drawing.Size(395, 28);
             this.cmbBoxSection.TabIndex = 170;
@@ -522,7 +512,7 @@
             this.cmbBoxYear.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBoxYear.ForeColor = System.Drawing.Color.Black;
             this.cmbBoxYear.FormattingEnabled = true;
-            this.cmbBoxYear.Location = new System.Drawing.Point(608, 621);
+            this.cmbBoxYear.Location = new System.Drawing.Point(659, 621);
             this.cmbBoxYear.Name = "cmbBoxYear";
             this.cmbBoxYear.Size = new System.Drawing.Size(398, 28);
             this.cmbBoxYear.TabIndex = 166;
@@ -534,7 +524,7 @@
             this.label6.BackColor = System.Drawing.Color.Transparent;
             this.label6.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label6.ForeColor = System.Drawing.Color.Black;
-            this.label6.Location = new System.Drawing.Point(607, 490);
+            this.label6.Location = new System.Drawing.Point(658, 490);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(79, 20);
             this.label6.TabIndex = 168;
@@ -547,7 +537,7 @@
             this.label5.BackColor = System.Drawing.Color.Transparent;
             this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label5.ForeColor = System.Drawing.Color.Black;
-            this.label5.Location = new System.Drawing.Point(604, 591);
+            this.label5.Location = new System.Drawing.Point(655, 591);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(47, 20);
             this.label5.TabIndex = 167;
@@ -560,7 +550,7 @@
             this.BirthdayDateTimePicker.CalendarForeColor = System.Drawing.Color.White;
             this.BirthdayDateTimePicker.CalendarTitleForeColor = System.Drawing.Color.White;
             this.BirthdayDateTimePicker.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.BirthdayDateTimePicker.Location = new System.Drawing.Point(608, 525);
+            this.BirthdayDateTimePicker.Location = new System.Drawing.Point(659, 525);
             this.BirthdayDateTimePicker.Name = "BirthdayDateTimePicker";
             this.BirthdayDateTimePicker.Size = new System.Drawing.Size(398, 27);
             this.BirthdayDateTimePicker.TabIndex = 165;
@@ -573,7 +563,7 @@
             this.cmbBoxGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cmbBoxGender.ForeColor = System.Drawing.Color.Black;
             this.cmbBoxGender.FormattingEnabled = true;
-            this.cmbBoxGender.Location = new System.Drawing.Point(608, 334);
+            this.cmbBoxGender.Location = new System.Drawing.Point(659, 334);
             this.cmbBoxGender.Name = "cmbBoxGender";
             this.cmbBoxGender.Size = new System.Drawing.Size(398, 28);
             this.cmbBoxGender.TabIndex = 164;
@@ -585,7 +575,7 @@
             this.label12.BackColor = System.Drawing.Color.Transparent;
             this.label12.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label12.ForeColor = System.Drawing.Color.Black;
-            this.label12.Location = new System.Drawing.Point(608, 195);
+            this.label12.Location = new System.Drawing.Point(659, 195);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(41, 20);
             this.label12.TabIndex = 160;
@@ -598,7 +588,7 @@
             this.lblGender.BackColor = System.Drawing.Color.Transparent;
             this.lblGender.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblGender.ForeColor = System.Drawing.Color.Black;
-            this.lblGender.Location = new System.Drawing.Point(607, 300);
+            this.lblGender.Location = new System.Drawing.Point(658, 300);
             this.lblGender.Name = "lblGender";
             this.lblGender.Size = new System.Drawing.Size(70, 20);
             this.lblGender.TabIndex = 161;
@@ -660,6 +650,8 @@
             // 
             this.dataGridSearchInfo.AllowUserToAddRows = false;
             this.dataGridSearchInfo.AllowUserToDeleteRows = false;
+            this.dataGridSearchInfo.AllowUserToResizeColumns = false;
+            this.dataGridSearchInfo.AllowUserToResizeRows = false;
             this.dataGridSearchInfo.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataGridSearchInfo.AutoGenerateColumns = false;
@@ -693,19 +685,20 @@
             this.dataGridSearchInfo.Name = "dataGridSearchInfo";
             this.dataGridSearchInfo.ReadOnly = true;
             this.dataGridSearchInfo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridSearchInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridSearchInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridSearchInfo.RowHeadersVisible = false;
             this.dataGridSearchInfo.RowHeadersWidth = 51;
             this.dataGridSearchInfo.RowTemplate.Height = 24;
-            this.dataGridSearchInfo.Size = new System.Drawing.Size(1544, 139);
+            this.dataGridSearchInfo.Size = new System.Drawing.Size(1567, 146);
             this.dataGridSearchInfo.TabIndex = 58;
+            this.dataGridSearchInfo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSearchInfo_CellDoubleClick);
             // 
             // ID
             // 
@@ -866,7 +859,7 @@
             this.txtStudentNo.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtStudentNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtStudentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentNo.Location = new System.Drawing.Point(88, 339);
+            this.txtStudentNo.Location = new System.Drawing.Point(88, 337);
             this.txtStudentNo.Multiline = true;
             this.txtStudentNo.Name = "txtStudentNo";
             this.txtStudentNo.Size = new System.Drawing.Size(413, 32);
@@ -877,7 +870,7 @@
             this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(1146, 435);
+            this.txtEmail.Location = new System.Drawing.Point(1241, 433);
             this.txtEmail.Multiline = true;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(413, 32);
@@ -888,7 +881,7 @@
             this.txtAge.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.txtAge.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAge.Location = new System.Drawing.Point(611, 238);
+            this.txtAge.Location = new System.Drawing.Point(662, 235);
             this.txtAge.Multiline = true;
             this.txtAge.Name = "txtAge";
             this.txtAge.Size = new System.Drawing.Size(376, 32);
@@ -964,7 +957,6 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.Label label14;
         private System.Windows.Forms.Button btnDelete;
-        private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Panel panel6;
         private System.Windows.Forms.TextBox txtNewStudentNumber;
         private System.Windows.Forms.Panel panel5;

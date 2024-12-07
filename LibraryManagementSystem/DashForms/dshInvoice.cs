@@ -1,6 +1,7 @@
 ﻿using PdfSharp.Drawing;
 using PdfSharp.Pdf;
 using PdfSharp.Pdf.Content.Objects;
+using PdfSharp.UniversalAccessibility.Drawing;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -104,21 +105,40 @@ namespace LibraryManagementSystem
             gfx.DrawImage(logo, logoX, logoY, logoWidth, logoHeight);
 
             // Adjust yPosition to start content below the logo
-            double yPosition = logoY + logoHeight + 40; // Increased padding below the logo for more space
+            double yPosition = logoY + logoHeight + 20; // Increased padding below the logo for more space
 
             // Define fonts
             XFont fontNormal = new XFont("Arial", 12); // Regular text
             XFont fontSmall = new XFont("Arial", 10); // Footer text
-            XFont fontBold = new XFont("Arial", 12); // Bold font for librarian name
             XFont fontLibrarianName = new XFont("Arial", 12); // Librarian's name style
 
+
+            // Title
+            XFont fontSchoolName = new XFont("Arial", 14); // Larger size for the title
+            gfx.DrawString("Don Marcelo Jimenez Memorial Polytechnic Institute", fontSchoolName, XBrushes.Black,
+                new XRect(0, yPosition, page.Width, page.Height), XStringFormat.TopCenter);
+            yPosition += 20; // Add more space after the title
+
+            
+
+            XFont fontAddress = new XFont("Arial", 11); // Larger size for the title
+            gfx.DrawString("Poblacion, Dasol, Pangasinan", fontAddress, XBrushes.Black,
+                new XRect(0, yPosition, page.Width, page.Height), XStringFormat.TopCenter);
+            yPosition += 30; // Add more space after the title
+
+            XFont fontTitle = new XFont("Arial", 20); // Larger size for the title
+            gfx.DrawString("BOOK MATE", fontTitle, XBrushes.Black,
+                new XRect(0, yPosition, page.Width, page.Height), XStringFormat.TopCenter);
+            yPosition += 50; // Add more space after the title
+
             // Header (Name and Date)
-            gfx.DrawString($"Name: {name}", fontNormal, XBrushes.Black, 40, yPosition);
-            gfx.DrawString($"Date: {DateTime.Now:MM/dd/yyyy}", fontNormal, XBrushes.Black, pageWidth - 150, yPosition);
+            gfx.DrawString($"Name: {name}", fontNormal, XBrushes.Black, 80, yPosition);
+
+            gfx.DrawString($"Date: {DateTime.Now:MM/dd/yyyy}", fontNormal, XBrushes.Black, pageWidth - 180, yPosition);
             yPosition += 20;
 
-            gfx.DrawString($"Student Number: {studentNumber}", fontNormal, XBrushes.Black, 40, yPosition);
-            gfx.DrawString($"Invoice No: #{invoiceNumber}", fontNormal, XBrushes.Black, pageWidth - 150, yPosition);
+            gfx.DrawString($"Student Number: {studentNumber}", fontNormal, XBrushes.Black, 80, yPosition);
+            gfx.DrawString($"Invoice No: #{invoiceNumber}", fontNormal, XBrushes.Black, pageWidth - 180, yPosition);
             yPosition += 40; // Added more space before the table
 
             // Table dimensions
@@ -134,11 +154,11 @@ namespace LibraryManagementSystem
             gfx.DrawRectangle(XBrushes.LightGray, tableX, yPosition, tableWidth, 20);
 
             // Table Header
-            gfx.DrawString("NO", fontNormal, XBrushes.Black, tableX + 5, yPosition + 20);
-            gfx.DrawString("BOOK LOST", fontNormal, XBrushes.Black, tableX + columnNoWidth + 5, yPosition + 20);
-            gfx.DrawString("QTY", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 5, yPosition + 20);
-            gfx.DrawString("PRICE", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + 5, yPosition + 20);
-            gfx.DrawString("SUBTOTAL", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 5, yPosition + 20);
+            gfx.DrawString("NO", fontNormal, XBrushes.Black, tableX + 5, yPosition + 15);
+            gfx.DrawString("BOOK LOST", fontNormal, XBrushes.Black, tableX + columnNoWidth + 5, yPosition + 15);
+            gfx.DrawString("QTY", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 5, yPosition + 15);
+            gfx.DrawString("PRICE", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + 5, yPosition + 15);
+            gfx.DrawString("SUBTOTAL", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 5, yPosition + 15);
 
             // Draw vertical lines below the header
             gfx.DrawLine(XPens.Black, tableX + columnNoWidth, yPosition, tableX + columnNoWidth, yPosition + 20);  // Line after NO
@@ -239,5 +259,64 @@ namespace LibraryManagementSystem
             return invoiceNumber;
         }
 
+        private void panel9_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel7_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel5_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void panel3_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLibrarianName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label9_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtPriceTwo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtBookTwo_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label4_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

@@ -41,6 +41,7 @@
             this.MenuTransition = new System.Windows.Forms.Timer(this.components);
             this.sidebarTransition = new System.Windows.Forms.Timer(this.components);
             this.panelShowButtons = new System.Windows.Forms.Panel();
+            this.btnDashBoard = new System.Windows.Forms.Button();
             this.btnReturnBooks = new System.Windows.Forms.Button();
             this.btnInvoice = new System.Windows.Forms.Button();
             this.btnBorrowerList = new System.Windows.Forms.Button();
@@ -71,6 +72,7 @@
             this.btnLogout.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnLogout.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnLogout.BackgroundImage")));
             this.btnLogout.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Center;
+            this.btnLogout.FlatAppearance.BorderSize = 0;
             this.btnLogout.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnLogout.ForeColor = System.Drawing.Color.Navy;
             this.btnLogout.Location = new System.Drawing.Point(1874, 24);
@@ -95,9 +97,10 @@
             this.btnShowButtons.BackColor = System.Drawing.Color.Navy;
             this.btnShowButtons.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btnShowButtons.BackgroundImage")));
             this.btnShowButtons.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnShowButtons.FlatAppearance.BorderSize = 0;
             this.btnShowButtons.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnShowButtons.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnShowButtons.ForeColor = System.Drawing.Color.Navy;
+            this.btnShowButtons.ForeColor = System.Drawing.Color.Green;
             this.btnShowButtons.Location = new System.Drawing.Point(12, 26);
             this.btnShowButtons.Name = "btnShowButtons";
             this.btnShowButtons.Size = new System.Drawing.Size(74, 44);
@@ -173,6 +176,7 @@
             // panelShowButtons
             // 
             this.panelShowButtons.BackColor = System.Drawing.SystemColors.Highlight;
+            this.panelShowButtons.Controls.Add(this.btnDashBoard);
             this.panelShowButtons.Controls.Add(this.btnReturnBooks);
             this.panelShowButtons.Controls.Add(this.btnInvoice);
             this.panelShowButtons.Controls.Add(this.btnBorrowerList);
@@ -187,37 +191,57 @@
             this.panelShowButtons.TabIndex = 41;
             this.panelShowButtons.Paint += new System.Windows.Forms.PaintEventHandler(this.panelShowButtons_Paint);
             // 
+            // btnDashBoard
+            // 
+            this.btnDashBoard.BackColor = System.Drawing.SystemColors.Highlight;
+            this.btnDashBoard.FlatAppearance.BorderSize = 0;
+            this.btnDashBoard.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnDashBoard.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnDashBoard.ForeColor = System.Drawing.Color.White;
+            this.btnDashBoard.Image = ((System.Drawing.Image)(resources.GetObject("btnDashBoard.Image")));
+            this.btnDashBoard.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashBoard.Location = new System.Drawing.Point(-1, 16);
+            this.btnDashBoard.Name = "btnDashBoard";
+            this.btnDashBoard.Size = new System.Drawing.Size(265, 50);
+            this.btnDashBoard.TabIndex = 0;
+            this.btnDashBoard.Text = "           DASHBOARD";
+            this.btnDashBoard.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDashBoard.UseVisualStyleBackColor = false;
+            this.btnDashBoard.Click += new System.EventHandler(this.btnDashBoard_Click);
+            // 
             // btnReturnBooks
             // 
+            this.btnReturnBooks.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnReturnBooks.FlatAppearance.BorderSize = 0;
             this.btnReturnBooks.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnReturnBooks.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnReturnBooks.ForeColor = System.Drawing.Color.White;
             this.btnReturnBooks.Image = ((System.Drawing.Image)(resources.GetObject("btnReturnBooks.Image")));
             this.btnReturnBooks.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturnBooks.Location = new System.Drawing.Point(0, 277);
+            this.btnReturnBooks.Location = new System.Drawing.Point(0, 381);
             this.btnReturnBooks.Name = "btnReturnBooks";
             this.btnReturnBooks.Size = new System.Drawing.Size(263, 50);
             this.btnReturnBooks.TabIndex = 0;
-            this.btnReturnBooks.Text = "          RETURN BOOK";
+            this.btnReturnBooks.Text = "           RETURN BOOK";
             this.btnReturnBooks.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnReturnBooks.UseVisualStyleBackColor = true;
+            this.btnReturnBooks.UseVisualStyleBackColor = false;
             this.btnReturnBooks.Click += new System.EventHandler(this.btnReturnBooks_Click);
             // 
             // btnInvoice
             // 
             this.btnInvoice.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnInvoice.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnInvoice.FlatAppearance.BorderSize = 0;
             this.btnInvoice.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnInvoice.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnInvoice.ForeColor = System.Drawing.Color.White;
             this.btnInvoice.Image = ((System.Drawing.Image)(resources.GetObject("btnInvoice.Image")));
             this.btnInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnInvoice.Location = new System.Drawing.Point(-1, 330);
+            this.btnInvoice.Location = new System.Drawing.Point(-1, 441);
             this.btnInvoice.Name = "btnInvoice";
             this.btnInvoice.Size = new System.Drawing.Size(265, 50);
             this.btnInvoice.TabIndex = 16;
-            this.btnInvoice.Text = "         INVOICE";
+            this.btnInvoice.Text = "           INVOICE";
             this.btnInvoice.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnInvoice.UseVisualStyleBackColor = false;
             this.btnInvoice.Click += new System.EventHandler(this.btnInvoice_Click);
@@ -226,16 +250,17 @@
             // 
             this.btnBorrowerList.BackColor = System.Drawing.SystemColors.Highlight;
             this.btnBorrowerList.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.btnBorrowerList.FlatAppearance.BorderSize = 0;
             this.btnBorrowerList.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btnBorrowerList.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnBorrowerList.ForeColor = System.Drawing.Color.White;
             this.btnBorrowerList.Image = ((System.Drawing.Image)(resources.GetObject("btnBorrowerList.Image")));
             this.btnBorrowerList.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnBorrowerList.Location = new System.Drawing.Point(0, 221);
+            this.btnBorrowerList.Location = new System.Drawing.Point(0, 320);
             this.btnBorrowerList.Name = "btnBorrowerList";
             this.btnBorrowerList.Size = new System.Drawing.Size(267, 50);
             this.btnBorrowerList.TabIndex = 14;
-            this.btnBorrowerList.Text = "         BORROWER LIST";
+            this.btnBorrowerList.Text = "           BORROWER LIST";
             this.btnBorrowerList.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnBorrowerList.UseVisualStyleBackColor = false;
             this.btnBorrowerList.Click += new System.EventHandler(this.btnBorrowerList_Click);
@@ -244,16 +269,17 @@
             // 
             this.button12.BackColor = System.Drawing.SystemColors.Highlight;
             this.button12.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button12.FlatAppearance.BorderSize = 0;
             this.button12.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button12.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button12.ForeColor = System.Drawing.Color.White;
             this.button12.Image = ((System.Drawing.Image)(resources.GetObject("button12.Image")));
             this.button12.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button12.Location = new System.Drawing.Point(-1, 112);
+            this.button12.Location = new System.Drawing.Point(-1, 192);
             this.button12.Name = "button12";
             this.button12.Size = new System.Drawing.Size(265, 47);
             this.button12.TabIndex = 5;
-            this.button12.Text = "         INVENTORY";
+            this.button12.Text = "           INVENTORY";
             this.button12.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button12.UseVisualStyleBackColor = false;
             this.button12.Click += new System.EventHandler(this.btnInventory_Click);
@@ -262,16 +288,17 @@
             // 
             this.button1.BackColor = System.Drawing.SystemColors.Highlight;
             this.button1.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button1.FlatAppearance.BorderSize = 0;
             this.button1.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button1.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button1.ForeColor = System.Drawing.Color.White;
             this.button1.Image = ((System.Drawing.Image)(resources.GetObject("button1.Image")));
             this.button1.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button1.Location = new System.Drawing.Point(-1, 165);
+            this.button1.Location = new System.Drawing.Point(-1, 257);
             this.button1.Name = "button1";
             this.button1.Size = new System.Drawing.Size(267, 50);
             this.button1.TabIndex = 10;
-            this.button1.Text = "         BORROWER";
+            this.button1.Text = "           BORROWER";
             this.button1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button1.UseVisualStyleBackColor = false;
             this.button1.Click += new System.EventHandler(this.btnBorrower);
@@ -281,16 +308,17 @@
             this.button6.BackColor = System.Drawing.SystemColors.Highlight;
             this.button6.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.button6.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button6.FlatAppearance.BorderSize = 0;
             this.button6.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button6.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button6.ForeColor = System.Drawing.Color.White;
             this.button6.Image = ((System.Drawing.Image)(resources.GetObject("button6.Image")));
             this.button6.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button6.Location = new System.Drawing.Point(0, 7);
+            this.button6.Location = new System.Drawing.Point(0, 69);
             this.button6.Name = "button6";
             this.button6.Size = new System.Drawing.Size(267, 50);
             this.button6.TabIndex = 0;
-            this.button6.Text = "         REGISTER BORROWERS";
+            this.button6.Text = "           REGISTER";
             this.button6.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button6.UseVisualStyleBackColor = false;
             this.button6.Click += new System.EventHandler(this.btnRegisterDash_Click);
@@ -299,23 +327,23 @@
             // 
             this.button10.BackColor = System.Drawing.SystemColors.Highlight;
             this.button10.FlatAppearance.BorderColor = System.Drawing.SystemColors.Highlight;
+            this.button10.FlatAppearance.BorderSize = 0;
             this.button10.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.button10.Font = new System.Drawing.Font("Tahoma", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.button10.ForeColor = System.Drawing.Color.White;
             this.button10.Image = ((System.Drawing.Image)(resources.GetObject("button10.Image")));
             this.button10.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.button10.Location = new System.Drawing.Point(0, 56);
+            this.button10.Location = new System.Drawing.Point(0, 128);
             this.button10.Name = "button10";
             this.button10.Size = new System.Drawing.Size(264, 50);
             this.button10.TabIndex = 1;
-            this.button10.Text = "        ACTIVE BORROWERS";
+            this.button10.Text = "           ACTIVE BORROWERS";
             this.button10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.button10.UseVisualStyleBackColor = false;
             this.button10.Click += new System.EventHandler(this.btnViewProfileDash_Click);
             // 
             // panel2
             // 
-            this.panel2.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("panel2.BackgroundImage")));
             this.panel2.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(264, 91);
@@ -368,5 +396,6 @@
         private System.Windows.Forms.Button btnInvoice;
         private System.Windows.Forms.Button btnReturnBooks;
         private System.Windows.Forms.Button btnLogout;
+        private System.Windows.Forms.Button btnDashBoard;
     }
 }

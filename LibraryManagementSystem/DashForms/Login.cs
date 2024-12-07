@@ -145,5 +145,10 @@ namespace LibraryManagementSystem
                 e.Handled = true;
             }
         }
+
+        private void bntClose_Click(object sender, EventArgs e)
+        {
+            Application.Exit(); // Closes the entire application
+        }
     }
 }
