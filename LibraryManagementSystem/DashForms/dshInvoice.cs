@@ -9,6 +9,7 @@ using System.Data.SqlClient;
 using System.Drawing;
 using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -16,8 +17,15 @@ using System.Xml.Linq;
 
 namespace LibraryManagementSystem
 {
+
+
     public partial class dshInvoice : Form
     {
+
+        private string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True;";
+        private bool isSearchPlaceholderActive = false;
+
+
         public dshInvoice()
         {
             InitializeComponent();
@@ -25,219 +33,583 @@ namespace LibraryManagementSystem
 
         private void btnInvoice_Click(object sender, EventArgs e)
         {
+
+
+
+            /*  // Get user input from the textboxes
+              string name = txtStudentName.Text.Trim();
+              string studentNumber = txtStudentNumber.Text.Trim();
+              string book1 = txtBookTitleOne.Text.Trim();
+              string book2 = txtBookTitleTwo.Text.Trim();
+              string price1 = txtPriceOne.Text.Trim();
+              string price2 = txtPriceTwo.Text.Trim();
+              string librarianName = txtLibrarianName.Text.Trim(); // Get librarian's name from the textbox
+
+              // Validate input fields
+              if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(studentNumber) ||
+                  string.IsNullOrEmpty(book1) || string.IsNullOrEmpty(price1))
+              {
+                  MessageBox.Show("Please fill all required fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                  return;
+              }
+
+              try
+              {
+                  // Use the Singleton Instance to generate the invoice
+                  string filePath = InvoicePrinter.Instance.GenerateInvoice(name, studentNumber, book1, book2, price1, price2, librarianName);
+
+                  // Notify the user
+                  MessageBox.Show($"Invoice successfully generated at:\n{filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                  // Optionally, open the generated PDF
+                  System.Diagnostics.Process.Start(filePath);
+
+                  // Print the generated PDF
+                  InvoicePrinter.Instance.PrintInvoice(filePath);
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show("Error generating or printing the invoice: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }
+          }*/
+
             // Get user input from the textboxes
-            string name = txtName.Text.Trim();
+            string name = txtFullName.Text.Trim();
             string studentNumber = txtStudentNumber.Text.Trim();
-            string book1 = txtBookOne.Text.Trim();
-            string book2 = txtBookTwo.Text.Trim();
+            string book1 = txtBookTitleOne.Text.Trim();
+            string book2 = txtBookTitleTwo.Text.Trim();
             string price1 = txtPriceOne.Text.Trim();
             string price2 = txtPriceTwo.Text.Trim();
             string librarianName = txtLibrarianName.Text.Trim(); // Get librarian's name from the textbox
 
-            // Validate input fields
+            // Validate if all required fields are filled
             if (string.IsNullOrEmpty(name) || string.IsNullOrEmpty(studentNumber) ||
-                string.IsNullOrEmpty(book1) || string.IsNullOrEmpty(price1))
+                string.IsNullOrEmpty(book1) || string.IsNullOrEmpty(price1) ||
+                string.IsNullOrEmpty(librarianName))
             {
                 MessageBox.Show("Please fill all required fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
+            // Validate the Student Name (only letters and spaces)
+            foreach (char c in name)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    MessageBox.Show("Please enter letters only in the Student Name field.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution if validation fails
+                }
+            }
+
+            // Validate the Student Number (only digits)
+            foreach (char c in studentNumber)
+            {
+                if (!char.IsDigit(c))
+                {
+                    MessageBox.Show("Please enter numbers only in the Student Number field.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution if validation fails
+                }
+            }
+
+            // Validate Book Title One (only letters and spaces)
+            foreach (char c in book1)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    MessageBox.Show("Please enter letters only in the Book Title field.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution if validation fails
+                }
+            }
+
+            // Validate Book Title Two (only letters and spaces)
+            if (!string.IsNullOrEmpty(book2))
+            {
+                foreach (char c in book2)
+                {
+                    if (!char.IsLetter(c) && c != ' ')
+                    {
+                        MessageBox.Show("Please enter letters only in the Book Title field.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Stop further execution if validation fails
+                    }
+                }
+            }
+
+            // Validate Price One (only digits and a decimal point)
+            foreach (char c in price1)
+            {
+                if (!(char.IsDigit(c) || c == '.' || c == ','))
+                {
+                    MessageBox.Show("Please enter valid numbers only in the Price fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution if validation fails
+                }
+            }
+
+            // Validate Price Two (only digits and a decimal point)
+            if (!string.IsNullOrEmpty(price2))
+            {
+                foreach (char c in price2)
+                {
+                    if (!(char.IsDigit(c) || c == '.' || c == ','))
+                    {
+                        MessageBox.Show("Please enter valid numbers only in the Price fields.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Stop further execution if validation fails
+                    }
+                }
+            }
+
+            // Validate Librarian Name (only letters and spaces)
+            foreach (char c in librarianName)
+            {
+                if (!char.IsLetter(c) && c != ' ')
+                {
+                    MessageBox.Show("Please enter letters only in the Librarian Name field.", "Input Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return; // Stop further execution if validation fails
+                }
+            }
+
             try
             {
-                // Generate the invoice, passing the librarian's name
-                string filePath = GenerateInvoice(name, studentNumber, book1, book2, price1, price2, librarianName);
+                // Use the Singleton Instance to generate the invoice
+                string filePath = InvoicePrinter.Instance.GenerateInvoice(name, studentNumber, book1, book2, price1, price2, librarianName);
 
                 // Notify the user
                 MessageBox.Show($"Invoice successfully generated at:\n{filePath}", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
-                // Open the generated PDF
+                // Optionally, open the generated PDF
                 System.Diagnostics.Process.Start(filePath);
+
+                // Print the generated PDF
+                InvoicePrinter.Instance.PrintInvoice(filePath);
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Error generating invoice: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Error generating or printing the invoice: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-
-
         }
 
 
-        private string GenerateInvoice(string name, string studentNumber, string book1, string book2, string price1, string price2, string librarianName)
+        private void dshInvoice_Load(object sender, EventArgs e)
         {
-            // Retrieve the next invoice number
-            int invoiceNumber = GetNextInvoiceNumber();
 
-            // Create a new PDF document
-            PdfDocument doc = new PdfDocument();
-            doc.Info.Title = "Invoice";
 
-            // Add a page to the document
-            PdfPage page = doc.AddPage();
-            XGraphics gfx = XGraphics.FromPdfPage(page);
-
-            // Load and process the logo using System.Drawing
-            string logoPath = "C:\\Users\\Admin\\OneDrive - STI College Alaminos\\Pictures\\Don ma.jpg"; // Replace with actual path
-            MemoryStream logoStream;
-
-            using (var image = new Bitmap(logoPath))
-            {
-                // Optionally resize or manipulate the image here if needed
-                logoStream = new MemoryStream();
-                image.Save(logoStream, System.Drawing.Imaging.ImageFormat.Png); // Save as PNG to memory stream
-            }
-            logoStream.Position = 0; // Reset stream position for reading
-
-            // Convert MemoryStream to XImage
-            XImage logo = XImage.FromStream(logoStream);
-
-            // Set smaller dimensions for the logo
-            double logoWidth = 80; // Adjusted logo width
-            double logoHeight = 80; // Adjusted logo height
-            double pageWidth = page.Width.Point;
-
-            // Position the logo in the center of the page (top part)
-            double logoX = (pageWidth - logoWidth) / 2; // Center the logo horizontally
-            double logoY = 40; // Top margin
-
-            // Draw the logo with specified dimensions
-            gfx.DrawImage(logo, logoX, logoY, logoWidth, logoHeight);
-
-            // Adjust yPosition to start content below the logo
-            double yPosition = logoY + logoHeight + 40; // Increased padding below the logo for more space
-
-            // Define fonts
-            XFont fontNormal = new XFont("Arial", 12); // Regular text
-            XFont fontSmall = new XFont("Arial", 10); // Footer text
-            XFont fontBold = new XFont("Arial", 12); // Bold font for librarian name
-            XFont fontLibrarianName = new XFont("Arial", 12); // Librarian's name style
-
-            // Header (Name and Date)
-            gfx.DrawString($"Name: {name}", fontNormal, XBrushes.Black, 40, yPosition);
-            gfx.DrawString($"Date: {DateTime.Now:MM/dd/yyyy}", fontNormal, XBrushes.Black, pageWidth - 150, yPosition);
-            yPosition += 20;
-
-            gfx.DrawString($"Student Number: {studentNumber}", fontNormal, XBrushes.Black, 40, yPosition);
-            gfx.DrawString($"Invoice No: #{invoiceNumber}", fontNormal, XBrushes.Black, pageWidth - 150, yPosition);
-            yPosition += 40; // Added more space before the table
-
-            // Table dimensions
-            double tableWidth = 450; // Table width remains the same
-            double tableX = (pageWidth - tableWidth) / 2; // Center the table horizontally
-            double columnNoWidth = 40;
-            double columnBookWidth = 200;
-            double columnQtyWidth = 50;
-            double columnPriceWidth = 80;
-            
-
-            // Table Header Background
-            gfx.DrawRectangle(XBrushes.LightGray, tableX, yPosition, tableWidth, 20);
-
-            // Table Header
-            gfx.DrawString("NO", fontNormal, XBrushes.Black, tableX + 5, yPosition + 20);
-            gfx.DrawString("BOOK LOST", fontNormal, XBrushes.Black, tableX + columnNoWidth + 5, yPosition + 20);
-            gfx.DrawString("QTY", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 5, yPosition + 20);
-            gfx.DrawString("PRICE", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + 5, yPosition + 20);
-            gfx.DrawString("SUBTOTAL", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 5, yPosition + 20);
-
-            // Draw vertical lines below the header
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth, yPosition, tableX + columnNoWidth, yPosition + 20);  // Line after NO
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth, yPosition, tableX + columnNoWidth + columnBookWidth, yPosition + 20);  // Line after BOOK LOST
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition + 20);  // Line after QTY
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition + 20);  // Line after PRICE
-
-            yPosition += 20;
-
-            // Table Rows
-            int rowHeight = 20;
-            int qty = 1;  // Quantity (constant for this example)
-
-            // Row 1
-            gfx.DrawString("1", fontNormal, XBrushes.Black, tableX + 5, yPosition + 13);
-            gfx.DrawString(book1, fontNormal, XBrushes.Black, tableX + columnNoWidth + 10, yPosition + 13);
-            gfx.DrawString(qty.ToString(), fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 15, yPosition + 13);
-            gfx.DrawString(price1, fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + 15, yPosition + 13);
-            gfx.DrawString(price1, fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 15, yPosition + 13);
-            yPosition += rowHeight;
-
-            // Draw horizontal line after the first row
-            gfx.DrawLine(XPens.Black, tableX, yPosition, tableX + tableWidth, yPosition);
-
-            // Draw vertical lines between columns in the first row
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth, yPosition - rowHeight, tableX + columnNoWidth, yPosition);  // Line after NO
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth, yPosition);  // Line after BOOK LOST
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition);  // Line after QTY
-            gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition);  // Line after PRICE
-
-            // Row 2 (if applicable)
-            if (!string.IsNullOrEmpty(book2) && !string.IsNullOrEmpty(price2))
-            {
-                gfx.DrawString("2", fontNormal, XBrushes.Black, tableX + 5, yPosition + 13);
-                gfx.DrawString(book2, fontNormal, XBrushes.Black, tableX + columnNoWidth + 10, yPosition + 13);
-                gfx.DrawString(qty.ToString(), fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 15, yPosition + 13);
-                gfx.DrawString(price2, fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + 15, yPosition + 13);
-                gfx.DrawString(price2, fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 15, yPosition + 13);
-                yPosition += rowHeight;
-
-                // Draw horizontal line after the second row
-                gfx.DrawLine(XPens.Black, tableX, yPosition, tableX + tableWidth, yPosition);
-
-                // Draw vertical lines between columns in the second row
-                gfx.DrawLine(XPens.Black, tableX + columnNoWidth, yPosition - rowHeight, tableX + columnNoWidth, yPosition);  // Line after NO
-                gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth, yPosition);  // Line after BOOK LOST
-                gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth + columnQtyWidth, yPosition);  // Line after QTY
-                gfx.DrawLine(XPens.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition - rowHeight, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth, yPosition);  // Line after PRICE
-            }
-
-            // Total
-            double total = double.Parse(price1) + (string.IsNullOrEmpty(price2) ? 0 : double.Parse(price2));
-            gfx.DrawString("TOTAL", fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + 15, yPosition + 20);
-            gfx.DrawString(total.ToString("F2"), fontNormal, XBrushes.Black, tableX + columnNoWidth + columnBookWidth + columnQtyWidth + columnPriceWidth + 15, yPosition + 20);
-
-            // Footer (Librarian Name and Label)
-            double footerLineY = yPosition + 300; // Lowered footer position further down
-
-            // Adjust the position of the librarian's name and "Librarian" label
-            double librarianNameX = tableX + 5;  // Align librarian's name with the left side of the table
-            double librarianLabelX = tableX + 5;  // Align "Librarian" label with a little indentation to the right
-
-            // Librarian's name at the top of the footer (no underline)
-            gfx.DrawString(librarianName, fontLibrarianName, XBrushes.Black, librarianNameX, footerLineY);
-
-            // "Librarian" label directly below the librarian's name
-            gfx.DrawString("Librarian", fontSmall, XBrushes.Black, librarianLabelX, footerLineY + 10);
-
-            // Save the document to a file
-            string filename = $"Invoice_{invoiceNumber}.pdf";
-            doc.Save(filename);
-
-            return filename;
+            // TODO: This line of code loads data into the 'lmsdcsDataSet5.BookBorrowing' table. You can move, or remove it, as needed.
+            this.bookBorrowingTableAdapter.Fill(this.lmsdcsDataSet5.BookBorrowing);
 
         }
 
-        // Method to retrieve and increment the invoice number
-        private int GetNextInvoiceNumber()
+        private void txtSearch_TextChanged(object sender, EventArgs e)
         {
-            string filePath = Path.Combine(Environment.GetFolderPath(Environment.SpecialFolder.MyDocuments), "InvoiceNumber.txt");
+            // Skip search if placeholder is active
+            if (isSearchPlaceholderActive)
+                return;
 
-            // Initialize the invoice number
-            int invoiceNumber = 1;
-
-            // Read the current invoice number from the file, if it exists
-            if (File.Exists(filePath))
+            // If the search box is empty, clear all fields
+            if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
-                string lastNumber = File.ReadAllText(filePath);
-                if (int.TryParse(lastNumber, out int parsedNumber))
+                ClearFields();
+                dtgInvoice.DataSource = null; // Clear book borrowing history (data grid)
+                return;
+            }
+
+            // Get the search query from txtSearch
+            string searchQuery = txtSearch.Text;
+
+            // Search for the student
+            DataTable studentResults = GetStudentSearchResults(searchQuery);
+
+            if (studentResults.Rows.Count > 0)
+            {
+                // Populate student fields with the first result
+                PopulateStudentFields(studentResults.Rows[0]);
+
+                // Get borrowed books for the student
+                string borrowerID = studentResults.Rows[0]["ID"].ToString();
+                DataTable borrowedBooks = GetBorrowedBooks(borrowerID);
+
+                // Display borrowed books in the DataGridView
+                dtgInvoice.DataSource = borrowedBooks;
+
+                // Add the Price column dynamically (if it does not already exist)
+                if (!dtgInvoice.Columns.Contains("Price"))
                 {
-                    invoiceNumber = parsedNumber + 1;
+                    DataGridViewTextBoxColumn priceColumn = new DataGridViewTextBoxColumn();
+                    priceColumn.Name = "Price";
+                    priceColumn.HeaderText = "Price";
+                    priceColumn.DataPropertyName = "Price";  // Binds the Price from the DataTable
+                    dtgInvoice.Columns.Add(priceColumn);
+                }
+
+                // Check for "Unreturned" books and populate BookTitleOne, BookTitleTwo, PriceOne, and PriceTwo
+                int unreturnedCount = 0;  // Counter for unreturned books
+                foreach (DataRow row in borrowedBooks.Rows)
+                {
+                    string status = row["Status"].ToString();
+                    if (status == "Unreturned")
+                    {
+                        string bookTitle = row["BookTitle"].ToString();
+                        decimal bookPrice = Convert.ToDecimal(row["Price"]);
+
+                        // Populate BookTitleOne and PriceOne if it's the first unreturned book
+                        if (unreturnedCount == 0)
+                        {
+                            txtBookTitleOne.Text = bookTitle;
+                            txtPriceOne.Text = bookPrice.ToString("N2");  // Format as numeric, no dollar sign
+                        }
+                        // Populate BookTitleTwo and PriceTwo if it's the second unreturned book
+                        else if (unreturnedCount == 1)
+                        {
+                            txtBookTitleTwo.Text = bookTitle;
+                            txtPriceTwo.Text = bookPrice.ToString("N2");  // Format as numeric, no dollar sign
+                        }
+
+                        unreturnedCount++;
+
+                        // Break if two unreturned books are found
+                        if (unreturnedCount == 2)
+                        {
+                            break;
+                        }
+                    }
                 }
             }
+            else
+            {
+                // Clear fields if no student is found
+                ClearFields();
+                dtgInvoice.DataSource = null;
+            }
 
-            // Save the next invoice number back to the file
-            File.WriteAllText(filePath, invoiceNumber.ToString());
 
-            return invoiceNumber;
+            /*  // Skip search if placeholder is active
+              if (isSearchPlaceholderActive)
+                  return;
+
+              // If the search box is empty, clear all fields
+              if (string.IsNullOrWhiteSpace(txtSearch.Text))
+              {
+                  ClearFields();
+                  dtgInvoice.DataSource = null; // Clear book borrowing history (data grid)
+                  dtgBooksInfo.DataSource = null; // Clear book information (inventory data grid)
+                  return;
+              }
+
+              // Get the search query from txtSearch
+              string searchQuery = txtSearch.Text;
+
+              // Search for the student
+              DataTable studentResults = GetStudentSearchResults(searchQuery);
+
+              if (studentResults.Rows.Count > 0)
+              {
+                  // Populate student fields with the first result
+                  PopulateStudentFields(studentResults.Rows[0]);
+
+                  // Get borrowed books for the student
+                  string borrowerID = studentResults.Rows[0]["ID"].ToString();
+                  DataTable borrowedBooks = GetBorrowedBooks(borrowerID);
+
+                  // Display borrowed books in the DataGridView
+                  dtgInvoice.DataSource = borrowedBooks;
+
+                  // Get book information from Inventory and display in dtgBooksInfo
+                  DataTable inventoryBooks = GetInventoryBooks();
+                  dtgBooksInfo.DataSource = inventoryBooks;
+              }
+              else
+              {
+                  // Clear fields if no student is found
+                  ClearFields();
+                  dtgInvoice.DataSource = null;
+                  dtgBooksInfo.DataSource = null;
+              }*/
         }
 
+        /*  private DataTable FilterBooksByBorrowed(DataTable borrowedBooks, DataTable inventoryBooks)
+          {
+              DataTable filteredBooks = inventoryBooks.Clone(); // Clone the structure of inventoryBooks
+
+              foreach (DataRow borrowedRow in borrowedBooks.Rows)
+              {
+                  string borrowedBookID = borrowedRow["BookID"].ToString();
+                  string borrowedBookTitle = borrowedRow["BookTitles"].ToString();  // Changed to BookTitles
+
+                  foreach (DataRow inventoryRow in inventoryBooks.Rows)
+                  {
+                      string inventoryBookID = inventoryRow["BookID"].ToString();
+                      string inventoryBookTitle = inventoryRow["BookTitles"].ToString();  // Changed to BookTitles
+
+                      // Match both BookID and BookTitles
+                      if (borrowedBookID == inventoryBookID && borrowedBookTitle.Equals(inventoryBookTitle, StringComparison.OrdinalIgnoreCase))
+                      {
+                          filteredBooks.ImportRow(inventoryRow); // Add matching book to the filtered list
+                      }
+                  }
+              }
+
+              return filteredBooks;
+          }*/
+
+
+
+
+
+        /*   // Retrieves student search results from the database
+           private DataTable GetStudentSearchResults(string searchQuery)
+           {
+               DataTable dt = new DataTable();
+
+               try
+               {
+                   using (SqlConnection con = new SqlConnection(connectionString))
+                   {
+                       con.Open();
+                       string query = @"
+                           SELECT ID, StudentNumber, CONCAT(Firstname, ' ', Middlename, ' ', Lastname) AS Fullname,
+                                  Age, Gender, Year, Section
+                           FROM ActiveBorrowers
+                           WHERE Firstname LIKE @Search OR Lastname LIKE @Search OR StudentNumber LIKE @Search";
+
+                       using (SqlCommand cmd = new SqlCommand(query, con))
+                       {
+                           cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
+                           SqlDataAdapter da = new SqlDataAdapter(cmd);
+                           da.Fill(dt);
+                       }
+                   }
+               }
+               catch (Exception ex)
+               {
+                   MessageBox.Show("Error retrieving student data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+               }
+
+               return dt;
+           }*/
+
+
+
+        private DataTable GetStudentSearchResults(string searchQuery)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = @"
+            SELECT ID, StudentNumber, CONCAT(Firstname, ' ', Middlename, ' ', Lastname) AS Fullname,
+                   Age, Gender, Year, Section
+            FROM ActiveBorrowers
+            WHERE Firstname LIKE @Search OR Lastname LIKE @Search OR StudentNumber LIKE @Search";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving student data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dt;
+        }
+
+        private void ClearFields()
+        {
+            txtID.Clear(); // Clear Student ID
+            txtBookID.Clear(); // Clear Book ID(s)
+
+            txtStudentNumber.Clear();
+            txtFullName.Clear();
+            txtAge.Clear();
+            txtGender.Clear();
+            txtYear.Clear();
+            txtSection.Clear();
+
+            txtBookTitleOne.Clear();
+            txtPriceOne.Clear();
+
+            txtBookTitleTwo.Clear();
+            txtPriceTwo.Clear();
+        }
+
+        /*  private void PopulateStudentFields(DataRow studentRow)
+          {
+              txtID.Text = studentRow["ID"].ToString(); // Populate the Student ID
+              txtStudentNumber.Text = studentRow["StudentNumber"].ToString();
+              txtFullName.Text = studentRow["Fullname"].ToString();
+              txtAge.Text = studentRow["Age"].ToString();
+              txtGender.Text = studentRow["Gender"].ToString();
+              txtYear.Text = studentRow["Year"].ToString();
+              txtSection.Text = studentRow["Section"].ToString();
+          }*/
+
+
+        private void PopulateStudentFields(DataRow studentRow)
+        {
+            txtID.Text = studentRow["ID"].ToString(); // Populate the Student ID
+            txtStudentNumber.Text = studentRow["StudentNumber"].ToString();
+            txtFullName.Text = studentRow["Fullname"].ToString();
+            txtAge.Text = studentRow["Age"].ToString();
+            txtGender.Text = studentRow["Gender"].ToString();
+            txtYear.Text = studentRow["Year"].ToString();
+            txtSection.Text = studentRow["Section"].ToString();
+        }
+
+        private void dtgInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // This will prevent the population of textboxes when clicking on a row
+            // Commenting out the entire logic that populates the textboxes
+            if (e.RowIndex >= 0)
+            {
+                // Remove or comment out this part to prevent populating textboxes
+                // DataGridViewRow selectedRow = dtgInvoice.Rows[e.RowIndex];
+
+                // Do nothing or just show a message if you want feedback when a row is clicked
+                // MessageBox.Show("Row clicked, but fields won't be populated.", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                // If you want to do nothing when a row is clicked, just return here
+                return;
+            }
+        }
+
+
+        /*  private DataTable GetBorrowedBooks(string borrowerID)
+          {
+              DataTable dt = new DataTable();
+
+              try
+              {
+                  using (SqlConnection con = new SqlConnection(connectionString))
+                  {
+                      con.Open();
+                      string query = @"
+      SELECT 
+      bb.BookID, 
+      i.BookTitle, 
+      i.Author, 
+      i.Category, 
+      i.BookShelves, 
+      i.Quantity, 
+      i.Price, 
+      bb.BorrowedDate, 
+      bb.DueDate, 
+      bb.Status
+  FROM BookBorrowing bb
+  INNER JOIN Inventory i ON bb.BookID = i.BookID
+  WHERE bb.BorrowerID = @BorrowerID";
+
+                      using (SqlCommand cmd = new SqlCommand(query, con))
+                      {
+                          cmd.Parameters.AddWithValue("@BorrowerID", borrowerID);
+                          SqlDataAdapter da = new SqlDataAdapter(cmd);
+                          da.Fill(dt);
+                      }
+                  }
+              }
+              catch (Exception ex)
+              {
+                  MessageBox.Show("Error retrieving borrowed books: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+              }
+
+              return dt;
+          }*/
+
+
+
+        // This method now only fetches borrowed books for a specific student
+        private DataTable GetBorrowedBooks(string borrowerID)
+        {
+            DataTable dt = new DataTable();
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+                    string query = @"
+            SELECT 
+                bb.BookID, 
+                i.BookTitle, 
+                i.Category, 
+                i.BookShelves, 
+                i.Quantity, 
+                i.Price, 
+                bb.BorrowedDate, 
+                bb.DueDate, 
+                bb.Status
+            FROM BookBorrowing bb
+            INNER JOIN Inventory i ON bb.BookID = i.BookID
+            WHERE bb.BorrowerID = @BorrowerID";
+
+                    using (SqlCommand cmd = new SqlCommand(query, con))
+                    {
+                        cmd.Parameters.AddWithValue("@BorrowerID", borrowerID);
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        da.Fill(dt);
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error retrieving borrowed books: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dt;
+        }
+
+
+
+
+
+        /* private DataTable GetInventoryBooks()
+         {
+             DataTable dt = new DataTable();
+
+             try
+             {
+                 using (SqlConnection con = new SqlConnection(connectionString))
+                 {
+                     con.Open();
+                     string query = @"
+                 SELECT 
+                     BookID, 
+                     ISBN, 
+                     BookTitles, 
+                     Author, 
+                     Category, 
+                     PublishedDate, 
+                     BookShelves, 
+                     Quantity, 
+                     Price, 
+                     Location, 
+                     Publisher, 
+                     ImageFile, 
+                     Status
+                 FROM Inventory";
+
+                     using (SqlCommand cmd = new SqlCommand(query, con))
+                     {
+                         SqlDataAdapter da = new SqlDataAdapter(cmd);
+                         da.Fill(dt);
+                     }
+                 }
+             }
+             catch (Exception ex)
+             {
+                 MessageBox.Show("Error retrieving inventory data: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+             }
+
+             return dt;
+         }*/
+
     }
+
+                
+                        
+    
 }

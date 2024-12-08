@@ -47,21 +47,8 @@
             this.lblImagePath = new System.Windows.Forms.Label();
             this.cmbBookShelves = new System.Windows.Forms.ComboBox();
             this.dataGridInventory = new System.Windows.Forms.DataGridView();
-            this.SerialNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublishedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookShelves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImageFile = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lmsdcsDataSet44 = new LibraryManagementSystem.lmsdcsDataSet44();
+            this.lmsdcsDataSet3 = new LibraryManagementSystem.lmsdcsDataSet3();
             this.btnUploadImage = new System.Windows.Forms.Button();
             this.pictureBoxImage = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
@@ -74,7 +61,6 @@
             this.label8 = new System.Windows.Forms.Label();
             this.txtQuantity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
-            this.btnEdit = new System.Windows.Forms.Button();
             this.btnUpdate = new System.Windows.Forms.Button();
             this.cmbCategory = new System.Windows.Forms.ComboBox();
             this.dtpPublishedDate = new System.Windows.Forms.DateTimePicker();
@@ -90,18 +76,33 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
-            this.inventoryTableAdapter = new LibraryManagementSystem.lmsdcsDataSet44TableAdapters.InventoryTableAdapter();
+            this.inventoryTableAdapter = new LibraryManagementSystem.lmsdcsDataSet3TableAdapters.InventoryTableAdapter();
+            this.lblBookID = new System.Windows.Forms.Label();
+            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PublishedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookShelves = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImageFile = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInventory)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet44)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet3)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lblBookID);
             this.panel1.Controls.Add(this.cmbStatus);
             this.panel1.Controls.Add(this.label12);
             this.panel1.Controls.Add(this.panel11);
@@ -127,7 +128,6 @@
             this.panel1.Controls.Add(this.label8);
             this.panel1.Controls.Add(this.txtQuantity);
             this.panel1.Controls.Add(this.label7);
-            this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnUpdate);
             this.panel1.Controls.Add(this.cmbCategory);
             this.panel1.Controls.Add(this.dtpPublishedDate);
@@ -173,7 +173,7 @@
             // panel11
             // 
             this.panel11.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel11.Location = new System.Drawing.Point(1242, 500);
+            this.panel11.Location = new System.Drawing.Point(212, 504);
             this.panel11.Name = "panel11";
             this.panel11.Size = new System.Drawing.Size(349, 2);
             this.panel11.TabIndex = 85;
@@ -197,7 +197,7 @@
             // panel6
             // 
             this.panel6.BackColor = System.Drawing.SystemColors.Highlight;
-            this.panel6.Location = new System.Drawing.Point(212, 504);
+            this.panel6.Location = new System.Drawing.Point(1240, 504);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(349, 2);
             this.panel6.TabIndex = 85;
@@ -259,6 +259,7 @@
             this.txtSearchBook.Name = "txtSearchBook";
             this.txtSearchBook.Size = new System.Drawing.Size(650, 28);
             this.txtSearchBook.TabIndex = 42;
+            this.txtSearchBook.TextChanged += new System.EventHandler(this.txtSearchBook_TextChanged);
             this.txtSearchBook.Enter += new System.EventHandler(this.txtSearchBook_Enter);
             this.txtSearchBook.Leave += new System.EventHandler(this.txtSearchBook_Leave);
             // 
@@ -312,7 +313,7 @@
             this.dataGridInventory.ColumnHeadersHeight = 29;
             this.dataGridInventory.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dataGridInventory.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.SerialNumber,
+            this.BookID,
             this.BookNumber,
             this.BookTitle,
             this.Author,
@@ -329,7 +330,7 @@
             this.dataGridInventory.EnableHeadersVisualStyles = false;
             this.dataGridInventory.GridColor = System.Drawing.Color.White;
             this.dataGridInventory.ImeMode = System.Windows.Forms.ImeMode.NoControl;
-            this.dataGridInventory.Location = new System.Drawing.Point(212, 612);
+            this.dataGridInventory.Location = new System.Drawing.Point(212, 603);
             this.dataGridInventory.MultiSelect = false;
             this.dataGridInventory.Name = "dataGridInventory";
             this.dataGridInventory.ReadOnly = true;
@@ -338,140 +339,20 @@
             this.dataGridInventory.RowHeadersWidth = 51;
             this.dataGridInventory.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridInventory.RowTemplate.Height = 24;
-            this.dataGridInventory.Size = new System.Drawing.Size(1455, 168);
+            this.dataGridInventory.Size = new System.Drawing.Size(1455, 203);
             this.dataGridInventory.TabIndex = 80;
+            this.dataGridInventory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInventory_CellDoubleClick);
             this.dataGridInventory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridInventory_CellFormatting);
-            // 
-            // SerialNumber
-            // 
-            this.SerialNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.SerialNumber.DataPropertyName = "SerialNumber";
-            this.SerialNumber.HeaderText = "SerialNumber";
-            this.SerialNumber.MinimumWidth = 6;
-            this.SerialNumber.Name = "SerialNumber";
-            this.SerialNumber.ReadOnly = true;
-            // 
-            // BookNumber
-            // 
-            this.BookNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookNumber.DataPropertyName = "ISBN";
-            this.BookNumber.HeaderText = "ISBN";
-            this.BookNumber.MinimumWidth = 6;
-            this.BookNumber.Name = "BookNumber";
-            this.BookNumber.ReadOnly = true;
-            // 
-            // BookTitle
-            // 
-            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookTitle.DataPropertyName = "BookTitle";
-            this.BookTitle.HeaderText = "BookTitle";
-            this.BookTitle.MinimumWidth = 6;
-            this.BookTitle.Name = "BookTitle";
-            this.BookTitle.ReadOnly = true;
-            // 
-            // Author
-            // 
-            this.Author.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Author.DataPropertyName = "Author";
-            this.Author.HeaderText = "Author";
-            this.Author.MinimumWidth = 6;
-            this.Author.Name = "Author";
-            this.Author.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 6;
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // PublishedDate
-            // 
-            this.PublishedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PublishedDate.DataPropertyName = "PublishedDate";
-            this.PublishedDate.HeaderText = "PublishedDate";
-            this.PublishedDate.MinimumWidth = 6;
-            this.PublishedDate.Name = "PublishedDate";
-            this.PublishedDate.ReadOnly = true;
-            // 
-            // BookShelves
-            // 
-            this.BookShelves.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookShelves.DataPropertyName = "BookShelves";
-            this.BookShelves.HeaderText = "BookShelves";
-            this.BookShelves.MinimumWidth = 6;
-            this.BookShelves.Name = "BookShelves";
-            this.BookShelves.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Visible = false;
-            this.Price.Width = 125;
-            // 
-            // Location
-            // 
-            this.Location.DataPropertyName = "Location";
-            this.Location.HeaderText = "Location";
-            this.Location.MinimumWidth = 6;
-            this.Location.Name = "Location";
-            this.Location.ReadOnly = true;
-            this.Location.Visible = false;
-            this.Location.Width = 125;
-            // 
-            // Publisher
-            // 
-            this.Publisher.DataPropertyName = "Publisher";
-            this.Publisher.HeaderText = "Publisher";
-            this.Publisher.MinimumWidth = 6;
-            this.Publisher.Name = "Publisher";
-            this.Publisher.ReadOnly = true;
-            this.Publisher.Visible = false;
-            this.Publisher.Width = 125;
-            // 
-            // ImageFile
-            // 
-            this.ImageFile.DataPropertyName = "ImageFile";
-            this.ImageFile.HeaderText = "ImageFile";
-            this.ImageFile.MinimumWidth = 6;
-            this.ImageFile.Name = "ImageFile";
-            this.ImageFile.ReadOnly = true;
-            this.ImageFile.Visible = false;
-            this.ImageFile.Width = 125;
-            // 
-            // Status
-            // 
-            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
             // 
             // inventoryBindingSource
             // 
             this.inventoryBindingSource.DataMember = "Inventory";
-            this.inventoryBindingSource.DataSource = this.lmsdcsDataSet44;
+            this.inventoryBindingSource.DataSource = this.lmsdcsDataSet3;
             // 
-            // lmsdcsDataSet44
+            // lmsdcsDataSet3
             // 
-            this.lmsdcsDataSet44.DataSetName = "lmsdcsDataSet44";
-            this.lmsdcsDataSet44.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            this.lmsdcsDataSet3.DataSetName = "lmsdcsDataSet3";
+            this.lmsdcsDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
             // 
             // btnUploadImage
             // 
@@ -507,7 +388,7 @@
             // 
             this.txtPublisher.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPublisher.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPublisher.Location = new System.Drawing.Point(212, 482);
+            this.txtPublisher.Location = new System.Drawing.Point(1240, 482);
             this.txtPublisher.Name = "txtPublisher";
             this.txtPublisher.Size = new System.Drawing.Size(349, 20);
             this.txtPublisher.TabIndex = 75;
@@ -516,7 +397,7 @@
             // 
             this.label10.AutoSize = true;
             this.label10.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label10.Location = new System.Drawing.Point(207, 434);
+            this.label10.Location = new System.Drawing.Point(1232, 434);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(102, 25);
             this.label10.TabIndex = 74;
@@ -555,7 +436,7 @@
             // 
             this.txtPrice.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPrice.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPrice.Location = new System.Drawing.Point(1242, 478);
+            this.txtPrice.Location = new System.Drawing.Point(212, 482);
             this.txtPrice.Name = "txtPrice";
             this.txtPrice.Size = new System.Drawing.Size(349, 20);
             this.txtPrice.TabIndex = 69;
@@ -564,7 +445,7 @@
             // 
             this.label8.AutoSize = true;
             this.label8.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label8.Location = new System.Drawing.Point(1237, 434);
+            this.label8.Location = new System.Drawing.Point(207, 434);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(61, 25);
             this.label8.TabIndex = 68;
@@ -589,21 +470,6 @@
             this.label7.TabIndex = 66;
             this.label7.Text = "Quantity";
             // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.btnEdit.BackColor = System.Drawing.Color.Transparent;
-            this.btnEdit.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btnEdit.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnEdit.ForeColor = System.Drawing.Color.Green;
-            this.btnEdit.Location = new System.Drawing.Point(1170, 797);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(111, 39);
-            this.btnEdit.TabIndex = 65;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = false;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
             // btnUpdate
             // 
             this.btnUpdate.Anchor = System.Windows.Forms.AnchorStyles.None;
@@ -611,7 +477,7 @@
             this.btnUpdate.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnUpdate.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnUpdate.ForeColor = System.Drawing.Color.Olive;
-            this.btnUpdate.Location = new System.Drawing.Point(1287, 797);
+            this.btnUpdate.Location = new System.Drawing.Point(1289, 812);
             this.btnUpdate.Name = "btnUpdate";
             this.btnUpdate.Size = new System.Drawing.Size(111, 39);
             this.btnUpdate.TabIndex = 64;
@@ -650,7 +516,7 @@
             this.btnAddBook.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnAddBook.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnAddBook.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnAddBook.Location = new System.Drawing.Point(1426, 797);
+            this.btnAddBook.Location = new System.Drawing.Point(1428, 812);
             this.btnAddBook.Name = "btnAddBook";
             this.btnAddBook.Size = new System.Drawing.Size(111, 39);
             this.btnAddBook.TabIndex = 57;
@@ -665,7 +531,7 @@
             this.btnDelete.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btnDelete.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.btnDelete.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(192)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
-            this.btnDelete.Location = new System.Drawing.Point(1558, 797);
+            this.btnDelete.Location = new System.Drawing.Point(1560, 812);
             this.btnDelete.Name = "btnDelete";
             this.btnDelete.Size = new System.Drawing.Size(111, 39);
             this.btnDelete.TabIndex = 58;
@@ -769,6 +635,139 @@
             // 
             this.inventoryTableAdapter.ClearBeforeFill = true;
             // 
+            // lblBookID
+            // 
+            this.lblBookID.AutoSize = true;
+            this.lblBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookID.Location = new System.Drawing.Point(1632, 240);
+            this.lblBookID.Name = "lblBookID";
+            this.lblBookID.Size = new System.Drawing.Size(24, 25);
+            this.lblBookID.TabIndex = 89;
+            this.lblBookID.Text = "0";
+            // 
+            // BookID
+            // 
+            this.BookID.DataPropertyName = "BookID";
+            this.BookID.HeaderText = "BookID";
+            this.BookID.MinimumWidth = 6;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            this.BookID.Visible = false;
+            this.BookID.Width = 125;
+            // 
+            // BookNumber
+            // 
+            this.BookNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookNumber.DataPropertyName = "ISBN";
+            this.BookNumber.HeaderText = "ISBN";
+            this.BookNumber.MinimumWidth = 6;
+            this.BookNumber.Name = "BookNumber";
+            this.BookNumber.ReadOnly = true;
+            // 
+            // BookTitle
+            // 
+            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookTitle.DataPropertyName = "BookTitle";
+            this.BookTitle.HeaderText = "BookTitle";
+            this.BookTitle.MinimumWidth = 6;
+            this.BookTitle.Name = "BookTitle";
+            this.BookTitle.ReadOnly = true;
+            // 
+            // Author
+            // 
+            this.Author.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Author.DataPropertyName = "Author";
+            this.Author.HeaderText = "Author";
+            this.Author.MinimumWidth = 6;
+            this.Author.Name = "Author";
+            this.Author.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 6;
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // PublishedDate
+            // 
+            this.PublishedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PublishedDate.DataPropertyName = "PublishedDate";
+            this.PublishedDate.HeaderText = "PublishedDate";
+            this.PublishedDate.MinimumWidth = 6;
+            this.PublishedDate.Name = "PublishedDate";
+            this.PublishedDate.ReadOnly = true;
+            this.PublishedDate.Visible = false;
+            // 
+            // BookShelves
+            // 
+            this.BookShelves.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookShelves.DataPropertyName = "BookShelves";
+            this.BookShelves.HeaderText = "BookShelves";
+            this.BookShelves.MinimumWidth = 6;
+            this.BookShelves.Name = "BookShelves";
+            this.BookShelves.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Visible = false;
+            this.Price.Width = 125;
+            // 
+            // Location
+            // 
+            this.Location.DataPropertyName = "Location";
+            this.Location.HeaderText = "Location";
+            this.Location.MinimumWidth = 6;
+            this.Location.Name = "Location";
+            this.Location.ReadOnly = true;
+            this.Location.Visible = false;
+            this.Location.Width = 125;
+            // 
+            // Publisher
+            // 
+            this.Publisher.DataPropertyName = "Publisher";
+            this.Publisher.HeaderText = "Publisher";
+            this.Publisher.MinimumWidth = 6;
+            this.Publisher.Name = "Publisher";
+            this.Publisher.ReadOnly = true;
+            this.Publisher.Visible = false;
+            this.Publisher.Width = 125;
+            // 
+            // ImageFile
+            // 
+            this.ImageFile.DataPropertyName = "ImageFile";
+            this.ImageFile.HeaderText = "ImageFile";
+            this.ImageFile.MinimumWidth = 6;
+            this.ImageFile.Name = "ImageFile";
+            this.ImageFile.ReadOnly = true;
+            this.ImageFile.Visible = false;
+            this.ImageFile.Width = 125;
+            // 
+            // Status
+            // 
+            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
             // dshInventory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -787,7 +786,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridInventory)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.inventoryBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet44)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.lmsdcsDataSet3)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxImage)).EndInit();
             this.ResumeLayout(false);
 
@@ -811,7 +810,6 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.DateTimePicker dtpPublishedDate;
         private System.Windows.Forms.ComboBox cmbCategory;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnUpdate;
         private System.Windows.Forms.TextBox txtQuantity;
         private System.Windows.Forms.Label label7;
@@ -840,10 +838,11 @@
         private System.Windows.Forms.Panel panel4;
         private System.Windows.Forms.ComboBox cmbStatus;
         private System.Windows.Forms.Label label12;
-        private lmsdcsDataSet44 lmsdcsDataSet44;
+        private lmsdcsDataSet3 lmsdcsDataSet3;
         private System.Windows.Forms.BindingSource inventoryBindingSource;
-        private lmsdcsDataSet44TableAdapters.InventoryTableAdapter inventoryTableAdapter;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SerialNumber;
+        private lmsdcsDataSet3TableAdapters.InventoryTableAdapter inventoryTableAdapter;
+        private System.Windows.Forms.Label lblBookID;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BookID;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookNumber;
         private System.Windows.Forms.DataGridViewTextBoxColumn BookTitle;
         private System.Windows.Forms.DataGridViewTextBoxColumn Author;
@@ -852,7 +851,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn BookShelves;
         private System.Windows.Forms.DataGridViewTextBoxColumn Quantity;
         private System.Windows.Forms.DataGridViewTextBoxColumn Price;
-        private new System.Windows.Forms.DataGridViewTextBoxColumn Location;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Location;
         private System.Windows.Forms.DataGridViewTextBoxColumn Publisher;
         private System.Windows.Forms.DataGridViewImageColumn ImageFile;
         private System.Windows.Forms.DataGridViewTextBoxColumn Status;

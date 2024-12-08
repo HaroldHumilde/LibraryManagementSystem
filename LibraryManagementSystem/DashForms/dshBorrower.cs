@@ -5,17 +5,19 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
 using System.Linq;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using Tulpep.NotificationWindow;
+using System.IO;
 
 
 namespace LibraryManagementSystem
 {
     public partial class dshBorrower : Form
     {
-      
+
 
         private string connectionString = "Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
@@ -26,11 +28,15 @@ namespace LibraryManagementSystem
         {
             InitializeComponent();
         }
-        
+
 
 
         private void dshBorrower_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'lmsdcsDataSet2.Inventory' table. You can move, or remove it, as needed.
+            this.inventoryTableAdapter.Fill(this.lmsdcsDataSet2.Inventory);
+            // TODO: This line of code loads data into the 'lmsdcsDataSet1.BookBorrowing' table. You can move, or remove it, as needed.
+            this.bookBorrowingTableAdapter1.Fill(this.lmsdcsDataSet1.BookBorrowing);
 
             pnlAddBook.Visible = false;
 
@@ -38,7 +44,7 @@ namespace LibraryManagementSystem
             txtBookSearch.Text = "Search Book";
             txtBookSearch.ForeColor = Color.Gray; // Set color to gray for placeholder
 
-            
+
 
         }
 
@@ -64,28 +70,41 @@ namespace LibraryManagementSystem
             if (isSearchPlaceholderActive)
                 return;
 
-            // If the search box is empty, clear the student fields
+            // If the search box is empty, clear both student and book details, and clear the PictureBox
             if (string.IsNullOrWhiteSpace(txtSearch.Text))
             {
                 ClearStudentFields();  // Clear student fields
+                dataGridView1.DataSource = null;  // Clear book borrowing history (data grid)
+                pictureProfile.Image = null;  // Clear the PictureBox (no image)
                 return;
             }
 
             // Get the search query from txtSearch
             string searchQuery = txtSearch.Text;
 
-            // Fetch student details from the database based on the search query
+            // Search for the student based on the query (e.g., student name or ID)
             DataTable studentResults = GetStudentSearchResults(searchQuery);
 
-            // If student results are found, populate textboxes
+            // If student results are found, populate student fields and show borrowed books
             if (studentResults.Rows.Count > 0)
             {
-                PopulateStudentFields(studentResults.Rows[0]);  // Populate fields with the first result
+                // Populate student fields with the first result
+                PopulateStudentFields(studentResults.Rows[0]);
+
+                // Get borrowed books for the found student
+                string borrowerID = studentResults.Rows[0]["ID"].ToString(); // Assuming the column name for student ID is "ID"
+                DataTable borrowedBooks = GetBorrowedBooks(borrowerID);
+
+                // Show the borrowed books in the DataGridView
+                dataGridView1.DataSource = borrowedBooks;
             }
             else
             {
-                // Clear student fields if no student is found
+                // If no student is found, clear student fields and perform book search
                 ClearStudentFields();
+
+                // Set the DataGridView to show nothing when no student is found
+                dataGridView1.DataSource = null;
             }
         }
 
@@ -105,9 +124,9 @@ namespace LibraryManagementSystem
 
                     // Search query to search students by Firstname, Lastname, or StudentNumber
                     string query = @"
-                SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Gender, Year, Section
-                FROM ActiveBorrowers
-                WHERE Firstname LIKE @Search OR Lastname LIKE @Search OR StudentNumber LIKE @Search";
+            SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Gender, Year, Section, ProfileImage
+            FROM ActiveBorrowers
+            WHERE Firstname LIKE @Search OR Lastname LIKE @Search OR StudentNumber LIKE @Search";
 
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
@@ -125,24 +144,40 @@ namespace LibraryManagementSystem
         }
 
 
-        // Method to populate the student fields (textboxes)
-        private void PopulateStudentFields(DataRow studentData)
+
+        // Helper method to populate student fields and the profile image
+        private void PopulateStudentFields(DataRow studentRow)
         {
-            txtID.Text = studentData["ID"].ToString();
-            txtStudentNumber.Text = studentData["StudentNumber"].ToString();
-            txtFirstName.Text = studentData["Firstname"].ToString();
-            txtMiddleName.Text = studentData["Middlename"].ToString();
-            txtLastName.Text = studentData["Lastname"].ToString();
-            txtGender.Text = studentData["Gender"].ToString();
-            txtYear.Text = studentData["Year"].ToString();
-            txtSection.Text = studentData["Section"].ToString();
-            
+            txtStudentNumber.Text = studentRow["StudentNumber"].ToString();
+            txtFirstName.Text = studentRow["Firstname"].ToString();
+            txtMiddleName.Text = studentRow["Middlename"].ToString();
+            txtLastName.Text = studentRow["Lastname"].ToString();
+            txtGender.Text = studentRow["Gender"].ToString();
+            txtYear.Text = studentRow["Year"].ToString();
+            txtSection.Text = studentRow["Section"].ToString();
+            txtID.Text = studentRow["ID"].ToString();
+
+            // Load the student's profile image into the PictureBox (if available)
+            if (studentRow["ProfileImage"] != DBNull.Value)
+            {
+                byte[] imageBytes = (byte[])studentRow["ProfileImage"];  // Convert the byte array to an image
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    Image img = Image.FromStream(ms);  // Load the image from the byte array
+
+                    // Set the image to fit the PictureBox while maintaining aspect ratio
+                    pictureProfile.Image = img;
+                    pictureProfile.SizeMode = PictureBoxSizeMode.Zoom;  // Adjust the size mode if necessary
+                    pictureProfile.Size = new Size(192, 192);  // Set PictureBox size to 192x192 (or desired size)
+                }
+            }
+            else
+            {
+                // If no image is available, clear the PictureBox
+                pictureProfile.Image = null;
+            }
         }
 
-        private void dataGridSearchResults_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
 
         private void txtSearchBook_TextChanged(object sender, EventArgs e)
         {
@@ -159,7 +194,10 @@ namespace LibraryManagementSystem
             // Fetch book details from the database based on the search query
             DataTable bookResults = GetBookSearchResults(searchQuery);
 
-            // If book results are found, populate textboxes
+            // Bind the search results to the DataGridView (dtgBooks)
+            dtgBooks.DataSource = bookResults;
+
+            // If book results are found, populate textboxes and image
             if (bookResults.Rows.Count > 0)
             {
                 PopulateBookFields(bookResults.Rows[0]);  // Populate fields with the first result
@@ -171,66 +209,108 @@ namespace LibraryManagementSystem
             }
 
         }
-            // Method to get book search results from the database
-            private DataTable GetBookSearchResults(string searchQuery)
+        private DataTable GetBookSearchResults(string searchQuery)
+        {
+            DataTable dt = new DataTable();
+
+            string connectionString = "Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            try
             {
-                DataTable dt = new DataTable();
-
-                // Your connection string
-                string connectionString = "Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
-                try
+                using (SqlConnection con = new SqlConnection(connectionString))
                 {
-                    using (SqlConnection con = new SqlConnection(connectionString))
-                    {
-                        con.Open();
+                    con.Open();
 
-                        // Search query to search books by Title, Author, or ISBN
-                        string query = @"
-                SELECT SerialNumber, BookTitle, ISBN, Author, Category, BookShelves, Quantity
-                FROM Inventory
-                WHERE SerialNumber LIKE @Search OR BookTitle LIKE @Search OR Author LIKE @Search OR ISBN LIKE @Search";
+                    string query = @"
+            SELECT BookID, BookTitle, ISBN, Author, Category, BookShelves, Quantity, ImageFile
+            FROM Inventory
+            WHERE BookID LIKE @Search OR BookTitle LIKE @Search OR Author LIKE @Search OR ISBN LIKE @Search";
 
-                        SqlCommand cmd = new SqlCommand(query, con);
-                        cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
 
-                        SqlDataAdapter da = new SqlDataAdapter(cmd);
-                        da.Fill(dt);
-                    }
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);
                 }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-
-                return dt;
             }
-        
+            catch (Exception ex)
+            {
+                MessageBox.Show("Error: " + ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
 
-        // Method to populate the book fields (textboxes)
+            return dt;
+        }
+
         private void PopulateBookFields(DataRow bookData)
         {
-            
             txtBookTitle.Text = bookData["BookTitle"].ToString();
             txtISBN.Text = bookData["ISBN"].ToString();
             txtAuthor.Text = bookData["Author"].ToString();
             txtCategory.Text = bookData["Category"].ToString();
             txtBookShelves.Text = bookData["BookShelves"].ToString();
             txtQuantity.Text = bookData["Quantity"].ToString();
-            txtSerialNumber.Text = bookData["SerialNumber"].ToString();
+            txtSerialNumber.Text = bookData["BookID"].ToString();
 
+            // Ensure the PictureBox has the correct size and SizeMode set
+            PictureBook.Size = new Size(192, 192);
+            PictureBook.SizeMode = PictureBoxSizeMode.Zoom;
+
+            // Check if the ImageFile column is not DBNull
+            if (bookData["ImageFile"] != DBNull.Value)
+            {
+                byte[] imageBytes = (byte[])bookData["ImageFile"];  // Convert the byte array to an image
+                using (MemoryStream ms = new MemoryStream(imageBytes))
+                {
+                    Image img = Image.FromStream(ms);  // Load the image from the byte array
+
+                    // Set the image to fit the PictureBox while maintaining aspect ratio
+                    PictureBook.Image = img;
+                }
+            }
+            else
+            {
+                // If no image is available, clear the PictureBox
+                PictureBook.Image = null;
+            }
         }
-
-       
-
-        private void btnOpenBookPanel_Click(object sender, EventArgs e)
+        // Method to load the book image into the PictureBox
+        private void LoadBookImage(string imageFilePath)
         {
-            
+            try
+            {
+                // Check if the image path is valid
+                if (!string.IsNullOrEmpty(imageFilePath))
+                {
+                    // If the file exists, load the image
+                    if (File.Exists(imageFilePath))
+                    {
+                        PictureBook.Image = Image.FromFile(imageFilePath);  // Load image from file path
+                    }
+                    else
+                    {
+                        MessageBox.Show($"Image not found at the path: {imageFilePath}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        PictureBook.Image = null;  // Clear the image if path is invalid
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("The image file path is empty.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PictureBook.Image = null;  // Clear the image if the path is empty
+                }
+            }
+            catch (Exception ex)
+            {
+                // Handle any errors (e.g., file access issues)
+                MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                PictureBook.Image = null;  // Clear the picture box on error
+            }
         }
+
+
 
         private void btnBorrowBook_Click(object sender, EventArgs e)
         {
-            string serialNumber = txtSerialNumber.Text.Trim();
+            string BookID = txtSerialNumber.Text.Trim();
 
             // Try to parse borrowerID safely
             if (!int.TryParse(txtID.Text.Trim(), out int borrowerID))
@@ -240,7 +320,7 @@ namespace LibraryManagementSystem
             }
 
             // Check if the Serial Number textbox is empty
-            if (string.IsNullOrEmpty(serialNumber))
+            if (string.IsNullOrEmpty(BookID))
             {
                 MessageBox.Show("Input a book to borrow.", "Input Required", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Exit the method to prevent further execution
@@ -254,7 +334,7 @@ namespace LibraryManagementSystem
             }
 
             // Check if the student has already borrowed the same book
-            if (HasAlreadyBorrowedBook(borrowerID, serialNumber))
+            if (HasAlreadyBorrowedBook(borrowerID, BookID))
             {
                 MessageBox.Show("You have already borrowed this book.", "Borrowing Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return; // Stop further execution
@@ -268,7 +348,7 @@ namespace LibraryManagementSystem
             }
 
             // Fetch the book title from the Inventory table (ensure that this doesn't return null or empty)
-            string bookTitle = GetBookTitle(serialNumber);
+            string bookTitle = GetBookTitle(BookID);
             if (string.IsNullOrEmpty(bookTitle))
             {
                 MessageBox.Show("Book not found or invalid serial number.", "Invalid Book", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -276,7 +356,7 @@ namespace LibraryManagementSystem
             }
 
             // Check the current book quantity before allowing borrowing
-            int currentQuantity = GetBookQuantity(serialNumber);
+            int currentQuantity = GetBookQuantity(BookID);
             if (currentQuantity <= 0)
             {
                 MessageBox.Show("No books available for borrowing.", "Out of Stock", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -285,9 +365,14 @@ namespace LibraryManagementSystem
 
             string status = "Borrowed"; // Status when the book is borrowed
 
+            // Calculate the due date and adjust it to skip weekends
+            DateTime borrowedDate = DateTime.Now;  // Current date when the book is borrowed
+            DateTime adjustedDueDate = borrowedDate.AddDays(7); // Example: due date is 7 days after borrowing
+            DateTime finalDueDate = GetDueDateSkippingWeekends(adjustedDueDate); // Skip weekends
+
             // SQL query to insert a borrowing record
-            string query = "INSERT INTO BookBorrowing (BorrowerID, SerialNumber, BookTitle, Status, BorrowedDate, DueDate) " +
-                           "VALUES (@BorrowerID, @SerialNumber, @BookTitle, @Status, @BorrowedDate, @DueDate)";
+            string query = "INSERT INTO BookBorrowing (BorrowerID, BookID, BookTitle, Status, BorrowedDate, DueDate) " +
+                           "VALUES (@BorrowerID, @BookID, @BookTitle, @Status, @BorrowedDate, @DueDate)";
 
             try
             {
@@ -296,11 +381,11 @@ namespace LibraryManagementSystem
                 {
                     // Add parameters to prevent SQL injection
                     cmd.Parameters.AddWithValue("@BorrowerID", borrowerID);
-                    cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                    cmd.Parameters.AddWithValue("@BookID", BookID);
                     cmd.Parameters.AddWithValue("@BookTitle", bookTitle);
                     cmd.Parameters.AddWithValue("@Status", status);
-                    cmd.Parameters.AddWithValue("@BorrowedDate", DateTime.Now);
-                    cmd.Parameters.AddWithValue("@DueDate", dtpDueDate.Value);
+                    cmd.Parameters.AddWithValue("@BorrowedDate", borrowedDate);
+                    cmd.Parameters.AddWithValue("@DueDate", finalDueDate); // Use the adjusted due date
 
                     // Open the connection to the database
                     conn.Open();
@@ -311,7 +396,7 @@ namespace LibraryManagementSystem
                     if (rowsAffected > 0)
                     {
                         // Decrease the quantity in the Inventory after successful borrowing
-                        DecreaseBookQuantity(serialNumber);
+                        DecreaseBookQuantity(BookID);
 
                         MessageBox.Show("Book borrowed successfully!");
                         ClearBookFields();  // Clear book fields after borrowing
@@ -347,15 +432,15 @@ namespace LibraryManagementSystem
         }
 
         // Method to check if the student has already borrowed the same book
-        private bool HasAlreadyBorrowedBook(int borrowerID, string serialNumber)
+        private bool HasAlreadyBorrowedBook(int borrowerID, string BookID)
         {
-            string query = "SELECT COUNT(*) FROM BookBorrowing WHERE BorrowerID = @BorrowerID AND SerialNumber = @SerialNumber AND Status = 'Borrowed'";
+            string query = "SELECT COUNT(*) FROM BookBorrowing WHERE BorrowerID = @BorrowerID AND BookID = @BookID AND Status = 'Borrowed'";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@BorrowerID", borrowerID);
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", BookID);
                 conn.Open();
 
                 int count = (int)cmd.ExecuteScalar();
@@ -424,12 +509,12 @@ namespace LibraryManagementSystem
         {
             int quantity = 0;
 
-            string query = "SELECT Quantity FROM Inventory WHERE SerialNumber = @SerialNumber";
+            string query = "SELECT Quantity FROM Inventory WHERE BookID = @BookID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", serialNumber);
                 conn.Open();
 
                 var result = cmd.ExecuteScalar();
@@ -445,26 +530,26 @@ namespace LibraryManagementSystem
         // Method to update the book quantity in the Inventory
         private void UpdateBookQuantity(string serialNumber, int newQuantity)
         {
-            string query = "UPDATE Inventory SET Quantity = @Quantity WHERE SerialNumber = @SerialNumber";
+            string query = "UPDATE Inventory SET Quantity = @Quantity WHERE BookID = @BookID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
                 cmd.Parameters.AddWithValue("@Quantity", newQuantity);
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", serialNumber);
                 conn.Open();
                 cmd.ExecuteNonQuery();
             }
         }
 
-        
-
-
-        
 
 
 
-        // Method to clear book fields when no result is found
+
+
+
+
+        // Method to clear all book-related fields and picture box
         private void ClearBookFields()
         {
             txtBookTitle.Clear();
@@ -474,11 +559,7 @@ namespace LibraryManagementSystem
             txtBookShelves.Clear();
             txtQuantity.Clear();
             txtSerialNumber.Clear();
-
-            
-            dtpDueDate.Value = DateTime.Now;  // Reset to the current date
-
-
+            PictureBook.Image = null;  // Clear the picture box
         }
 
 
@@ -493,11 +574,6 @@ namespace LibraryManagementSystem
             txtYear.Clear();
             txtSection.Clear();
             txtID.Clear();
-        }
-
-        private void panel3_Paint(object sender, PaintEventArgs e)
-        {
-
         }
 
         private void btnShowSearchButton_Click(object sender, EventArgs e)
@@ -521,15 +597,15 @@ namespace LibraryManagementSystem
         }
 
         // Method to fetch the Book Title from Inventory
-        private string GetBookTitle(string serialNumber)
+        private string GetBookTitle(string BookID)
         {
             string bookTitle = string.Empty;
-            string query = "SELECT BookTitle FROM Inventory WHERE SerialNumber = @SerialNumber";
+            string query = "SELECT BookTitle FROM Inventory WHERE BookID = @BookID";
 
             using (SqlConnection conn = new SqlConnection(connectionString))
             using (SqlCommand cmd = new SqlCommand(query, conn))
             {
-                cmd.Parameters.AddWithValue("@SerialNumber", serialNumber);
+                cmd.Parameters.AddWithValue("@BookID", BookID);
                 conn.Open();
                 var result = cmd.ExecuteScalar();
                 if (result != null)
@@ -586,11 +662,122 @@ namespace LibraryManagementSystem
         }
 
 
-       
+        private DataTable GetBorrowedBooks(string borrowerID)
+        {
+            DataTable dt = new DataTable();
+            string connectionString = "Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            try
+            {
+                using (SqlConnection con = new SqlConnection(connectionString))
+                {
+                    con.Open();
+
+                    // Include Status in the SELECT query
+                    string query = @"
+            SELECT bb.BookID, bb.BookTitle, bb.BorrowedDate, bb.DueDate, bb.Status
+            FROM BookBorrowing bb
+            WHERE bb.BorrowerID = @BorrowerID";
+
+                    SqlCommand cmd = new SqlCommand(query, con);
+                    cmd.Parameters.AddWithValue("@BorrowerID", borrowerID);
+
+                    SqlDataAdapter da = new SqlDataAdapter(cmd);
+                    da.Fill(dt);  // Fill the DataTable with the results
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error fetching borrowed books: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            return dt;
+        }
+
+
+        // Method to get the due date while skipping weekends (Saturday and Sunday)
+        private DateTime GetDueDateSkippingWeekends(DateTime initialDate)
+        {
+            // Check if the initial due date falls on a weekend (Saturday or Sunday)
+            if (initialDate.DayOfWeek == DayOfWeek.Saturday)
+            {
+                // If it's Saturday, set the due date to the next Monday
+                return initialDate.AddDays(2); // Skip to Monday
+            }
+            else if (initialDate.DayOfWeek == DayOfWeek.Sunday)
+            {
+                // If it's Sunday, set the due date to the next Monday
+                return initialDate.AddDays(1); // Skip to Monday
+            }
+            else
+            {
+                // If it's a weekday, return the same date
+                return initialDate;
+            }
+        }
 
 
 
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
+
+        private void dtgBooks_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            // Check if a valid row is selected
+            if (e.RowIndex >= 0)
+            {
+                // Get the selected book's information from the DataGridView
+                DataGridViewRow selectedRow = dtgBooks.Rows[e.RowIndex];
+
+                // Extract book details from the selected row
+                string bookID = selectedRow.Cells["BooksID"].Value.ToString();
+                string bookTitle = selectedRow.Cells["BooksTitle"].Value.ToString();
+                string isbn = selectedRow.Cells["ISBN"].Value.ToString();
+                string author = selectedRow.Cells["Author"].Value.ToString();
+                string category = selectedRow.Cells["Category"].Value.ToString();
+                string bookShelves = selectedRow.Cells["BookShelves"].Value.ToString();
+                string quantity = selectedRow.Cells["Quantity"].Value.ToString();
+                byte[] imageBytes = (byte[])selectedRow.Cells["ImageFile"].Value;  // Get the image data as a byte array
+
+                // Update the book details fields
+                txtBookTitle.Text = bookTitle;
+                txtISBN.Text = isbn;
+                txtAuthor.Text = author;
+                txtCategory.Text = category;
+                txtBookShelves.Text = bookShelves;
+                txtQuantity.Text = quantity;
+
+                // Load and display the book's image in the PictureBox (if the image exists)
+                try
+                {
+                    if (imageBytes != null && imageBytes.Length > 0)
+                    {
+                        // Convert byte[] to Image and display in the PictureBox
+                        using (MemoryStream ms = new MemoryStream(imageBytes))
+                        {
+                            PictureBook.Image = Image.FromStream(ms);
+                        }
+                    }
+                    else
+                    {
+                        // Clear image if no image is found
+                        PictureBook.Image = null;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle any errors (e.g., file access issues)
+                    MessageBox.Show($"Error loading image: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    PictureBook.Image = null;  // Clear image on error
+                }
+            }
         
-       
+        }
+
+        private void PictureBook_Click(object sender, EventArgs e)
+        {
+        }
     }
 }

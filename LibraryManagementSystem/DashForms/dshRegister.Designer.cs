@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnCamera = new System.Windows.Forms.Button();
             this.lblProfileImage = new System.Windows.Forms.Label();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -68,6 +69,7 @@
             this.label8 = new System.Windows.Forms.Label();
             this.BirthdayDateTimePicker = new System.Windows.Forms.DateTimePicker();
             this.cmbBoxSection = new System.Windows.Forms.ComboBox();
+            this.cbCamera = new System.Windows.Forms.CheckBox();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.panel3.SuspendLayout();
@@ -76,6 +78,8 @@
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.White;
+            this.panel1.Controls.Add(this.cbCamera);
+            this.panel1.Controls.Add(this.btnCamera);
             this.panel1.Controls.Add(this.lblProfileImage);
             this.panel1.Controls.Add(this.pictureBoxProfile);
             this.panel1.Controls.Add(this.label16);
@@ -121,6 +125,18 @@
             this.panel1.Size = new System.Drawing.Size(1743, 1019);
             this.panel1.TabIndex = 0;
             // 
+            // btnCamera
+            // 
+            this.btnCamera.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.btnCamera.ForeColor = System.Drawing.Color.Green;
+            this.btnCamera.Location = new System.Drawing.Point(1478, 428);
+            this.btnCamera.Name = "btnCamera";
+            this.btnCamera.Size = new System.Drawing.Size(110, 36);
+            this.btnCamera.TabIndex = 213;
+            this.btnCamera.Text = "Camera";
+            this.btnCamera.UseVisualStyleBackColor = true;
+            this.btnCamera.Click += new System.EventHandler(this.btnCamera_Click);
+            // 
             // lblProfileImage
             // 
             this.lblProfileImage.AutoSize = true;
@@ -134,9 +150,9 @@
             // pictureBoxProfile
             // 
             this.pictureBoxProfile.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.pictureBoxProfile.Location = new System.Drawing.Point(1362, 176);
+            this.pictureBoxProfile.Location = new System.Drawing.Point(1345, 176);
             this.pictureBoxProfile.Name = "pictureBoxProfile";
-            this.pictureBoxProfile.Size = new System.Drawing.Size(192, 192);
+            this.pictureBoxProfile.Size = new System.Drawing.Size(243, 192);
             this.pictureBoxProfile.TabIndex = 210;
             this.pictureBoxProfile.TabStop = false;
             // 
@@ -144,7 +160,7 @@
             // 
             this.label16.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(1441, 398);
+            this.label16.Location = new System.Drawing.Point(1434, 371);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(85, 16);
             this.label16.TabIndex = 209;
@@ -154,7 +170,7 @@
             // 
             this.btnUpload.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.btnUpload.ForeColor = System.Drawing.Color.Green;
-            this.btnUpload.Location = new System.Drawing.Point(1430, 428);
+            this.btnUpload.Location = new System.Drawing.Point(1362, 428);
             this.btnUpload.Name = "btnUpload";
             this.btnUpload.Size = new System.Drawing.Size(110, 36);
             this.btnUpload.TabIndex = 208;
@@ -388,7 +404,7 @@
             this.btnRegister.FlatAppearance.MouseDownBackColor = System.Drawing.Color.Green;
             this.btnRegister.FlatAppearance.MouseOverBackColor = System.Drawing.Color.Green;
             this.btnRegister.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnRegister.ForeColor = System.Drawing.Color.Lime;
+            this.btnRegister.ForeColor = System.Drawing.Color.Green;
             this.btnRegister.Location = new System.Drawing.Point(1300, 887);
             this.btnRegister.Name = "btnRegister";
             this.btnRegister.Size = new System.Drawing.Size(110, 46);
@@ -578,6 +594,18 @@
             this.cmbBoxSection.Size = new System.Drawing.Size(389, 28);
             this.cmbBoxSection.TabIndex = 47;
             // 
+            // cbCamera
+            // 
+            this.cbCamera.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.cbCamera.AutoSize = true;
+            this.cbCamera.Location = new System.Drawing.Point(1478, 402);
+            this.cbCamera.Name = "cbCamera";
+            this.cbCamera.Size = new System.Drawing.Size(117, 20);
+            this.cbCamera.TabIndex = 215;
+            this.cbCamera.Text = "Camera On/Off";
+            this.cbCamera.UseVisualStyleBackColor = true;
+            this.cbCamera.CheckedChanged += new System.EventHandler(this.cbCamera_CheckedChanged);
+            // 
             // dshRegister
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -588,6 +616,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "dshRegister";
             this.Text = "dshRegister";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dshRegister_FormClosing);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).EndInit();
@@ -639,5 +668,7 @@
         private System.Windows.Forms.Label label16;
         private System.Windows.Forms.Button btnUpload;
         private System.Windows.Forms.Label lblProfileImage;
+        private System.Windows.Forms.Button btnCamera;
+        private System.Windows.Forms.CheckBox cbCamera;
     }
 }

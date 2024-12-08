@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace LibraryManagementSystem.DataSet {
+namespace LibraryManagementSystem {
     
     
     /// <summary>
@@ -20,9 +20,9 @@ namespace LibraryManagementSystem.DataSet {
     [global::System.ComponentModel.DesignerCategoryAttribute("code")]
     [global::System.ComponentModel.ToolboxItem(true)]
     [global::System.Xml.Serialization.XmlSchemaProviderAttribute("GetTypedDataSetSchema")]
-    [global::System.Xml.Serialization.XmlRootAttribute("lmsdcsDataSet45")]
+    [global::System.Xml.Serialization.XmlRootAttribute("lmsdcsDataSet46")]
     [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.DataSet")]
-    public partial class lmsdcsDataSet45 : global::System.Data.DataSet {
+    public partial class lmsdcsDataSet46 : global::System.Data.DataSet {
         
         private ActiveBorrowersDataTable tableActiveBorrowers;
         
@@ -30,7 +30,7 @@ namespace LibraryManagementSystem.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public lmsdcsDataSet45() {
+        public lmsdcsDataSet46() {
             this.BeginInit();
             this.InitClass();
             global::System.ComponentModel.CollectionChangeEventHandler schemaChangedHandler = new global::System.ComponentModel.CollectionChangeEventHandler(this.SchemaChanged);
@@ -41,7 +41,7 @@ namespace LibraryManagementSystem.DataSet {
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        protected lmsdcsDataSet45(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
+        protected lmsdcsDataSet46(global::System.Runtime.Serialization.SerializationInfo info, global::System.Runtime.Serialization.StreamingContext context) : 
                 base(info, context, false) {
             if ((this.IsBinarySerialized(info, context) == true)) {
                 this.InitVars(false);
@@ -127,7 +127,7 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public override global::System.Data.DataSet Clone() {
-            lmsdcsDataSet45 cln = ((lmsdcsDataSet45)(base.Clone()));
+            lmsdcsDataSet46 cln = ((lmsdcsDataSet46)(base.Clone()));
             cln.InitVars();
             cln.SchemaSerializationMode = this.SchemaSerializationMode;
             return cln;
@@ -199,9 +199,9 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         private void InitClass() {
-            this.DataSetName = "lmsdcsDataSet45";
+            this.DataSetName = "lmsdcsDataSet46";
             this.Prefix = "";
-            this.Namespace = "http://tempuri.org/lmsdcsDataSet45.xsd";
+            this.Namespace = "http://tempuri.org/lmsdcsDataSet46.xsd";
             this.EnforceConstraints = true;
             this.SchemaSerializationMode = global::System.Data.SchemaSerializationMode.IncludeSchema;
             this.tableActiveBorrowers = new ActiveBorrowersDataTable();
@@ -225,7 +225,7 @@ namespace LibraryManagementSystem.DataSet {
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedDataSetSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
-            lmsdcsDataSet45 ds = new lmsdcsDataSet45();
+            lmsdcsDataSet46 ds = new lmsdcsDataSet46();
             global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
             global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
             global::System.Xml.Schema.XmlSchemaAny any = new global::System.Xml.Schema.XmlSchemaAny();
@@ -673,7 +673,7 @@ namespace LibraryManagementSystem.DataSet {
             public static global::System.Xml.Schema.XmlSchemaComplexType GetTypedTableSchema(global::System.Xml.Schema.XmlSchemaSet xs) {
                 global::System.Xml.Schema.XmlSchemaComplexType type = new global::System.Xml.Schema.XmlSchemaComplexType();
                 global::System.Xml.Schema.XmlSchemaSequence sequence = new global::System.Xml.Schema.XmlSchemaSequence();
-                lmsdcsDataSet45 ds = new lmsdcsDataSet45();
+                lmsdcsDataSet46 ds = new lmsdcsDataSet46();
                 global::System.Xml.Schema.XmlSchemaAny any1 = new global::System.Xml.Schema.XmlSchemaAny();
                 any1.Namespace = "http://www.w3.org/2001/XMLSchema";
                 any1.MinOccurs = new decimal(0);
@@ -987,7 +987,7 @@ namespace LibraryManagementSystem.DataSet {
         }
     }
 }
-namespace LibraryManagementSystem.DataSet.lmsdcsDataSet45TableAdapters {
+namespace LibraryManagementSystem.lmsdcsDataSet46TableAdapters {
     
     
     /// <summary>
@@ -1223,7 +1223,7 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(lmsdcsDataSet45.ActiveBorrowersDataTable dataTable) {
+        public virtual int Fill(lmsdcsDataSet46.ActiveBorrowersDataTable dataTable) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -1236,9 +1236,9 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual lmsdcsDataSet45.ActiveBorrowersDataTable GetData() {
+        public virtual lmsdcsDataSet46.ActiveBorrowersDataTable GetData() {
             this.Adapter.SelectCommand = this.CommandCollection[0];
-            lmsdcsDataSet45.ActiveBorrowersDataTable dataTable = new lmsdcsDataSet45.ActiveBorrowersDataTable();
+            lmsdcsDataSet46.ActiveBorrowersDataTable dataTable = new lmsdcsDataSet46.ActiveBorrowersDataTable();
             this.Adapter.Fill(dataTable);
             return dataTable;
         }
@@ -1246,14 +1246,14 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(lmsdcsDataSet45.ActiveBorrowersDataTable dataTable) {
+        public virtual int Update(lmsdcsDataSet46.ActiveBorrowersDataTable dataTable) {
             return this.Adapter.Update(dataTable);
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
-        public virtual int Update(lmsdcsDataSet45 dataSet) {
+        public virtual int Update(lmsdcsDataSet46 dataSet) {
             return this.Adapter.Update(dataSet, "ActiveBorrowers");
         }
         
@@ -1760,7 +1760,7 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateUpdatedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateUpdatedRows(lmsdcsDataSet46 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] updatedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.ModifiedCurrent);
@@ -1779,7 +1779,7 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateInsertedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
+        private int UpdateInsertedRows(lmsdcsDataSet46 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allAddedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] addedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.Added);
@@ -1797,7 +1797,7 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        private int UpdateDeletedRows(lmsdcsDataSet45 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
+        private int UpdateDeletedRows(lmsdcsDataSet46 dataSet, global::System.Collections.Generic.List<global::System.Data.DataRow> allChangedRows) {
             int result = 0;
             if ((this._activeBorrowersTableAdapter != null)) {
                 global::System.Data.DataRow[] deletedRows = dataSet.ActiveBorrowers.Select(null, null, global::System.Data.DataViewRowState.Deleted);
@@ -1839,7 +1839,7 @@ SELECT ID, StudentNumber, Firstname, Middlename, Lastname, Age, Birthday, Gender
         ///</summary>
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "17.0.0.0")]
-        public virtual int UpdateAll(lmsdcsDataSet45 dataSet) {
+        public virtual int UpdateAll(lmsdcsDataSet46 dataSet) {
             if ((dataSet == null)) {
                 throw new global::System.ArgumentNullException("dataSet");
             }

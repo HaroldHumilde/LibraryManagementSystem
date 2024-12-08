@@ -394,12 +394,26 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
             {
                 MessageBox.Show($"An error occurred while filtering data:\n{ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
- 
+
         }
 
         private void btnUpdate_Click(object sender, EventArgs e)
         {
             string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            // Validate FirstName, MiddleName, LastName (letters only)
+            if (!IsValidName(txtFirstName.Text) || !IsValidName(txtMiddleName.Text) || !IsValidName(txtLastName.Text))
+            {
+                MessageBox.Show("Only letter values are allowed.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate Age, StudentNumber, NewStudentNumber, ContactNumber (numeric only)
+            if (!IsValidNumber(txtAge.Text) || !IsValidNumber(txtStudentNo.Text) || !IsValidNumber(txtNewStudentNumber.Text) || !IsValidNumber(txtContactNo.Text))
+            {
+                MessageBox.Show("Only numeric values are allowed..", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
 
             // SQL query to update user info (without ProfileImage)
             string updateQuery = @"
@@ -495,6 +509,18 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
                     MessageBox.Show($"An error occurred: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        // Helper method to check if the input contains only letters (for FirstName, MiddleName, LastName)
+        private bool IsValidName(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.All(char.IsLetter);
+        }
+
+        // Helper method to check if the input contains only numeric values (for Age, Student Number, etc.)
+        private bool IsValidNumber(string input)
+        {
+            return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
         }
 
         private bool CheckIfFieldsModified(SqlConnection con, string currentStudentNumber)
