@@ -33,6 +33,15 @@
             this.txtBookID = new System.Windows.Forms.TextBox();
             this.txtID = new System.Windows.Forms.TextBox();
             this.dtgInvoice = new System.Windows.Forms.DataGridView();
+            this.BorrowID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BorrowedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.OverdueNotified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bookBorrowingBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lmsdcsDataSet5 = new LibraryManagementSystem.lmsdcsDataSet5();
             this.panel13 = new System.Windows.Forms.Panel();
@@ -74,15 +83,6 @@
             this.txtSearch = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.bookBorrowingTableAdapter = new LibraryManagementSystem.lmsdcsDataSet5TableAdapters.BookBorrowingTableAdapter();
-            this.BorrowID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowerID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BorrowedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DueDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.OverdueNotified = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dtgInvoice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bookBorrowingBindingSource)).BeginInit();
@@ -162,9 +162,16 @@
             // 
             this.dtgInvoice.AllowUserToAddRows = false;
             this.dtgInvoice.AllowUserToDeleteRows = false;
+            this.dtgInvoice.AllowUserToResizeColumns = false;
+            this.dtgInvoice.AllowUserToResizeRows = false;
             this.dtgInvoice.Anchor = System.Windows.Forms.AnchorStyles.None;
             this.dtgInvoice.AutoGenerateColumns = false;
-            this.dtgInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dtgInvoice.BackgroundColor = System.Drawing.Color.White;
+            this.dtgInvoice.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dtgInvoice.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dtgInvoice.ColumnHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dtgInvoice.ColumnHeadersHeight = 29;
+            this.dtgInvoice.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
             this.dtgInvoice.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.BorrowID,
             this.BorrowerID,
@@ -176,14 +183,104 @@
             this.OverdueNotified,
             this.Price});
             this.dtgInvoice.DataSource = this.bookBorrowingBindingSource;
-            this.dtgInvoice.Location = new System.Drawing.Point(392, 774);
+            this.dtgInvoice.EnableHeadersVisualStyles = false;
+            this.dtgInvoice.GridColor = System.Drawing.Color.White;
+            this.dtgInvoice.Location = new System.Drawing.Point(148, 666);
             this.dtgInvoice.Name = "dtgInvoice";
             this.dtgInvoice.ReadOnly = true;
+            this.dtgInvoice.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
+            this.dtgInvoice.RowHeadersVisible = false;
             this.dtgInvoice.RowHeadersWidth = 51;
+            this.dtgInvoice.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dtgInvoice.RowTemplate.Height = 24;
-            this.dtgInvoice.Size = new System.Drawing.Size(664, 138);
+            this.dtgInvoice.Size = new System.Drawing.Size(1399, 246);
             this.dtgInvoice.TabIndex = 51;
             this.dtgInvoice.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dtgInvoice_CellContentClick);
+            // 
+            // BorrowID
+            // 
+            this.BorrowID.DataPropertyName = "BorrowID";
+            this.BorrowID.HeaderText = "BorrowID";
+            this.BorrowID.MinimumWidth = 6;
+            this.BorrowID.Name = "BorrowID";
+            this.BorrowID.ReadOnly = true;
+            this.BorrowID.Visible = false;
+            this.BorrowID.Width = 125;
+            // 
+            // BorrowerID
+            // 
+            this.BorrowerID.DataPropertyName = "BorrowerID";
+            this.BorrowerID.HeaderText = "BorrowerID";
+            this.BorrowerID.MinimumWidth = 6;
+            this.BorrowerID.Name = "BorrowerID";
+            this.BorrowerID.ReadOnly = true;
+            this.BorrowerID.Visible = false;
+            this.BorrowerID.Width = 125;
+            // 
+            // BookID
+            // 
+            this.BookID.DataPropertyName = "BookID";
+            this.BookID.HeaderText = "BookID";
+            this.BookID.MinimumWidth = 6;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            this.BookID.Visible = false;
+            this.BookID.Width = 125;
+            // 
+            // BookTitle
+            // 
+            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookTitle.DataPropertyName = "BookTitle";
+            this.BookTitle.HeaderText = "BookTitle";
+            this.BookTitle.MinimumWidth = 6;
+            this.BookTitle.Name = "BookTitle";
+            this.BookTitle.ReadOnly = true;
+            // 
+            // BorrowedDate
+            // 
+            this.BorrowedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BorrowedDate.DataPropertyName = "BorrowedDate";
+            this.BorrowedDate.HeaderText = "BorrowedDate";
+            this.BorrowedDate.MinimumWidth = 6;
+            this.BorrowedDate.Name = "BorrowedDate";
+            this.BorrowedDate.ReadOnly = true;
+            // 
+            // DueDate
+            // 
+            this.DueDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.DueDate.DataPropertyName = "DueDate";
+            this.DueDate.HeaderText = "DueDate";
+            this.DueDate.MinimumWidth = 6;
+            this.DueDate.Name = "DueDate";
+            this.DueDate.ReadOnly = true;
+            // 
+            // Status
+            // 
+            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
+            // 
+            // OverdueNotified
+            // 
+            this.OverdueNotified.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.OverdueNotified.DataPropertyName = "OverdueNotified";
+            this.OverdueNotified.HeaderText = "OverdueNotified";
+            this.OverdueNotified.MinimumWidth = 6;
+            this.OverdueNotified.Name = "OverdueNotified";
+            this.OverdueNotified.ReadOnly = true;
+            this.OverdueNotified.Visible = false;
+            // 
+            // Price
+            // 
+            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
             // 
             // bookBorrowingBindingSource
             // 
@@ -558,9 +655,10 @@
             // 
             // txtSearch
             // 
-            this.txtSearch.Location = new System.Drawing.Point(610, 32);
+            this.txtSearch.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtSearch.Location = new System.Drawing.Point(609, 24);
             this.txtSearch.Name = "txtSearch";
-            this.txtSearch.Size = new System.Drawing.Size(458, 22);
+            this.txtSearch.Size = new System.Drawing.Size(458, 30);
             this.txtSearch.TabIndex = 2;
             this.txtSearch.TextChanged += new System.EventHandler(this.txtSearch_TextChanged);
             // 
@@ -577,91 +675,6 @@
             // bookBorrowingTableAdapter
             // 
             this.bookBorrowingTableAdapter.ClearBeforeFill = true;
-            // 
-            // BorrowID
-            // 
-            this.BorrowID.DataPropertyName = "BorrowID";
-            this.BorrowID.HeaderText = "BorrowID";
-            this.BorrowID.MinimumWidth = 6;
-            this.BorrowID.Name = "BorrowID";
-            this.BorrowID.ReadOnly = true;
-            this.BorrowID.Visible = false;
-            this.BorrowID.Width = 125;
-            // 
-            // BorrowerID
-            // 
-            this.BorrowerID.DataPropertyName = "BorrowerID";
-            this.BorrowerID.HeaderText = "BorrowerID";
-            this.BorrowerID.MinimumWidth = 6;
-            this.BorrowerID.Name = "BorrowerID";
-            this.BorrowerID.ReadOnly = true;
-            this.BorrowerID.Visible = false;
-            this.BorrowerID.Width = 125;
-            // 
-            // BookID
-            // 
-            this.BookID.DataPropertyName = "BookID";
-            this.BookID.HeaderText = "BookID";
-            this.BookID.MinimumWidth = 6;
-            this.BookID.Name = "BookID";
-            this.BookID.ReadOnly = true;
-            this.BookID.Visible = false;
-            this.BookID.Width = 125;
-            // 
-            // BookTitle
-            // 
-            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookTitle.DataPropertyName = "BookTitle";
-            this.BookTitle.HeaderText = "BookTitle";
-            this.BookTitle.MinimumWidth = 6;
-            this.BookTitle.Name = "BookTitle";
-            this.BookTitle.ReadOnly = true;
-            // 
-            // BorrowedDate
-            // 
-            this.BorrowedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BorrowedDate.DataPropertyName = "BorrowedDate";
-            this.BorrowedDate.HeaderText = "BorrowedDate";
-            this.BorrowedDate.MinimumWidth = 6;
-            this.BorrowedDate.Name = "BorrowedDate";
-            this.BorrowedDate.ReadOnly = true;
-            // 
-            // DueDate
-            // 
-            this.DueDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.DueDate.DataPropertyName = "DueDate";
-            this.DueDate.HeaderText = "DueDate";
-            this.DueDate.MinimumWidth = 6;
-            this.DueDate.Name = "DueDate";
-            this.DueDate.ReadOnly = true;
-            // 
-            // Status
-            // 
-            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            // 
-            // OverdueNotified
-            // 
-            this.OverdueNotified.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.OverdueNotified.DataPropertyName = "OverdueNotified";
-            this.OverdueNotified.HeaderText = "OverdueNotified";
-            this.OverdueNotified.MinimumWidth = 6;
-            this.OverdueNotified.Name = "OverdueNotified";
-            this.OverdueNotified.ReadOnly = true;
-            this.OverdueNotified.Visible = false;
-            // 
-            // Price
-            // 
-            this.Price.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
             // 
             // dshInvoice
             // 

@@ -30,7 +30,7 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dshProfile));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.label9 = new System.Windows.Forms.Label();
             this.panelProfile = new System.Windows.Forms.Panel();
             this.pictureBoxProfile = new System.Windows.Forms.PictureBox();
@@ -75,14 +75,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.dataGridSearchInfo = new System.Windows.Forms.DataGridView();
-            this.activeBorrowersBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.lmsdcsDataSet40 = new LibraryManagementSystem.lmsdcsDataSet40();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.txtStudentNo = new System.Windows.Forms.TextBox();
-            this.txtEmail = new System.Windows.Forms.TextBox();
-            this.txtAge = new System.Windows.Forms.TextBox();
-            this.TimerSearch = new System.Windows.Forms.Timer(this.components);
-            this.activeBorrowersTableAdapter = new LibraryManagementSystem.lmsdcsDataSet40TableAdapters.ActiveBorrowersTableAdapter();
             this.ID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.StudentNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Firstname = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -97,6 +89,13 @@
             this.Year = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Section = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ProfileImage = new System.Windows.Forms.DataGridViewImageColumn();
+            this.activeBorrowersBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.lmsdcsDataSet40 = new LibraryManagementSystem.lmsdcsDataSet40();
+            this.txtStudentNo = new System.Windows.Forms.TextBox();
+            this.txtEmail = new System.Windows.Forms.TextBox();
+            this.txtAge = new System.Windows.Forms.TextBox();
+            this.TimerSearch = new System.Windows.Forms.Timer(this.components);
+            this.activeBorrowersTableAdapter = new LibraryManagementSystem.lmsdcsDataSet40TableAdapters.ActiveBorrowersTableAdapter();
             this.panelProfile.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxProfile)).BeginInit();
             this.panel8.SuspendLayout();
@@ -159,7 +158,6 @@
             this.panelProfile.Controls.Add(this.label2);
             this.panelProfile.Controls.Add(this.label4);
             this.panelProfile.Controls.Add(this.dataGridSearchInfo);
-            this.panelProfile.Controls.Add(this.btnEdit);
             this.panelProfile.Controls.Add(this.txtStudentNo);
             this.panelProfile.Controls.Add(this.txtEmail);
             this.panelProfile.Controls.Add(this.txtAge);
@@ -216,6 +214,7 @@
             this.txtSearchUser.Name = "txtSearchUser";
             this.txtSearchUser.Size = new System.Drawing.Size(650, 27);
             this.txtSearchUser.TabIndex = 202;
+            this.txtSearchUser.TextChanged += new System.EventHandler(this.txtSearchUser_TextChanged);
             this.txtSearchUser.Enter += new System.EventHandler(this.txtSearchUser_Enter);
             this.txtSearchUser.Leave += new System.EventHandler(this.txtSearchUser_Leave);
             // 
@@ -693,82 +692,20 @@
             this.dataGridSearchInfo.Name = "dataGridSearchInfo";
             this.dataGridSearchInfo.ReadOnly = true;
             this.dataGridSearchInfo.RowHeadersBorderStyle = System.Windows.Forms.DataGridViewHeaderBorderStyle.None;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridSearchInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 7.8F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridSearchInfo.RowHeadersDefaultCellStyle = dataGridViewCellStyle2;
             this.dataGridSearchInfo.RowHeadersVisible = false;
             this.dataGridSearchInfo.RowHeadersWidth = 51;
             this.dataGridSearchInfo.RowTemplate.Height = 24;
             this.dataGridSearchInfo.Size = new System.Drawing.Size(1544, 139);
             this.dataGridSearchInfo.TabIndex = 58;
-            // 
-            // activeBorrowersBindingSource
-            // 
-            this.activeBorrowersBindingSource.DataMember = "ActiveBorrowers";
-            this.activeBorrowersBindingSource.DataSource = this.lmsdcsDataSet40;
-            // 
-            // lmsdcsDataSet40
-            // 
-            this.lmsdcsDataSet40.DataSetName = "lmsdcsDataSet40";
-            this.lmsdcsDataSet40.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnEdit.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(192)))));
-            this.btnEdit.Location = new System.Drawing.Point(1219, 965);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(110, 36);
-            this.btnEdit.TabIndex = 57;
-            this.btnEdit.Text = "Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // txtStudentNo
-            // 
-            this.txtStudentNo.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtStudentNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtStudentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtStudentNo.Location = new System.Drawing.Point(88, 339);
-            this.txtStudentNo.Multiline = true;
-            this.txtStudentNo.Name = "txtStudentNo";
-            this.txtStudentNo.Size = new System.Drawing.Size(413, 32);
-            this.txtStudentNo.TabIndex = 189;
-            // 
-            // txtEmail
-            // 
-            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtEmail.Location = new System.Drawing.Point(1146, 435);
-            this.txtEmail.Multiline = true;
-            this.txtEmail.Name = "txtEmail";
-            this.txtEmail.Size = new System.Drawing.Size(413, 32);
-            this.txtEmail.TabIndex = 176;
-            // 
-            // txtAge
-            // 
-            this.txtAge.Anchor = System.Windows.Forms.AnchorStyles.None;
-            this.txtAge.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.txtAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtAge.Location = new System.Drawing.Point(611, 238);
-            this.txtAge.Multiline = true;
-            this.txtAge.Name = "txtAge";
-            this.txtAge.Size = new System.Drawing.Size(376, 32);
-            this.txtAge.TabIndex = 198;
-            // 
-            // TimerSearch
-            // 
-            this.TimerSearch.Tick += new System.EventHandler(this.TimerSearch_Tick);
-            // 
-            // activeBorrowersTableAdapter
-            // 
-            this.activeBorrowersTableAdapter.ClearBeforeFill = true;
+            this.dataGridSearchInfo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridSearchInfo_CellContentClick);
             // 
             // ID
             // 
@@ -903,6 +840,57 @@
             this.ProfileImage.Visible = false;
             this.ProfileImage.Width = 125;
             // 
+            // activeBorrowersBindingSource
+            // 
+            this.activeBorrowersBindingSource.DataMember = "ActiveBorrowers";
+            this.activeBorrowersBindingSource.DataSource = this.lmsdcsDataSet40;
+            // 
+            // lmsdcsDataSet40
+            // 
+            this.lmsdcsDataSet40.DataSetName = "lmsdcsDataSet40";
+            this.lmsdcsDataSet40.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // txtStudentNo
+            // 
+            this.txtStudentNo.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtStudentNo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtStudentNo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtStudentNo.Location = new System.Drawing.Point(88, 339);
+            this.txtStudentNo.Multiline = true;
+            this.txtStudentNo.Name = "txtStudentNo";
+            this.txtStudentNo.Size = new System.Drawing.Size(413, 32);
+            this.txtStudentNo.TabIndex = 189;
+            // 
+            // txtEmail
+            // 
+            this.txtEmail.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtEmail.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtEmail.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtEmail.Location = new System.Drawing.Point(1146, 435);
+            this.txtEmail.Multiline = true;
+            this.txtEmail.Name = "txtEmail";
+            this.txtEmail.Size = new System.Drawing.Size(413, 32);
+            this.txtEmail.TabIndex = 176;
+            // 
+            // txtAge
+            // 
+            this.txtAge.Anchor = System.Windows.Forms.AnchorStyles.None;
+            this.txtAge.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.txtAge.Font = new System.Drawing.Font("Microsoft Sans Serif", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtAge.Location = new System.Drawing.Point(611, 238);
+            this.txtAge.Multiline = true;
+            this.txtAge.Name = "txtAge";
+            this.txtAge.Size = new System.Drawing.Size(376, 32);
+            this.txtAge.TabIndex = 198;
+            // 
+            // TimerSearch
+            // 
+            this.TimerSearch.Tick += new System.EventHandler(this.TimerSearch_Tick);
+            // 
+            // activeBorrowersTableAdapter
+            // 
+            this.activeBorrowersTableAdapter.ClearBeforeFill = true;
+            // 
             // dshProfile
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -935,7 +923,6 @@
 
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Panel panelProfile;
-        private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;

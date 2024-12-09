@@ -174,17 +174,6 @@ namespace LibraryManagementSystem
 
         private void btnReturnBooks_Click(object sender, EventArgs e)
         {
-            if (panel2.Controls.OfType<dshBorrowerList>().Any()) return;
-            panel2.Controls.Clear();
-
-            dshBookReturn dashBookReturn = new dshBookReturn()
-            {
-                TopLevel = false,
-                FormBorderStyle = FormBorderStyle.None,
-                Dock = DockStyle.Fill
-            };
-            panel2.Controls.Add(dashBookReturn);
-            dashBookReturn.Show();
         }
 
         private void btnLogout_Click(object sender, EventArgs e)

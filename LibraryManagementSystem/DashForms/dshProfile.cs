@@ -8,6 +8,7 @@ using System.IO;
 using System.Linq;
 using System.Net;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using static System.Collections.Specialized.BitVector32;
@@ -86,9 +87,15 @@ namespace LibraryManagementSystem
                 "Section 3",
                 "Section 4",
                 "Section 5",
+                "ABM",
+                "HUMSS",
+                "TVL-ICT",
+                "TVL-HE",
+                "GAS",
+                "STEM",
 
             };
-                for (int i = 0; i < 5; i++)
+                for (int i = 0; i < 11; i++)
                 {
                     cmbBoxSection.Items.Add(ListofSection[i].ToString());
                 }
@@ -239,99 +246,6 @@ namespace LibraryManagementSystem
         }
 
 
-        private void btnEdit_Click(object sender, EventArgs e)
-        {
-            string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
-
-            // SQL query to search for a record by StudentNumber, FirstName, MiddleName, or LastName
-            string query = @"
-SELECT * 
-FROM ActiveBorrowers 
-WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
-   OR LOWER(FirstName) = LOWER(@SearchTerm)
-   OR LOWER(MiddleName) = LOWER(@SearchTerm)
-   OR LOWER(LastName) = LOWER(@SearchTerm)";
-
-            using (SqlConnection con = new SqlConnection(connectionString))
-            using (SqlCommand cmd = new SqlCommand(query, con))
-            {
-                cmd.Parameters.AddWithValue("@SearchTerm", txtSearchUser.Text.Trim());
-
-                try
-                {
-                    con.Open();
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        if (reader.Read())
-                        {
-                            // Populate textboxes with user information
-                            txtFirstName.Text = reader["FirstName"]?.ToString() ?? string.Empty;
-                            txtMiddleName.Text = reader["MiddleName"]?.ToString() ?? string.Empty;
-                            txtLastName.Text = reader["LastName"]?.ToString() ?? string.Empty;
-                            txtAge.Text = reader["Age"]?.ToString() ?? string.Empty;
-                            cmbBoxGender.Text = reader["Gender"]?.ToString() ?? string.Empty;
-
-                            if (reader["Birthday"] != DBNull.Value)
-                            {
-                                BirthdayDateTimePicker.Value = Convert.ToDateTime(reader["Birthday"]);
-                            }
-                            else
-                            {
-                                BirthdayDateTimePicker.Value = DateTime.Today; // Default value
-                            }
-
-                            txtStudentNo.Text = reader["StudentNumber"]?.ToString() ?? string.Empty;
-                            cmbBoxYear.Text = reader["Year"]?.ToString() ?? string.Empty;
-                            cmbBoxSection.Text = reader["Section"]?.ToString() ?? string.Empty;
-                            txtAddress.Text = reader["Address"]?.ToString() ?? string.Empty;
-                            txtEmail.Text = reader["Email"]?.ToString() ?? string.Empty;
-                            txtContactNo.Text = reader["ContactNumber"]?.ToString() ?? string.Empty;
-
-                            // Handle ProfileImage (if needed)
-                            if (reader["ProfileImage"] != DBNull.Value)
-                            {
-                                byte[] imageData = (byte[])reader["ProfileImage"];
-
-                                // Check if the image data is valid
-                                if (imageData.Length > 0)
-                                {
-                                    using (MemoryStream ms = new MemoryStream(imageData))
-                                    {
-                                        // Load the image into the PictureBox
-                                        pictureBoxProfile.Image = Image.FromStream(ms);
-
-                                        // Set SizeMode to Zoom to maintain the aspect ratio while fitting the image
-                                        pictureBoxProfile.SizeMode = PictureBoxSizeMode.Zoom;
-
-                                        // Optionally, you can set the PictureBox's size to fit the image more precisely
-                                        // For example, to ensure it doesn't stretch:
-                                        // pictureBoxProfile.Width = Math.Min(image.Width, pictureBoxProfile.Width);
-                                        // pictureBoxProfile.Height = Math.Min(image.Height, pictureBoxProfile.Height);
-                                    }
-                                }
-                                else
-                                {
-                                    pictureBoxProfile.Image = null; // If no image data, clear the PictureBox
-                                    MessageBox.Show("No valid image found for this user.", "Image Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                                }
-                            }
-                            else
-                            {
-                                pictureBoxProfile.Image = null; // If no image is available, clear the PictureBox
-                            }
-                        }
-                        else
-                        {
-                            MessageBox.Show("No record found for the given search term.", "No Data", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show($"Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
-        }
 
         private void TimerSearch_Tick(object sender, EventArgs e)
         {
@@ -401,37 +315,77 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
         {
             string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
 
-            // Validate FirstName, MiddleName, LastName (letters only)
-            if (!IsValidName(txtFirstName.Text) || !IsValidName(txtMiddleName.Text) || !IsValidName(txtLastName.Text))
+            // Regular expression for validating FirstName, LastName (letters and spaces only)
+            string namePattern = @"^[A-Za-z\s]+$"; // Matches letters and spaces only
+
+            // Regular expression for validating MiddleName (letters, spaces, and dots allowed)
+            string middleNamePattern = @"^[A-Za-z\s\.]+$"; // Matches letters, spaces, and dots only
+
+            // Regular expression for validating Contact Number (digits, spaces, dashes, and parentheses)
+            string contactNumberPattern = @"^[0-9\s\-\(\)]*$"; // Matches digits, spaces, dashes, and parentheses only
+
+            // Regular expression for validating Student Number (numeric only or alphanumeric, change based on your requirement)
+            string studentNumberPattern = @"^[A-Za-z0-9]+$"; // Matches alphanumeric only (adjust if needed)
+
+            // Validate FirstName (only letters and spaces)
+            if (string.IsNullOrWhiteSpace(txtFirstName.Text) || !Regex.IsMatch(txtFirstName.Text, namePattern))
             {
-                MessageBox.Show("Only letter values are allowed.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("First Name can only contain letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
-            // Validate Age, StudentNumber, NewStudentNumber, ContactNumber (numeric only)
-            if (!IsValidNumber(txtAge.Text) || !IsValidNumber(txtStudentNo.Text) || !IsValidNumber(txtNewStudentNumber.Text) || !IsValidNumber(txtContactNo.Text))
+            // Validate MiddleName (only letters, spaces, and dots)
+            if (string.IsNullOrWhiteSpace(txtMiddleName.Text) || !Regex.IsMatch(txtMiddleName.Text, middleNamePattern))
             {
-                MessageBox.Show("Only numeric values are allowed..", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                MessageBox.Show("Middle Name can only contain letters, spaces, and dots.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate LastName (only letters and spaces)
+            if (string.IsNullOrWhiteSpace(txtLastName.Text) || !Regex.IsMatch(txtLastName.Text, namePattern))
+            {
+                MessageBox.Show("Last Name can only contain letters and spaces.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate Age (must be a valid number)
+            if (string.IsNullOrWhiteSpace(txtAge.Text) || !int.TryParse(txtAge.Text, out int age) || age <= 0)
+            {
+                MessageBox.Show("Age must be a valid number greater than zero.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate Contact Number (must only contain digits, spaces, dashes, or parentheses)
+            if (string.IsNullOrWhiteSpace(txtContactNo.Text) || !Regex.IsMatch(txtContactNo.Text, contactNumberPattern))
+            {
+                MessageBox.Show("Contact Number can only contain digits, spaces, dashes, or parentheses.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
+            // Validate Student Number (must only contain alphanumeric characters)
+            if (string.IsNullOrWhiteSpace(txtStudentNo.Text) || !Regex.IsMatch(txtStudentNo.Text, studentNumberPattern))
+            {
+                MessageBox.Show("Student Number can only contain alphanumeric characters.", "Invalid Input", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
 
             // SQL query to update user info (without ProfileImage)
             string updateQuery = @"
-    UPDATE ActiveBorrowers 
-    SET 
-        StudentNumber = @NewStudentNumber,
-        FirstName = @FirstName,
-        MiddleName = @MiddleName,
-        LastName = @LastName,
-        Age = @Age,
-        Gender = @Gender,
-        Birthday = @Birthday,
-        Year = @Year,
-        Section = @Section,
-        Address = @Address,
-        Email = @Email,
-        ContactNumber = @ContactNumber
-    WHERE StudentNumber = @CurrentStudentNumber";
+UPDATE ActiveBorrowers 
+SET 
+    StudentNumber = @NewStudentNumber,
+    FirstName = @FirstName,
+    MiddleName = @MiddleName,
+    LastName = @LastName,
+    Age = @Age,
+    Gender = @Gender,
+    Birthday = @Birthday,
+    Year = @Year,
+    Section = @Section,
+    Address = @Address,
+    Email = @Email,
+    ContactNumber = @ContactNumber
+WHERE StudentNumber = @CurrentStudentNumber";
 
             using (SqlConnection con = new SqlConnection(connectionString))
             {
@@ -478,7 +432,7 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
                         updateCmd.Parameters.AddWithValue("@FirstName", txtFirstName.Text);
                         updateCmd.Parameters.AddWithValue("@MiddleName", txtMiddleName.Text);
                         updateCmd.Parameters.AddWithValue("@LastName", txtLastName.Text);
-                        updateCmd.Parameters.AddWithValue("@Age", int.TryParse(txtAge.Text, out int age) ? (object)age : DBNull.Value);
+                        updateCmd.Parameters.AddWithValue("@Age", string.IsNullOrWhiteSpace(txtAge.Text) ? DBNull.Value : (object)txtAge.Text);
                         updateCmd.Parameters.AddWithValue("@Gender", cmbBoxGender.Text);
                         updateCmd.Parameters.AddWithValue("@Birthday", BirthdayDateTimePicker.Value);
                         updateCmd.Parameters.AddWithValue("@Year", cmbBoxYear.Text);
@@ -511,19 +465,7 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
             }
         }
 
-        // Helper method to check if the input contains only letters (for FirstName, MiddleName, LastName)
-        private bool IsValidName(string input)
-        {
-            return !string.IsNullOrEmpty(input) && input.All(char.IsLetter);
-        }
-
-        // Helper method to check if the input contains only numeric values (for Age, Student Number, etc.)
-        private bool IsValidNumber(string input)
-        {
-            return !string.IsNullOrEmpty(input) && input.All(char.IsDigit);
-        }
-
-        private bool CheckIfFieldsModified(SqlConnection con, string currentStudentNumber)
+            private bool CheckIfFieldsModified(SqlConnection con, string currentStudentNumber)
         {
             string fetchCurrentRecordQuery = "SELECT * FROM ActiveBorrowers WHERE StudentNumber = @CurrentStudentNumber";
             using (SqlCommand fetchCmd = new SqlCommand(fetchCurrentRecordQuery, con))
@@ -748,6 +690,135 @@ WHERE LOWER(StudentNumber) = LOWER(@SearchTerm)
 
             // Optionally, you could load an image or perform other operations here
             // Example: pictureBoxProfile.Image = Image.FromFile("path_to_image.jpg");
+        }
+
+        private void txtSearchUser_TextChanged(object sender, EventArgs e)
+        {
+            // Only perform search if the textbox is not empty
+            if (!string.IsNullOrEmpty(txtSearchUser.Text))
+            {
+                SearchStudent(txtSearchUser.Text);
+            }
+            else
+            {
+                // If the search box is empty, clear the DataGridView or load all records
+                LoadAllStudents();
+            }
+        }
+
+        private void SearchStudent(string searchText)
+        {
+            // Connection string
+            string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            // SQL query to search for students by StudentNumber, FirstName, or LastName
+            string searchQuery = @"
+        SELECT * FROM ActiveBorrowers
+        WHERE StudentNumber LIKE @SearchText
+           OR FirstName LIKE @SearchText
+           OR LastName LIKE @SearchText";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    // Create command to execute the query
+                    using (SqlCommand cmd = new SqlCommand(searchQuery, con))
+                    {
+                        // Use the parameter to avoid SQL injection
+                        cmd.Parameters.AddWithValue("@SearchText", "%" + searchText + "%");
+
+                        // Use SqlDataAdapter to fill data into DataTable
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        // Bind DataTable to the DataGridView
+                        dataGridSearchInfo.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while searching: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void LoadAllStudents()
+        {
+            // Connection string
+            string connectionString = @"Data Source=DESKTOP-IUO5MFF;Initial Catalog=lmsdcs;Integrated Security=True;Encrypt=True;TrustServerCertificate=True";
+
+            // SQL query to load all students
+            string loadQuery = "SELECT * FROM ActiveBorrowers";
+
+            using (SqlConnection con = new SqlConnection(connectionString))
+            {
+                try
+                {
+                    con.Open();
+
+                    // Create command to execute the query
+                    using (SqlCommand cmd = new SqlCommand(loadQuery, con))
+                    {
+                        // Use SqlDataAdapter to fill data into DataTable
+                        SqlDataAdapter da = new SqlDataAdapter(cmd);
+                        DataTable dt = new DataTable();
+                        da.Fill(dt);
+
+                        // Bind DataTable to the DataGridView
+                        dataGridSearchInfo.DataSource = dt;
+                    }
+                }
+                catch (Exception ex)
+                {
+                    MessageBox.Show($"An error occurred while loading students: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void dataGridSearchInfo_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.RowIndex >= 0) // Ensure a valid row is selected
+            {
+                // Get the data of the selected row
+                DataGridViewRow row = dataGridSearchInfo.Rows[e.RowIndex];
+
+                // Populate the textboxes with the data from the selected row
+                txtStudentNo.Text = row.Cells["StudentNumber"].Value.ToString();
+                txtFirstName.Text = row.Cells["FirstName"].Value.ToString();
+                txtMiddleName.Text = row.Cells["MiddleName"].Value.ToString();
+                txtLastName.Text = row.Cells["LastName"].Value.ToString();
+                txtAge.Text = row.Cells["Age"].Value.ToString();
+                txtContactNo.Text = row.Cells["ContactNumber"].Value.ToString();
+                txtEmail.Text = row.Cells["Email"].Value.ToString();
+                txtAddress.Text = row.Cells["Address"].Value.ToString();
+                cmbBoxGender.SelectedItem = row.Cells["Gender"].Value.ToString();
+                cmbBoxYear.SelectedItem = row.Cells["Year"].Value.ToString();
+                cmbBoxSection.SelectedItem = row.Cells["Section"].Value.ToString();
+                BirthdayDateTimePicker.Value = Convert.ToDateTime(row.Cells["Birthday"].Value);
+
+                // Optionally, you can also display the profile image in a PictureBox (if you have that column in your DataGridView)
+                byte[] profileImageBytes = row.Cells["ProfileImage"].Value as byte[];
+                if (profileImageBytes != null && profileImageBytes.Length > 0)
+                {
+                    using (MemoryStream ms = new MemoryStream(profileImageBytes))
+                    {
+                        Image image = Image.FromStream(ms);
+
+                        // Set the PictureBox SizeMode to StretchImage so the image fits the PictureBox without zooming
+                        pictureBoxProfile.SizeMode = PictureBoxSizeMode.StretchImage;
+                        pictureBoxProfile.Image = image;
+                    }
+                }
+                else
+                {
+                    // Optionally, clear the picture if no image is available
+                    pictureBoxProfile.Image = null;
+                }
+            }
         }
     }
 }

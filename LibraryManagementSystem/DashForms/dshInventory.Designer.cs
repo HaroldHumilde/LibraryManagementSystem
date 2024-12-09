@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dshInventory));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lblBookID = new System.Windows.Forms.Label();
             this.cmbStatus = new System.Windows.Forms.ComboBox();
             this.label12 = new System.Windows.Forms.Label();
             this.panel11 = new System.Windows.Forms.Panel();
@@ -47,6 +48,19 @@
             this.lblImagePath = new System.Windows.Forms.Label();
             this.cmbBookShelves = new System.Windows.Forms.ComboBox();
             this.dataGridInventory = new System.Windows.Forms.DataGridView();
+            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.PublishedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BookShelves = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ImageFile = new System.Windows.Forms.DataGridViewImageColumn();
+            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.inventoryBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lmsdcsDataSet3 = new LibraryManagementSystem.lmsdcsDataSet3();
             this.btnUploadImage = new System.Windows.Forms.Button();
@@ -77,20 +91,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.openFileDialog1 = new System.Windows.Forms.OpenFileDialog();
             this.inventoryTableAdapter = new LibraryManagementSystem.lmsdcsDataSet3TableAdapters.InventoryTableAdapter();
-            this.lblBookID = new System.Windows.Forms.Label();
-            this.BookID = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookNumber = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookTitle = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Author = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Category = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.PublishedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.BookShelves = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Quantity = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Price = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Location = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Publisher = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ImageFile = new System.Windows.Forms.DataGridViewImageColumn();
-            this.Status = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBox1)).BeginInit();
@@ -147,6 +147,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(1812, 899);
             this.panel1.TabIndex = 0;
+            // 
+            // lblBookID
+            // 
+            this.lblBookID.AutoSize = true;
+            this.lblBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBookID.Location = new System.Drawing.Point(1632, 240);
+            this.lblBookID.Name = "lblBookID";
+            this.lblBookID.Size = new System.Drawing.Size(24, 25);
+            this.lblBookID.TabIndex = 89;
+            this.lblBookID.Text = "0";
+            this.lblBookID.Visible = false;
             // 
             // cmbStatus
             // 
@@ -343,6 +354,129 @@
             this.dataGridInventory.TabIndex = 80;
             this.dataGridInventory.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridInventory_CellDoubleClick);
             this.dataGridInventory.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dataGridInventory_CellFormatting);
+            // 
+            // BookID
+            // 
+            this.BookID.DataPropertyName = "BookID";
+            this.BookID.HeaderText = "BookID";
+            this.BookID.MinimumWidth = 6;
+            this.BookID.Name = "BookID";
+            this.BookID.ReadOnly = true;
+            this.BookID.Visible = false;
+            this.BookID.Width = 125;
+            // 
+            // BookNumber
+            // 
+            this.BookNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookNumber.DataPropertyName = "ISBN";
+            this.BookNumber.HeaderText = "ISBN";
+            this.BookNumber.MinimumWidth = 6;
+            this.BookNumber.Name = "BookNumber";
+            this.BookNumber.ReadOnly = true;
+            // 
+            // BookTitle
+            // 
+            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookTitle.DataPropertyName = "BookTitle";
+            this.BookTitle.HeaderText = "BookTitle";
+            this.BookTitle.MinimumWidth = 6;
+            this.BookTitle.Name = "BookTitle";
+            this.BookTitle.ReadOnly = true;
+            // 
+            // Author
+            // 
+            this.Author.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Author.DataPropertyName = "Author";
+            this.Author.HeaderText = "Author";
+            this.Author.MinimumWidth = 6;
+            this.Author.Name = "Author";
+            this.Author.ReadOnly = true;
+            // 
+            // Category
+            // 
+            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Category.DataPropertyName = "Category";
+            this.Category.HeaderText = "Category";
+            this.Category.MinimumWidth = 6;
+            this.Category.Name = "Category";
+            this.Category.ReadOnly = true;
+            // 
+            // PublishedDate
+            // 
+            this.PublishedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.PublishedDate.DataPropertyName = "PublishedDate";
+            this.PublishedDate.HeaderText = "PublishedDate";
+            this.PublishedDate.MinimumWidth = 6;
+            this.PublishedDate.Name = "PublishedDate";
+            this.PublishedDate.ReadOnly = true;
+            this.PublishedDate.Visible = false;
+            // 
+            // BookShelves
+            // 
+            this.BookShelves.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.BookShelves.DataPropertyName = "BookShelves";
+            this.BookShelves.HeaderText = "BookShelves";
+            this.BookShelves.MinimumWidth = 6;
+            this.BookShelves.Name = "BookShelves";
+            this.BookShelves.ReadOnly = true;
+            // 
+            // Quantity
+            // 
+            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Quantity.DataPropertyName = "Quantity";
+            this.Quantity.HeaderText = "Quantity";
+            this.Quantity.MinimumWidth = 6;
+            this.Quantity.Name = "Quantity";
+            this.Quantity.ReadOnly = true;
+            // 
+            // Price
+            // 
+            this.Price.DataPropertyName = "Price";
+            this.Price.HeaderText = "Price";
+            this.Price.MinimumWidth = 6;
+            this.Price.Name = "Price";
+            this.Price.ReadOnly = true;
+            this.Price.Visible = false;
+            this.Price.Width = 125;
+            // 
+            // Location
+            // 
+            this.Location.DataPropertyName = "Location";
+            this.Location.HeaderText = "Location";
+            this.Location.MinimumWidth = 6;
+            this.Location.Name = "Location";
+            this.Location.ReadOnly = true;
+            this.Location.Visible = false;
+            this.Location.Width = 125;
+            // 
+            // Publisher
+            // 
+            this.Publisher.DataPropertyName = "Publisher";
+            this.Publisher.HeaderText = "Publisher";
+            this.Publisher.MinimumWidth = 6;
+            this.Publisher.Name = "Publisher";
+            this.Publisher.ReadOnly = true;
+            this.Publisher.Visible = false;
+            this.Publisher.Width = 125;
+            // 
+            // ImageFile
+            // 
+            this.ImageFile.DataPropertyName = "ImageFile";
+            this.ImageFile.HeaderText = "ImageFile";
+            this.ImageFile.MinimumWidth = 6;
+            this.ImageFile.Name = "ImageFile";
+            this.ImageFile.ReadOnly = true;
+            this.ImageFile.Visible = false;
+            this.ImageFile.Width = 125;
+            // 
+            // Status
+            // 
+            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.Status.DataPropertyName = "Status";
+            this.Status.HeaderText = "Status";
+            this.Status.MinimumWidth = 6;
+            this.Status.Name = "Status";
+            this.Status.ReadOnly = true;
             // 
             // inventoryBindingSource
             // 
@@ -634,139 +768,6 @@
             // inventoryTableAdapter
             // 
             this.inventoryTableAdapter.ClearBeforeFill = true;
-            // 
-            // lblBookID
-            // 
-            this.lblBookID.AutoSize = true;
-            this.lblBookID.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBookID.Location = new System.Drawing.Point(1632, 240);
-            this.lblBookID.Name = "lblBookID";
-            this.lblBookID.Size = new System.Drawing.Size(24, 25);
-            this.lblBookID.TabIndex = 89;
-            this.lblBookID.Text = "0";
-            // 
-            // BookID
-            // 
-            this.BookID.DataPropertyName = "BookID";
-            this.BookID.HeaderText = "BookID";
-            this.BookID.MinimumWidth = 6;
-            this.BookID.Name = "BookID";
-            this.BookID.ReadOnly = true;
-            this.BookID.Visible = false;
-            this.BookID.Width = 125;
-            // 
-            // BookNumber
-            // 
-            this.BookNumber.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookNumber.DataPropertyName = "ISBN";
-            this.BookNumber.HeaderText = "ISBN";
-            this.BookNumber.MinimumWidth = 6;
-            this.BookNumber.Name = "BookNumber";
-            this.BookNumber.ReadOnly = true;
-            // 
-            // BookTitle
-            // 
-            this.BookTitle.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookTitle.DataPropertyName = "BookTitle";
-            this.BookTitle.HeaderText = "BookTitle";
-            this.BookTitle.MinimumWidth = 6;
-            this.BookTitle.Name = "BookTitle";
-            this.BookTitle.ReadOnly = true;
-            // 
-            // Author
-            // 
-            this.Author.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Author.DataPropertyName = "Author";
-            this.Author.HeaderText = "Author";
-            this.Author.MinimumWidth = 6;
-            this.Author.Name = "Author";
-            this.Author.ReadOnly = true;
-            // 
-            // Category
-            // 
-            this.Category.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Category.DataPropertyName = "Category";
-            this.Category.HeaderText = "Category";
-            this.Category.MinimumWidth = 6;
-            this.Category.Name = "Category";
-            this.Category.ReadOnly = true;
-            // 
-            // PublishedDate
-            // 
-            this.PublishedDate.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.PublishedDate.DataPropertyName = "PublishedDate";
-            this.PublishedDate.HeaderText = "PublishedDate";
-            this.PublishedDate.MinimumWidth = 6;
-            this.PublishedDate.Name = "PublishedDate";
-            this.PublishedDate.ReadOnly = true;
-            this.PublishedDate.Visible = false;
-            // 
-            // BookShelves
-            // 
-            this.BookShelves.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.BookShelves.DataPropertyName = "BookShelves";
-            this.BookShelves.HeaderText = "BookShelves";
-            this.BookShelves.MinimumWidth = 6;
-            this.BookShelves.Name = "BookShelves";
-            this.BookShelves.ReadOnly = true;
-            // 
-            // Quantity
-            // 
-            this.Quantity.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Quantity.DataPropertyName = "Quantity";
-            this.Quantity.HeaderText = "Quantity";
-            this.Quantity.MinimumWidth = 6;
-            this.Quantity.Name = "Quantity";
-            this.Quantity.ReadOnly = true;
-            // 
-            // Price
-            // 
-            this.Price.DataPropertyName = "Price";
-            this.Price.HeaderText = "Price";
-            this.Price.MinimumWidth = 6;
-            this.Price.Name = "Price";
-            this.Price.ReadOnly = true;
-            this.Price.Visible = false;
-            this.Price.Width = 125;
-            // 
-            // Location
-            // 
-            this.Location.DataPropertyName = "Location";
-            this.Location.HeaderText = "Location";
-            this.Location.MinimumWidth = 6;
-            this.Location.Name = "Location";
-            this.Location.ReadOnly = true;
-            this.Location.Visible = false;
-            this.Location.Width = 125;
-            // 
-            // Publisher
-            // 
-            this.Publisher.DataPropertyName = "Publisher";
-            this.Publisher.HeaderText = "Publisher";
-            this.Publisher.MinimumWidth = 6;
-            this.Publisher.Name = "Publisher";
-            this.Publisher.ReadOnly = true;
-            this.Publisher.Visible = false;
-            this.Publisher.Width = 125;
-            // 
-            // ImageFile
-            // 
-            this.ImageFile.DataPropertyName = "ImageFile";
-            this.ImageFile.HeaderText = "ImageFile";
-            this.ImageFile.MinimumWidth = 6;
-            this.ImageFile.Name = "ImageFile";
-            this.ImageFile.ReadOnly = true;
-            this.ImageFile.Visible = false;
-            this.ImageFile.Width = 125;
-            // 
-            // Status
-            // 
-            this.Status.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
             // 
             // dshInventory
             // 

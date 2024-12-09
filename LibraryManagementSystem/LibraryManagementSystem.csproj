@@ -127,17 +127,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="dshBorrowerList.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dshBorrowerList.Designer.cs">
+      <DependentUpon>dshBorrowerList.cs</DependentUpon>
+    </Compile>
     <Compile Include="DashForms\Admin.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="DashForms\Admin.Designer.cs">
       <DependentUpon>Admin.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DashForms\dshBookReturn.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DashForms\dshBookReturn.Designer.cs">
-      <DependentUpon>dshBookReturn.cs</DependentUpon>
     </Compile>
     <Compile Include="DashForms\DashboardForm.cs">
       <SubType>Form</SubType>
@@ -150,12 +150,6 @@
     </Compile>
     <Compile Include="DashForms\dshBorrower.Designer.cs">
       <DependentUpon>dshBorrower.cs</DependentUpon>
-    </Compile>
-    <Compile Include="DashForms\dshBorrowerList.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="DashForms\dshBorrowerList.Designer.cs">
-      <DependentUpon>dshBorrowerList.cs</DependentUpon>
     </Compile>
     <Compile Include="DashForms\dshInventory.cs">
       <SubType>Form</SubType>
@@ -318,6 +312,16 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
     </Compile>
+    <Compile Include="lmsdcsDataSet10.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet11.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
+    </Compile>
     <Compile Include="lmsdcsDataSet2.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -463,23 +467,30 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>lmsdcsDataSet7.xsd</DependentUpon>
     </Compile>
+    <Compile Include="lmsdcsDataSet8.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </Compile>
+    <Compile Include="lmsdcsDataSet9.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Tulpep\NotificationWindow\Notification.cs" />
+    <EmbeddedResource Include="dshBorrowerList.resx">
+      <DependentUpon>dshBorrowerList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="DashForms\Admin.resx">
       <DependentUpon>Admin.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DashForms\dshBookReturn.resx">
-      <DependentUpon>dshBookReturn.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashForms\DashboardForm.resx">
       <DependentUpon>DashboardForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashForms\dshBorrower.resx">
       <DependentUpon>dshBorrower.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="DashForms\dshBorrowerList.resx">
-      <DependentUpon>dshBorrowerList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="DashForms\dshInventory.resx">
       <DependentUpon>dshInventory.cs</DependentUpon>
@@ -791,6 +802,28 @@
     </None>
     <None Include="lmsdcsDataSet1.xss">
       <DependentUpon>lmsdcsDataSet1.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet10.xsc">
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet10.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet10.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet10.xss">
+      <DependentUpon>lmsdcsDataSet10.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet11.xsc">
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet11.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet11.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet11.xss">
+      <DependentUpon>lmsdcsDataSet11.xsd</DependentUpon>
     </None>
     <None Include="lmsdcsDataSet2.xsc">
       <DependentUpon>lmsdcsDataSet2.xsd</DependentUpon>
@@ -1110,6 +1143,28 @@
     </None>
     <None Include="lmsdcsDataSet7.xss">
       <DependentUpon>lmsdcsDataSet7.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet8.xsc">
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet8.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet8.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet8.xss">
+      <DependentUpon>lmsdcsDataSet8.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet9.xsc">
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
+    </None>
+    <None Include="lmsdcsDataSet9.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>lmsdcsDataSet9.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="lmsdcsDataSet9.xss">
+      <DependentUpon>lmsdcsDataSet9.xsd</DependentUpon>
     </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">

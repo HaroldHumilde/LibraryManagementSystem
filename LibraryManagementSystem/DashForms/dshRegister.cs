@@ -187,12 +187,22 @@ namespace LibraryManagementSystem
                 }
             }
 
-            foreach (char c in middleName)
+            // Validate MiddleName and add a dot if it's a single letter
+            middleName = middleName.Trim(); // Trim any extra spaces
+
+            if (middleName.Length == 1 && char.IsLetter(middleName[0]))
             {
-                if (!char.IsLetter(c) && c != ' ')
+                middleName += "."; // Add dot after the single letter
+            }
+            else if (middleName.Length > 1)
+            {
+                foreach (char c in middleName)
                 {
-                    MessageBox.Show("Middle Name must contain only letters and spaces.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                    return; // Exit if middle name contains invalid characters
+                    if (!char.IsLetter(c) && c != ' ')
+                    {
+                        MessageBox.Show("Middle Name must contain only letters and spaces.", "Invalid Name", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return; // Exit if middle name contains invalid characters
+                    }
                 }
             }
 

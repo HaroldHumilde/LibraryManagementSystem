@@ -221,10 +221,13 @@ namespace LibraryManagementSystem
                 {
                     con.Open();
 
+                    // Modified query to exclude borrowed books with a quantity of 0
                     string query = @"
-            SELECT BookID, BookTitle, ISBN, Author, Category, BookShelves, Quantity, ImageFile
-            FROM Inventory
-            WHERE BookID LIKE @Search OR BookTitle LIKE @Search OR Author LIKE @Search OR ISBN LIKE @Search";
+                SELECT i.BookID, i.BookTitle, i.ISBN, i.Author, i.Category, i.BookShelves, i.Quantity, i.ImageFile
+                FROM Inventory i
+                WHERE (i.BookID LIKE @Search OR i.BookTitle LIKE @Search OR i.Author LIKE @Search OR i.ISBN LIKE @Search)
+                  AND i.Quantity > 0
+                  AND i.BookID NOT IN (SELECT bb.BookID FROM BookBorrowing bb WHERE bb.Status = 'Unreturned')";
 
                     SqlCommand cmd = new SqlCommand(query, con);
                     cmd.Parameters.AddWithValue("@Search", "%" + searchQuery + "%");
@@ -240,6 +243,7 @@ namespace LibraryManagementSystem
 
             return dt;
         }
+
 
         private void PopulateBookFields(DataRow bookData)
         {
@@ -340,7 +344,7 @@ namespace LibraryManagementSystem
                 return; // Stop further execution
             }
 
-            // Check if the student has reached the borrowing limit (2 books) and if all previous books are returned
+            // Check if the student has reached the borrowing limit (2 books)
             if (HasReachedBorrowLimit(borrowerID))
             {
                 MessageBox.Show("You have reached the limit of borrowing two books. Please return a book before borrowing more.", "Borrowing Limit Reached", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -363,7 +367,8 @@ namespace LibraryManagementSystem
                 return; // Prevent borrowing if quantity is 0 or less
             }
 
-            string status = "Borrowed"; // Status when the book is borrowed
+            // Set status based on borrowing date
+            string status = DateTime.Now.Date == DateTime.Now.Date ? "Unreturned" : "Borrowed"; // If borrowed today, status is Unreturned
 
             // Calculate the due date and adjust it to skip weekends
             DateTime borrowedDate = DateTime.Now;  // Current date when the book is borrowed
