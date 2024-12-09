@@ -28,11 +28,21 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.flowLayoutPanel1 = new System.Windows.Forms.FlowLayoutPanel();
             this.SuspendLayout();
+            // 
+            // flowLayoutPanel1
+            // 
+            this.flowLayoutPanel1.Location = new System.Drawing.Point(0, -1);
+            this.flowLayoutPanel1.Name = "flowLayoutPanel1";
+            this.flowLayoutPanel1.Size = new System.Drawing.Size(1941, 1091);
+            this.flowLayoutPanel1.TabIndex = 0;
             // 
             // dshBorrowerList
             // 
-            this.ClientSize = new System.Drawing.Size(1628, 701);
+            this.ClientSize = new System.Drawing.Size(1942, 1102);
+            this.Controls.Add(this.flowLayoutPanel1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "dshBorrowerList";
             this.ResumeLayout(false);
 
@@ -74,5 +84,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Year;
         private System.Windows.Forms.DataGridViewTextBoxColumn Section;
         private System.Windows.Forms.DataGridViewImageColumn ProfileImage;
+        private System.Windows.Forms.FlowLayoutPanel flowLayoutPanel1;
     }
 }
